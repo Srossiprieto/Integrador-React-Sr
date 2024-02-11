@@ -54,7 +54,63 @@ export const MenuContainerStyled = styled.div`
   font-size: 1.2rem;
   cursor: pointer;
   color: var(--text);
+  .active{
+  display: none;
+}
   @media (max-width: 968px) {
     display: flex;
   }
+  
+  `;
+export const DropDownMenuStyled = styled.div`
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 20vh;
+  height: 100vh;
+  background-color: var(--bg-footer);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 111;
+  transform: ${props => props.isOpen ? 'translateX(0)' : 'translateX(100%)'};
+  transition: transform 0.3s ease-in-out;
+  a {
+    text-decoration: none;
+    color: var(--text);
+    margin: 0 10px;
+    font-weight: 600;
+    &:hover {
+      color: var(--decoration);
+    }
+  } 
+`
+
+export const DropDownMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 111;
+  gap: 40px;
+
+  a {
+    text-decoration: none;
+    color: var(--text);
+    margin: 0 10px;
+    font-weight: 600;
+    &:hover {
+      color: var(--decoration);
+    }
+  }
+`
+export const BlurBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  z-index: 1;
 `;

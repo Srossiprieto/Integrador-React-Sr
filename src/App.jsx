@@ -1,3 +1,4 @@
+import { DropDownProvider } from './components/Navbar/DropDownContext';
 import Categories from './components/Categories/Categories';
 import Footer from './components/Footer/Footer';
 import Hero from './components/Hero/Hero';
@@ -11,12 +12,14 @@ function App() {
 
   return (
     <>  
+    <DropDownProvider>
       <Navbar/> 
       <Layout>
         <Hero/>
-        <CardsProducts/>
+          <CardsProducts/>
       </Layout>
       <Footer/>
+    </DropDownProvider>
     </>
   ) 
 }

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const HeroContainerStyled = styled.div`
   display: flex;
   justify-content: space-around;
@@ -18,10 +19,10 @@ export const HeroContainerStyled = styled.div`
     text-align: center;
     background-color: var(--purple-500);
     color: var(--text);
-    margin-top: 30px;
-    padding: 10px;
+    margin-top: 10px;
+    padding: 5px;
     border-radius: 20px;
-    font-size: 18px;
+    font-size: 0.9rem;
     font-weight: 800;
   }
 
@@ -32,6 +33,7 @@ export const HeroContainerStyled = styled.div`
 
   @media (max-width: 968px) {
     flex-direction: column;
+    gap: 100px;
   }
 
 `;
@@ -44,9 +46,9 @@ export const HeroTextContainerStyled = styled.div`
   width: 50%;
 
   h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 800;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
     color: var(--text);
   }
 
@@ -59,14 +61,14 @@ export const HeroTextContainerStyled = styled.div`
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 800;
     margin: 0;
     color: var(--text-grey);
   }
 
   p {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   @media (max-width: 968px) {
@@ -90,38 +92,54 @@ export const HeroTextContainerStyled = styled.div`
 `;
 
 export const HeroImageContainerStyled = styled.div`
-  width: 50%;
-  position: relative;
-
+ position: relative; // Esto permite que las tarjetas posicionadas absolutamente se coloquen en relación a este contenedor
+  width: 40%; // Asegura que el contenedor ocupe todo el ancho disponible
+  height: 40%; // Ajusta la altura automáticamente en función del contenido
+  display: flex; // Utiliza flexbox para un control más fácil del diseño
+  justify-content: center; // Centra las tarjetas horizontalmente
+  align-items: center; // Centra las tarjetas verticalmente
   &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 100%;
-    background: linear-gradient(to top, var(--purple-500), var(--decoration));
-    filter: blur(30px);
-    border-radius: 20%;
-    z-index: -1;
+    content: ""; // Añade un pseudo-elemento para crear un fondo
+    position: absolute; // Posiciona el fondo en relación al contenedor
+    top: 0; // Coloca el fondo en la parte superior del contenedor
+    right: 0; // Coloca el fondo en la parte derecha del contenedor
+    bottom: 0; // Coloca el fondo en la parte inferior del contenedor
+    left: 0; // Coloca el fondo en la parte izquierda del contenedor
+    background: linear-gradient(to bottom, var(--decoration),var(--purple-500) ,var(--purple-400)); // Aplica un degradado de color al fondo
+    z-index: -1; // Coloca el fondo detrás del contenido
+    border-radius: 8px; // Añade esquinas redondeadas al fondo
+    filter: blur(25px); // Aplica un desenfoque al fondo
   }
 
   > div {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    width: 400px;
-    margin: 10%;
+    width: 100%;
     box-sizing: border-box;
-    z-index: 2;
     position: relative;
     padding: 20px;
     border-radius: 8px;
   }
 
   @media (max-width: 960px) {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+  }
+  @media (max-width: 768px) {
+    > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
   }
 `;
 
@@ -135,4 +153,5 @@ export const HeroGridContainerStyled = styled.div`
   position: relative;
   padding: 20px;
   border-radius: 8px;
+
 `

@@ -1,7 +1,10 @@
 // Hero.jsx
 import React from 'react';
 import arrowRight from '../assets/img/arrow-right.svg';
-import { HeroContainerStyled, HeroTextContainerStyled, HeroImageContainerStyled, HeroGridContainerStyled } from './HeroStyles';
+import { HeroContainerStyled, 
+  HeroTextContainerStyled, 
+  HeroImageContainerStyled, 
+  HeroGridContainerStyled } from './HeroStyles';
 import Card from '../Hero/HeroCard'; 
 import { cardsData } from './data';
 

@@ -3,6 +3,7 @@ import {products} from "../../data/products"
 import { ProductContainer,ContainerProductWrapper ,ProductWrapper } from "./CardProductsStyles"
 import CardProduct from "./CardProduct"
 
+
 function CardsProducts() {
     return (
       <ProductContainer>
@@ -10,10 +11,10 @@ function CardsProducts() {
         <ContainerProductWrapper>
             <ProductWrapper>
             {products.map(prod =>(
-  
+              
               <CardProduct key={prod.id} {...prod} />
-  
-            ))}
+              
+              ))}
         </ProductWrapper>
         </ContainerProductWrapper>
       </ProductContainer>
