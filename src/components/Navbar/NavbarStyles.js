@@ -112,5 +112,6 @@ export const BlurBackground = styled.div`
   width: 100%;
   height: 100%;
   backdrop-filter: blur(5px);
+  opacity: 5.5;
   z-index: 1;
 `;
