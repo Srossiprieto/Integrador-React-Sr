@@ -7,11 +7,13 @@ import Navbar from './components/Navbar/Navbar';
 import CardsProducts from './components/Products/CardsProducts';
 
 
+
+
 function App() {
 
 
   return (
-    <>  
+    <> 
     <DropDownProvider>
       <Navbar/> 
       <Layout>

@@ -17,6 +17,9 @@ import {FaUserAlt} from "react-icons/fa";
 import {AiOutlineMenu} from "react-icons/ai" 
 import { IoClose } from "react-icons/io5";
 
+import { NavLink } from 'react-router-dom';
+
+
 
 function Navbar() {
   const { isOpen, toggle } = useContext(DropDownContext);
@@ -64,7 +67,7 @@ function Navbar() {
         <MenuContainerStyled onClick={(e) => {e.stopPropagation(); toggle();}}>
           {isOpen ? <IoClose /> : <AiOutlineMenu/>}
         </MenuContainerStyled>
-          <DropDownMenuStyled isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
+          <DropDownMenuStyled open={isOpen} onClick={(e) => e.stopPropagation()}>
             <DropDownMenu>
               <a href="#">Inicio</a>
               <a href="#">Nosotros</a>
