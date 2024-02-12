@@ -69,12 +69,12 @@ export const DropDownMenuStyled = styled.div`
   width: 20vh;
   height: 100vh;
   background-color: var(--bg-footer);
-  display: ${props => props.open ? 'block' : 'none'};
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 111;
-  transform: ${props => props.isOpen ? 'translateX(0)' : 'translateX(100%)'};
+  transform: ${props => props.open ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.3s ease-in-out;
   a {
     text-decoration: none;
