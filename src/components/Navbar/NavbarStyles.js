@@ -3,17 +3,18 @@ import styled from 'styled-components';
 
 export const NavbarContainerStyled = styled.div`
   width: 100%;
-  height: 70px;
+  height: 50px;
   background-color: var(--bg);
   display: flex;
   justify-content: space-between;
   padding: 1rem 4rem;
   align-items: center;
   position: fixed;
+  top: 0; /* Asegura que el Navbar siempre esté en la parte superior de la ventana del navegador */
   z-index: 4;
   img {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
   }
   @media (max-width: 768px) {
     padding: 1rem 2rem;
@@ -25,6 +26,7 @@ export const NavbarUlStyled = styled.ul`
   list-style: none;
   align-items: center;
   a {
+    font-size: 0.9rem;
     text-decoration: none;
     color: var(--text);
     margin: 0 10px;

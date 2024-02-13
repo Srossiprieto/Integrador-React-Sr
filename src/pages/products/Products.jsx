@@ -1,10 +1,10 @@
-import React from 'react'
+import CardsProducts from '../../components/Product/CardsProducts';
 
 function Products() {
   return (
-    <div>
-      4
-    </div>
+    <>
+      <CardsProducts/>
+    </>
   )
 }
 

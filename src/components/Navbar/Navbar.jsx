@@ -17,7 +17,7 @@ import {FaUserAlt} from "react-icons/fa";
 import {AiOutlineMenu} from "react-icons/ai" 
 import { IoClose } from "react-icons/io5";
 
-import { NavLink } from 'react-router-dom';
+import { Outlet, Link } from "react-router-dom";
 
 
 
@@ -49,17 +49,18 @@ function Navbar() {
           </a>
         <NavbarUlStyled>
           <li>
-            <a href="#">Inicio</a>
+            <Link to='/'>Home</Link>
           </li>
           <li>
-            <a href="#">Nosotros</a>
+            <Link to='productos'>Productos</Link>
           </li>
           <li>
-            <a href="#">Categorias</a>
+            <Link to="nosotros">Nosotros</Link>
           </li>
           <li>
-            <a href="#">Productos</a>
+            <Link to="contacto">Contacto</Link>
           </li>
+          <Outlet />
         </NavbarUlStyled>
         <UserNavStyled>
           <FaUserAlt/>
@@ -69,10 +70,19 @@ function Navbar() {
         </MenuContainerStyled>
           <DropDownMenuStyled open={isOpen} onClick={(e) => e.stopPropagation()}>
             <DropDownMenu>
-              <a href="#">Inicio</a>
-              <a href="#">Nosotros</a>
-              <a href="#">Categorias</a>
-              <a href="#">Productos</a>
+              <li>
+                <Link to='/'>Home</Link>
+              </li>
+              <li>
+                <Link to='productos'>Productos</Link>
+              </li>
+              <li>
+                <Link to="nosotros">Nosotros</Link>
+              </li>
+              <li>
+                <Link to="contacto">Contacto</Link>
+              </li>
+              <Outlet />
             </DropDownMenu>
           </DropDownMenuStyled>
       </NavbarContainerStyled>

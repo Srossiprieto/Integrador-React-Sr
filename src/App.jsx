@@ -1,28 +1,33 @@
 import { DropDownProvider } from './components/Navbar/DropDownContext';
-import Categories from './components/Categories/Categories';
-import Footer from './components/Footer/Footer';
-import Hero from './components/Hero/Hero';
-import Layout from './components/Layout/Layout';
+import { GlobalStyles } from './styles/GlobalStyles';
+
 import Navbar from './components/Navbar/Navbar';
-import CardsProducts from './components/Products/CardsProducts';
 
+import Home from './pages/home/Home';
+import Product  from './pages/products/Products';
+import Error from './pages/error/Error';
+import Contact from './pages/contact/Contact';
+import About from './pages/about/About';
 
+import Footer from './components/Footer/Footer';    
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
-
-
   return (
-    <> 
     <DropDownProvider>
-      <Navbar/> 
-      <Layout>
-        <Hero/>
-          <CardsProducts/>
-      </Layout>
-      <Footer/>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home/>}/> 
+          <Route path='productos' element={<Product/>}/>
+          <Route path='nosotros' element={<About/>}/>
+          <Route path='contacto' element={<Contact/>}/>
+          <Route path='*' element={<Error/>}/>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </DropDownProvider>
-    </>
   ) 
 }
 
