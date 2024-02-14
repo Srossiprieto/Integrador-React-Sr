@@ -1,21 +1,21 @@
 import {products} from "../../data/products"
-import { ProductContainer,ContainerProductWrapper ,ProductWrapper } from "./CardProductsStyles"
+import { ProductContainer ,ContainerProductWrapper ,ProductWrapper } from "./CardProductsStyles"
 import CardProduct from "./CardProduct"
 
 
 function CardsProducts() {
     return (
       <ProductContainer>
-        <h1>Productos destacados</h1>
-        <ContainerProductWrapper>
-            <ProductWrapper>
-            {products.map(prod =>(
-              
-              <CardProduct key={prod.id} {...prod} />
-              
-              ))}
-        </ProductWrapper>
-        </ContainerProductWrapper>
+          <h1>Nuestros Planes</h1>
+          <ContainerProductWrapper>
+              <ProductWrapper>
+                {products.map(prod =>(
+
+                <CardProduct key={prod.id} {...prod} />
+
+                ))}
+              </ProductWrapper>
+          </ContainerProductWrapper>
       </ProductContainer>
     );
   };

@@ -1,14 +1,13 @@
 import styled from "styled-components";
+import { FaCheck } from "react-icons/fa";
 
 export const CardProductDest = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: center;
-  align-items: center;
+  align-items: start;
   width: 300px;
-  height: 350px;
   gap: 10px;
-  background: #ffffff17;
+  border: 1px solid var(--gray);
   padding: 20px;
   border-radius: 8px;
   h2 {
@@ -16,12 +15,20 @@ export const CardProductDest = styled.div`
     font-weight: 800;
   }
   h3 {
-    color: #696969;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 15px;
   }
   p {
-    font-size: 15px;
-    color: var(--purple-500);
+    font-size: 26px;
+    color: var(--purple-700);
     font-weight: 800;
+  }
+  span{
+    color: var(--gray);
+    font-weight: 600;
+    font-size: 15px;
+
   }
   img {
     width: 38px;
@@ -29,35 +36,77 @@ export const CardProductDest = styled.div`
   }
 `;
 
+
 export const ProductContainer = styled.div`
+  padding-block-start: 100px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   user-select: none;
   h1{
     text-align: center;
-    color: var(--purple-500);
+    color: var(--text);
     font-weight: 800;
-    font-size: 40px;
+    font-size: 30px;
   }
 `
+
+
+
 export const ContainerProductWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding-bottom: 100px;
     
 
 `
 export const ProductWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
   margin: 15px 15px;
   > h2 {
     color: var(--bg);
   }
-  @media (max-width: 968px) {
-    display: flex;
-    flex-direction: column;
-  }
 `;
+
+
+export const CheckItem = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: var(--gray);
+  font-weight: 700;
+  font-size: 15px;
+
+`
+
+export const StyledCheckIcon = styled(FaCheck)`
+  color: var(--purple-700);
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: auto;
+`
+export const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  color: var(--text);
+  background-color: var(--purple-700);
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: var(--purple-500);
+  }
+`

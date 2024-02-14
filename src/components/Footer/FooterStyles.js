@@ -6,7 +6,6 @@ width: 100%;
 height: 100%;
 gap: 4rem;
 padding: 4rem 0.5rem 2rem;
-margin-top: 60px ;
 background: var(--bg-footer);
 `
 export const FooterTextContainerStyled = styled.div`
