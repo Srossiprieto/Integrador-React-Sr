@@ -1,4 +1,4 @@
-import { ErrorContainer, ErrorTitle, ErrorDirection, ErrorText, StyledLinkError } from "./error";
+import { ErrorContainer, ErrorTitle, ErrorDirection, ErrorText, StyledLinkError } from './error.styles';
 
 function Error() {
   return (
