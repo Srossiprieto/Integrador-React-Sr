@@ -5,7 +5,7 @@ function Error() {
     <ErrorContainer>
       <p>404</p>
       <ErrorTitle>
-        Página no encontrada
+        Página no encontrada.
       </ErrorTitle>
       <ErrorDirection>
         <ErrorText>
