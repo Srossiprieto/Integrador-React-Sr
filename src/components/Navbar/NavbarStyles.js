@@ -10,7 +10,7 @@ export const NavbarContainerStyled = styled.div`
   padding: 1rem 4rem;
   align-items: center;
   position: fixed;
-  top: 0; /* Asegura que el Navbar siempre esté en la parte superior de la ventana del navegador */
+  top: 0; 
   z-index: 4;
   img {
     width: 35px;
@@ -66,15 +66,16 @@ export const MenuContainerStyled = styled.div`
   `;
 export const DropDownMenuStyled = styled.div`
   position: absolute;
-  top: 70px;
+  top: 50px;
   right: 0;
   width: 20vh;
   height: 100vh;
-  background-color: var(--bg-footer);
+  background-color: var(--purple-500);
+  opacity: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  text-align: start;
   z-index: 111;
   transform: ${props => props.open ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.3s ease-in-out;

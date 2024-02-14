@@ -2,8 +2,9 @@ import {createGlobalStyle} from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
     :root {
-        --bg: #000000;
+        --bg: #090b0e;
         --text: #fff;
+        --gray: #707070;
         --bg-footer:#8655ff ;
         --text-footer: #04040470 ;
         --decoration: #46b5be;

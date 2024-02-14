@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const HeroContainerStyled = styled.div`
   display: flex;
+  padding-block-start: 100px;
   justify-content: space-around;
   align-items: center;
   max-width: 1300px;
@@ -53,7 +54,7 @@ export const HeroTextContainerStyled = styled.div`
   }
 
   span{
-    background: linear-gradient(to bottom, var(--decoration), var(--decoration), var(--purple-500));
+    background: linear-gradient(to bottom, var(--decoration),var(--purple-500) ,var(--purple-400));
     background-clip: text;
     color: transparent;
     -webkit-background-clip: text;
@@ -108,7 +109,7 @@ export const HeroImageContainerStyled = styled.div`
     background: linear-gradient(to bottom, var(--decoration),var(--purple-500) ,var(--purple-400)); // Aplica un degradado de color al fondo
     z-index: -1; // Coloca el fondo detrás del contenido
     border-radius: 8px; // Añade esquinas redondeadas al fondo
-    filter: blur(25px); // Aplica un desenfoque al fondo
+    filter: blur(15px); // Aplica un desenfoque al fondo
   }
 
   > div {
