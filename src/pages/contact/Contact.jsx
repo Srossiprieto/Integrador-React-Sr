@@ -1,5 +1,5 @@
 import React from 'react'
-import { ContactContainer, ContactForm,TitleForm ,InputFormStyles, InputStyles, TextAreaFormStyles, ButtonFormStyles, TextAreaContainer} from './contact'
+import { ContactContainer, ContactForm,TitleForm ,InputFormStyles, InputStyles, TextAreaFormStyles, ButtonFormStyles, TextAreaContainer} from './contactStyles'
 import arrowRight from '../../components/assets/img/arrow-right.svg'
 function Contact() {
   return (
@@ -8,6 +8,7 @@ function Contact() {
         <TitleForm>Contacto</TitleForm>
         <InputFormStyles>
           <InputStyles type="text" placeholder="Name" />
+          <InputStyles type="text" placeholder="Apellido" />
           <InputStyles type="email" placeholder="Email" />
         </InputFormStyles>
         <TextAreaContainer>
@@ -24,4 +25,5 @@ function Contact() {
   )
 }
 
-export default Contact
+export default Contact;
+
