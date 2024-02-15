@@ -82,13 +82,13 @@ function Navbar() {
                 <Link to='/'>Home</Link>
               </li>
               <li>
-                <Link to='productos'>Productos</Link>
+                <Link to='/productos'>Productos</Link>
               </li>
               <li>
-                <Link to="nosotros">Nosotros</Link>
+                <Link to="/nosotros">Nosotros</Link>
               </li>
               <li>
-                <Link to="contacto">Contacto</Link>
+                <Link to="/contacto">Contacto</Link>
               </li>
               <Outlet />
             </DropDownMenu>

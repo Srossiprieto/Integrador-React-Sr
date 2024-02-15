@@ -1,5 +1,4 @@
 import { DropDownProvider } from './components/Navbar/DropDownContext';
-import { GlobalStyles } from './styles/GlobalStyles';
 
 import Navbar from './components/Navbar/Navbar';
 
