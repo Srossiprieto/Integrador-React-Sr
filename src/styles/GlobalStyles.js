@@ -5,7 +5,6 @@ export const GlobalStyles = createGlobalStyle`
         --bg: #090b0e;
         --text: #fff;
         --gray: #707070;
-        --bg-footer:#8655ff ;
         --text-footer: #04040470 ;
         --decoration: #46b5be;
         --grey: #0404046b;
@@ -22,6 +21,21 @@ export const GlobalStyles = createGlobalStyle`
         --purple-800: #5618bf;
         --purple-900: #48169c;
         --purple-950: #2b0b6a;
+
+
+
+        --gray-50: #f6f6f6;
+        --gray-100: #e7e7e7;
+        --gray-200: #d1d1d1;
+        --gray-300: #b0b0b0;
+        --gray-400: #8f8f8f;
+        --gray-500: #6d6d6d;
+        --gray-600: #5d5d5d;
+        --gray-700: #4f4f4f;
+        --gray-800: #454545;
+        --gray-900: #3d3d3d;
+        --gray-950: #262626;
+
 
 
         

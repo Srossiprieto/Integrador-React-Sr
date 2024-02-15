@@ -3,17 +3,21 @@ import {
   NavbarContainerStyled,
   NavbarUlStyled,
   MenuContainerStyled,
-  UserNavStyled,
   DropDownMenuStyled,
   DropDownMenu,
-  BlurBackground
+  BlurBackground,
+  RightContainer,
+  StyledUserIcon,
+  StyledBagIcon,
+  ShoppingBagBubble,
+  BagIconContainer
+
 } from './NavbarStyles';
 
 import { DropDownContext } from './DropDownContext'
 import { useContext } from 'react';
 
 import logoNav from '../assets/img/logoNav.png'
-import {FaUserAlt} from "react-icons/fa";
 import {AiOutlineMenu} from "react-icons/ai" 
 import { IoClose } from "react-icons/io5";
 
@@ -62,12 +66,16 @@ function Navbar() {
           </li>
           <Outlet />
         </NavbarUlStyled>
-        <UserNavStyled>
-          <FaUserAlt/>
-        </UserNavStyled>
-        <MenuContainerStyled onClick={(e) => {e.stopPropagation(); toggle();}}>
-          {isOpen ? <IoClose /> : <AiOutlineMenu/>}
-        </MenuContainerStyled>
+        <RightContainer>
+          <StyledUserIcon/>
+          <BagIconContainer>
+            <StyledBagIcon/>
+            <ShoppingBagBubble>0</ShoppingBagBubble>
+          </BagIconContainer>
+          <MenuContainerStyled onClick={(e) => {e.stopPropagation(); toggle();}}>
+            {isOpen ? <IoClose /> : <AiOutlineMenu/>}
+          </MenuContainerStyled>
+        </RightContainer>
           <DropDownMenuStyled open={isOpen} onClick={(e) => e.stopPropagation()}>
             <DropDownMenu>
               <li>

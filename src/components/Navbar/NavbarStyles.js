@@ -1,5 +1,7 @@
 
 import styled from 'styled-components';
+import { FaUserAlt } from "react-icons/fa";
+import { FaBagShopping } from "react-icons/fa6";
 
 export const NavbarContainerStyled = styled.div`
   width: 100%;
@@ -40,15 +42,42 @@ export const NavbarUlStyled = styled.ul`
   }
 `;
 
-export const UserNavStyled = styled.div`
-  gap: 15px;
+export const StyledUserIcon = styled(FaUserAlt)`
+  color: var(--text);
+  height: 15px;
   cursor: pointer;
-  span {
-    color: white;
-    font-size: 1rem;
-    margin-right: 20px;
-  }
 `;
+
+export const BagIconContainer = styled.div`
+  position: relative;
+  color: var(--text);
+  height: 15px;
+  cursor: pointer;
+`;
+
+export const StyledBagIcon = styled(FaBagShopping)`
+  position: relative;
+  color: var(--text);
+  height: 15px;
+  cursor: pointer;
+`;
+
+export const ShoppingBagBubble = styled.span`
+  position: absolute;
+  top: -5px; // Ajusta este valor según sea necesario
+  right: -10px; // Ajusta este valor según sea necesario
+  background-color: var(--decoration);
+  color: white;
+  border-radius: 50%;
+  width: 1.25em;
+  height: 1.25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+`;
+
+
 
 export const MenuContainerStyled = styled.div`
   display: none;
@@ -64,6 +93,11 @@ export const MenuContainerStyled = styled.div`
   }
   
   `;
+export const RightContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`
 export const DropDownMenuStyled = styled.div`
   position: absolute;
   top: 50px;

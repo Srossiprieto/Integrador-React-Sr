@@ -1,13 +1,20 @@
-import {AboutContainer, Title, Subtitle, Text } from './aboutStyle';
+import { AboutContainer, AboutContainerTextStyled, ImgContainer } from './aboutStyle';
+import robot3d from '../../components/assets/img/robot3d.png';
+
 function About() {
   return (
-
     <AboutContainer>
-      <Title>SRP</Title>
-      <Subtitle>Empresa futurista</Subtitle>
-      <Text>
-        Empresa futurista que busca soluciones para el futuro, con el fin de mejorar la calidad de vida de las personas.
-      </Text>
+      <ImgContainer>
+        <img src={robot3d} alt="Robot 3D" />
+      </ImgContainer>
+      <AboutContainerTextStyled>
+        <h1>¿Quienes Somos?</h1>
+        <p>
+          Somos una empresa que se dedica a la creación de software y desarrollo web. 
+          Nuestro objetivo es ayudar a las empresas a mejorar su presencia en línea y 
+          aumentar sus ventas.
+        </p>
+      </AboutContainerTextStyled>
     </AboutContainer>
   );
 }
