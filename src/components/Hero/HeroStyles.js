@@ -6,7 +6,6 @@ export const HeroContainerStyled = styled.div`
   padding-block-start: 100px;
   justify-content: space-around;
   align-items: center;
-  max-width: 1300px;
   margin: 100px;
   gap: 30px;
 
@@ -38,6 +37,19 @@ export const HeroContainerStyled = styled.div`
   }
 
 `;
+export const HeroWidthContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1300px;
+  gap: 30px;
+  @media (max-width: 968px) {
+    flex-direction: column;
+    gap: 100px;
+    }
+  `;
+
 
 export const HeroTextContainerStyled = styled.div`
   display: flex;
