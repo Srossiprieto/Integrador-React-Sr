@@ -14,7 +14,8 @@ export const TitleForm = styled.h1`
     display: flex;
     justify-content: center;
     font-size: 2rem;
-    color: var(--text);
+    font-weight: 800;
+    color: var(--purple-500);
 `
 
 export const ContactForm = styled.form`
