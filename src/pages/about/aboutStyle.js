@@ -1,25 +1,33 @@
 import styled from 'styled-components';
 
+export const AboutContainerWidth = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block-start: 100px;
+  max-width: 1300px;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 100px;
+  }
+
+`
+
+
 export const AboutContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   width: 100%;
-  padding-block-start: 100px;
   background-color: var(--bg);
 
-  @media (max-width: 768px) {
-    flex-direction: column-reverse;
-    justify-content: flex-end;
-    gap: 100px;
-  }
 `;
 
 export const AboutContainerTextStyled = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 45%;
   h1 {
     font-size: 2rem;
     margin-bottom: 10px;
@@ -37,12 +45,13 @@ export const AboutContainerTextStyled = styled.div`
   }
 
   @media (max-width: 768px) {
-    max-width: 100%;
+    padding: 20px;
     h1 {
       text-align: center;
     }
     p {
       text-align: center;
+      width: 100%;
     }
   }
 `;
