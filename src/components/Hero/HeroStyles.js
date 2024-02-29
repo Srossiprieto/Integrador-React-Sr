@@ -39,6 +39,7 @@ export const HeroContainerStyled = styled.div`
 export const HeroWidthContainer = styled.div`
   width: 100%;
   display: flex;
+  padding-block-start: 30px;
   justify-content: space-between;
   align-items: center;
   max-width: 1300px;
