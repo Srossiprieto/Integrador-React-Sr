@@ -69,7 +69,6 @@ export const AboutContainerTextStyled = styled.div`
   `;
 
 
-
 export const ShapesContainer = styled.div`
   position: absolute;
   bottom: 0;
@@ -82,6 +81,12 @@ export const ShapesContainer = styled.div`
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  @media (max-width: 768px) {
+    img {
+      height: 150px; // Ajusta este valor según tus necesidades
+    }
   }
 `
 
