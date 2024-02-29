@@ -130,56 +130,35 @@ export const MenuContainerStyledBtn = styled.div`
       display: flex;
   }
   `
-  export const DropDownMenuStyled = styled.div`
-  display: ${({ open }) => (open ? 'flex' : 'none')};
-  /* display: flex; */
-  position: absolute;
-  top: 10px;
-  border-radius: 10px 10px;
-  right: 10px;
-  width: 30vh;
-  height: 40vh;
-  background-color: var(--purple-500);
-  opacity: 1;
-  flex-direction: column;
-  justify-content: center;
-  text-align: start;
-  /* transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'}; */
-  z-index: 111;
-  transition: transform 0.3s ease-in-out;
+export const DropDownMenuStyled = styled.div`
+display: flex;
+position: absolute;
+top: 10px;
+border-radius: 10px 10px;
+right: 10px;
+max-width: 30vh;
+height: 40vh;
+background-color: var(--purple-500);
+opacity: ${({ open }) => (open ? '1' : '0')};
+flex-direction: column;
+justify-content: center;
+text-align: start;
+transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
+transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+z-index: 111;
 
-  a {
-    text-decoration: none;
-    color: var(--text);
-    margin: 0 10px;
-    font-weight: 600;
-    &:hover {
-      color: var(--bg);
-    }
+a {
+  text-decoration: none;
+  color: var(--text);
+  margin: 0 10px;
+  font-weight: 600;
+  &:hover {
+    color: var(--bg);
   }
+}
 
-  `
+`;
 
-export const DropDownMenu = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 111;
-
-  a {
-    text-decoration: none;
-    color: var(--text);
-    margin: 0 10px;
-    font-weight: 600;
-    &:hover {
-      color: var(--decoration);
-    }
-  }
-  @media (max-width: 968px) {
-    display: flex;
-  }
-
-`
 export const BlurBackground = styled.div`
   position: fixed;
   top: 0;

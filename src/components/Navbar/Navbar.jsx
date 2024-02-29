@@ -5,7 +5,6 @@ import {
   NavbarUlStyled,
   MenuContainerStyled,
   DropDownMenuStyled,
-  DropDownMenu,
   BlurBackground,
   RightContainer,
   StyledUserIcon,
@@ -82,7 +81,7 @@ function Navbar() {
             </MenuContainerStyled>
           </RightContainer>
             <DropDownMenuStyled open={isOpen} onClick={(e) => e.stopPropagation()}>
-              <DropDownMenu>
+      
                 <li>
                   <Link to='/'>Home</Link>
                 </li>
@@ -96,7 +95,7 @@ function Navbar() {
                   <Link to="/contacto">Contacto</Link>
                 </li>
                 <Outlet />
-              </DropDownMenu>
+
             </DropDownMenuStyled>
           </NavbarContainer>
       </NavbarContainerStyled>
