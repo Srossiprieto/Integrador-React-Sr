@@ -158,10 +158,6 @@ export const MenuContainerStyledBtn = styled.div`
     }
   }
 
-  @media (max-width: 468px) {
-    width: 20vh;
-    height: 30vh;
-  }
   `
 
 export const DropDownMenu = styled.div`

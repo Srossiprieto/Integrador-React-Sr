@@ -22,7 +22,7 @@ function About() {
                   Nuestro objetivo es ayudar a las empresas a mejorar su presencia en línea y 
                   aumentar sus ventas.
                 </p>
-                <button type="submit">Ver más</button>
+                <button>Enviar</button>
               </AboutContainerTextStyled>
           </AboutContainerWidth> 
           <ShapesContainer>
@@ -34,6 +34,7 @@ function About() {
         <AboutContainer2>
           <h1> About 2 </h1>
         </AboutContainer2>
+        
     </>
   );
 }
