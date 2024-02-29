@@ -121,7 +121,7 @@ export const HeroImageContainerStyled = styled.div`
     background: linear-gradient(to bottom, var(--decoration),var(--purple-500) ,var(--purple-400)); // Aplica un degradado de color al fondo
     z-index: -1; // Coloca el fondo detrás del contenido
     border-radius: 8px; // Añade esquinas redondeadas al fondo
-    filter: blur(15px); // Aplica un desenfoque al fondo
+    filter: blur(7px); // Aplica un desenfoque al fondo
   }
 
   > div {
@@ -135,16 +135,14 @@ export const HeroImageContainerStyled = styled.div`
     border-radius: 8px;
   }
 
-  @media (max-width: 960px) {
+  @media (max-width: 968px) {
     display: flex;
-    flex-direction: column;
     width: 100%;
     
   }
   @media (max-width: 768px) {
     > div {
     display: flex;
-    flex-direction: column;
     gap: 20px;
     width: 100%;
     box-sizing: border-box;
