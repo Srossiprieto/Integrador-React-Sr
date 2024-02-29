@@ -158,6 +158,22 @@ a {
   }
 }
 
+@media (max-width: 968px) {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 300px;
+  background-color: var(--purple-500);
+  opacity: ${({ open }) => (open ? '1' : '0')};
+  transform: ${({ open }) => open ? 'translateX(0%)' : 'translateX(100%)'};
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 111;
+  gap: 30px;
+}
+
 `;
 
 export const BlurBackground = styled.div`
