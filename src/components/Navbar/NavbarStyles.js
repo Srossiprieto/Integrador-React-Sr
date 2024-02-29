@@ -133,19 +133,20 @@ export const MenuContainerStyledBtn = styled.div`
 export const DropDownMenuStyled = styled.div`
 display: flex;
 position: absolute;
-top: 10px;
+top: 0;
+right: 0;
 border-radius: 10px 10px;
-right: 10px;
-max-width: 30vh;
-height: 40vh;
+width: 150px;
+height: 300px ;
 background-color: var(--purple-500);
 opacity: ${({ open }) => (open ? '1' : '0')};
 flex-direction: column;
 justify-content: center;
 text-align: start;
-transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
+transform: ${({ open }) => open ? 'translateX(0%)' : 'translateX(100%)'};
 transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 z-index: 111;
+gap: 30px;
 
 a {
   text-decoration: none;
