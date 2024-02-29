@@ -77,7 +77,7 @@ export const ShapesContainer = styled.div`
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  img {
+  svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
