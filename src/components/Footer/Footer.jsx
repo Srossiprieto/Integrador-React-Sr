@@ -1,7 +1,7 @@
 import React from 'react';
 import { FooterContainer, FooterRow, FooterLinks, FooterBottom, SocialLink, Copyright, NewsletterForm} from './FooterStyles';
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-import payment from '../assets/img/payment.png';
+import payment from '../assets/img/payment.webp';
 function Footer() {
   return (
     <FooterContainer>

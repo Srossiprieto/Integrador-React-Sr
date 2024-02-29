@@ -4,24 +4,47 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaBagShopping } from "react-icons/fa6";
 
 export const NavbarContainerStyled = styled.div`
-  width: 100%;
-  height: 50px;
-  background-color: var(--bg);
   display: flex;
-  justify-content: space-between;
-  padding: 1rem 4rem;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  padding: 1rem 5rem;
   position: fixed;
-  top: 0; 
-  z-index: 4;
+  top: 0;
+  z-index: 100;
   img {
     width: 35px;
     height: 35px;
   }
-  @media (max-width: 768px) {
-    padding: 1rem 2rem;
-  }
+
 `;
+
+export const NavbarContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  border-radius: 100px;
+  background: #a285ffcf;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  backdrop-filter: blur(6.3px);
+  -webkit-backdrop-filter: blur(10px); /* Para soporte en iOS */
+  padding: 0.5rem 1rem;
+
+  gap: 20px;
+  a {
+    text-decoration: none;
+  }
+  img {
+    width: 35px;
+    height: 35px;
+  }
+  @media (max-width: 968px) {
+    width: 100%;
+  }
+
+`
+
 
 export const NavbarUlStyled = styled.ul`
   display: flex;
@@ -34,7 +57,7 @@ export const NavbarUlStyled = styled.ul`
     margin: 0 10px;
 	font-weight: 600;
 	&:hover{
-		color: var(--decoration);
+		color: var(--bg);
 	}
   }
   @media (max-width: 968px) {
@@ -85,11 +108,9 @@ export const MenuContainerStyled = styled.div`
   font-size: 1.2rem;
   cursor: pointer;
   color: var(--text);
-  .active{
-  display: none;
-}
   @media (max-width: 968px) {
     display: flex;
+    z-index: 115;
   }
   
   `;
@@ -97,40 +118,57 @@ export const RightContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+
 `
-export const DropDownMenuStyled = styled.div`
+export const MenuContainerStyledBtn = styled.div`
+  display: none;
+  align-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text);
+  @media (max-width: 968px) {
+      display: flex;
+  }
+  `
+  export const DropDownMenuStyled = styled.div`
+  display: ${({ open }) => (open ? 'flex' : 'none')};
+  /* display: flex; */
   position: absolute;
-  top: 50px;
-  right: 0;
-  width: 20vh;
-  height: 100vh;
+  top: 10px;
+  border-radius: 10px 10px;
+  right: 10px;
+  width: 30vh;
+  height: 40vh;
   background-color: var(--purple-500);
   opacity: 1;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: start;
+  /* transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'}; */
   z-index: 111;
-  transform: ${props => props.open ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.3s ease-in-out;
+
   a {
     text-decoration: none;
     color: var(--text);
     margin: 0 10px;
     font-weight: 600;
     &:hover {
-      color: var(--decoration);
+      color: var(--bg);
     }
-  } 
-`
+  }
+
+  @media (max-width: 468px) {
+    width: 20vh;
+    height: 30vh;
+  }
+  `
 
 export const DropDownMenu = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  gap: 20px;
   z-index: 111;
-  gap: 40px;
 
   a {
     text-decoration: none;
@@ -141,6 +179,10 @@ export const DropDownMenu = styled.div`
       color: var(--decoration);
     }
   }
+  @media (max-width: 968px) {
+    display: flex;
+  }
+
 `
 export const BlurBackground = styled.div`
   position: fixed;
@@ -151,5 +193,5 @@ export const BlurBackground = styled.div`
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px); /* Para soporte en iOS */
   opacity: 1; /* Valor corregido */
-  z-index: 1;
+  z-index: 4;
 `;

@@ -3,6 +3,7 @@ import {createGlobalStyle} from "styled-components";
 export const GlobalStyles = createGlobalStyle`
     :root {
         --bg: #090b0e;
+        --bg-2: #fef2ff;
         --text: #fff;
         --gray: #707070;
         --text-footer: #04040470 ;
@@ -36,15 +37,13 @@ export const GlobalStyles = createGlobalStyle`
         --gray-900: #3d3d3d;
         --gray-950: #262626;
 
-
-
         
     }
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
+        font-family: "Montserrat", sans-serif;
         text-decoration: none;
         list-style-type: none;
     }
@@ -63,7 +62,6 @@ export const GlobalStyles = createGlobalStyle`
         color: white;
         overflow-x:hidden;
     }
-
     a {
         text-decoration: none;
         color: var(--text);
