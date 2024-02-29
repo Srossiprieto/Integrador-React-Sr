@@ -23,7 +23,7 @@ export const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
+  width: 100%;
   border-radius: 100px;
   background: #a285ffcf;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
