@@ -77,12 +77,13 @@ export const ShapesContainer = styled.div`
   width: 100%;
   overflow: hidden;
   line-height: 0;
-
   img {
-    width: 100%;
-    height: 50vh;
-    pointer-events: none;
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 200px;
   }
+
 
 `
 
