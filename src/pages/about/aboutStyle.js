@@ -69,7 +69,6 @@ export const AboutContainerTextStyled = styled.div`
   `;
 
 
-
 export const ShapesContainer = styled.div`
   position: absolute;
   bottom: 0;
@@ -83,16 +82,10 @@ export const ShapesContainer = styled.div`
     width: 100%;
     height: auto;
   }
-`
 
-
-export const AboutContainer2 = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  background: var(--bg-2) ;
-  color: black;
-
+  @media (max-width: 768px) {
+    img {
+      height: 150px; // Ajusta este valor según tus necesidades
+    }
+  }
 `
