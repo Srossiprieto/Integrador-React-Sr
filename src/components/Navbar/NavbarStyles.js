@@ -4,6 +4,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaBagShopping } from "react-icons/fa6";
 
 export const NavbarContainerStyled = styled.div`
+  position: relative; // Agrega esta línea
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,22 +132,10 @@ export const MenuContainerStyledBtn = styled.div`
   }
   `
 export const DropDownMenuStyled = styled.div`
-display: flex;
+display: none;
 position: absolute;
-top: 0;
+top: 100%;
 right: 0;
-border-radius: 10px 10px;
-width: 150px;
-height: 300px ;
-background-color: var(--purple-500);
-opacity: ${({ open }) => (open ? '1' : '0')};
-flex-direction: column;
-justify-content: center;
-text-align: start;
-transform: ${({ open }) => open ? 'translateX(0%)' : 'translateX(100%)'};
-transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-z-index: 111;
-gap: 30px;
 
 a {
   text-decoration: none;
@@ -161,14 +150,16 @@ a {
 @media (max-width: 968px) {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   position: absolute;
+  border-radius: 10px 10px;
   top: 0;
   right: 0;
   width: 200px;
   height: 300px;
-  background-color: var(--purple-500);
+  background-color: var(--purple-400);
   opacity: ${({ open }) => (open ? '1' : '0')};
-  transform: ${({ open }) => open ? 'translateX(0%)' : 'translateX(100%)'};
+  transform: ${({ open }) => open ? 'translateX(0%)' : 'translateX(200%)'};
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   z-index: 111;
   gap: 30px;

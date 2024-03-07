@@ -12,6 +12,9 @@ function About() {
   return (
     <>
         <AboutContainer>
+        <ShapesContainer>
+              <img src={Shapes} alt="Shapes" />
+        </ShapesContainer> 
           <AboutContainerWidth>
               <AboutContainerTextStyled>
                 <h1>
@@ -25,9 +28,7 @@ function About() {
                 <button>Enviar</button>
               </AboutContainerTextStyled>
           </AboutContainerWidth> 
-          <ShapesContainer>
-              <img src={Shapes} alt="Shapes" />
-          </ShapesContainer>  
+ 
         </AboutContainer>
 
 
