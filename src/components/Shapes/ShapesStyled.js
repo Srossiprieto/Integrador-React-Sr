@@ -6,7 +6,7 @@ export const ShapesContainer = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 200px; // Asegúrate de que el contenedor tenga una altura definida
+  height: 50vh; // Asegúrate de que el contenedor tenga una altura definida
   overflow: hidden;
   line-height: 0;
   `;
