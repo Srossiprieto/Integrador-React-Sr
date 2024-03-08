@@ -1,17 +1,18 @@
 import { AboutContainerWidth, 
   AboutContainer,
   AboutContainerTextStyled, 
-  ShapesContainer, 
   AboutContainer2,
 
   } 
 from './aboutStyle';
-import Shapes from '../../components/assets/img/shapes.svg'
+
+import ShapesDivider from '../../components/Shapes/ShapesDivider';
 
 function About() {
   return (
     <>
         <AboutContainer>
+        <ShapesDivider />
           <AboutContainerWidth>
               <AboutContainerTextStyled>
                 <h1>
@@ -25,13 +26,7 @@ function About() {
                 <button>Enviar</button>
               </AboutContainerTextStyled>
           </AboutContainerWidth> 
- 
         </AboutContainer>
-
-            <ShapesContainer>
-              <img src={Shapes} alt="shapes" />
-            </ShapesContainer> 
-
         <AboutContainer2>
           <h1> About 2 </h1>
         </AboutContainer2>
