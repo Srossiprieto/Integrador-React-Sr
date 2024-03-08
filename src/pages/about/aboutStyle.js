@@ -77,7 +77,7 @@ export const ShapesContainer = styled.div`
   height: 200px; // Asegúrate de que el contenedor tenga una altura definida
   overflow: hidden;
   line-height: 0;
-  svg {
+  img {
     position: relative;
     display: block;
     width: 100%;

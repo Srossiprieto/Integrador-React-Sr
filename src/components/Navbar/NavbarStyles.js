@@ -2,14 +2,14 @@
 import styled from 'styled-components';
 import { FaUserAlt } from "react-icons/fa";
 import { FaBagShopping } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
 
 export const NavbarContainerStyled = styled.div`
-  position: relative; // Agrega esta línea
+  position: relative; 
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 1rem 5rem;
   position: fixed;
   top: 0;
   z-index: 100;
@@ -25,13 +25,8 @@ export const NavbarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  border-radius: 100px;
-  background: #a285ffcf;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  backdrop-filter: blur(6.3px);
-  -webkit-backdrop-filter: blur(10px); /* Para soporte en iOS */
-  padding: 0.5rem 1rem;
-
+  background-color: var(--bg);
+  padding: 0.5rem 5rem;
   gap: 20px;
   a {
     text-decoration: none;
@@ -58,7 +53,7 @@ export const NavbarUlStyled = styled.ul`
     margin: 0 10px;
 	font-weight: 600;
 	&:hover{
-		color: var(--bg);
+		color: var(--decoration);
 	}
   }
   @media (max-width: 968px) {
@@ -79,6 +74,13 @@ export const BagIconContainer = styled.div`
   cursor: pointer;
 `;
 
+export const StyledIoClose = styled(IoClose)`
+  position: relative;
+  color: var(--text);
+  height: 15px;
+  cursor: pointer;
+  z-index: 113; // Aumenta este valor
+`;
 export const StyledBagIcon = styled(FaBagShopping)`
   position: relative;
   color: var(--text);
@@ -111,7 +113,6 @@ export const MenuContainerStyled = styled.div`
   color: var(--text);
   @media (max-width: 968px) {
     display: flex;
-    z-index: 115;
   }
   
   `;
@@ -132,12 +133,12 @@ export const MenuContainerStyledBtn = styled.div`
   }
   `
 export const DropDownMenuStyled = styled.div`
-display: none;
-position: absolute;
-top: 100%;
-right: 0;
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
 
-a {
+  a {
   text-decoration: none;
   color: var(--text);
   margin: 0 10px;
@@ -153,11 +154,11 @@ a {
   justify-content: center;
   position: absolute;
   border-radius: 10px 10px;
-  top: 0;
-  right: 0;
+  top: 15px;
+  right: 75px;
   width: 200px;
   height: 300px;
-  background-color: var(--purple-400);
+  background-color: var(--decoration);
   opacity: ${({ open }) => (open ? '1' : '0')};
   transform: ${({ open }) => open ? 'translateX(0%)' : 'translateX(200%)'};
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
