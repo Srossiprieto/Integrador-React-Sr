@@ -1,4 +1,7 @@
-import { ShapesContainer } from './ShapesStyled'
+import { 
+      ShapesContainer,
+      ShapesImg
+      } from './ShapesStyled'
 
 import Shapes from '../assets/img/shapes.svg'
 
@@ -6,7 +9,9 @@ function ShapesDivider() {
   return (
     <>
       <ShapesContainer>
-        <img src={Shapes} alt="Shapes" />
+        <ShapesImg>
+          <img src={Shapes} alt="Shapes" />
+        </ShapesImg>
       </ShapesContainer>
     </>
   )

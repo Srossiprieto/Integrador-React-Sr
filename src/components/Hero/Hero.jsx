@@ -10,6 +10,7 @@ import Card from '../Hero/HeroCard';
 import { cardsData } from './data';
 import { Link } from 'react-router-dom';
 
+
 function Hero() {
   return (
     <HeroContainerStyled>

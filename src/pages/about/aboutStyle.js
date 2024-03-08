@@ -30,7 +30,7 @@ export const AboutContainerTextStyled = styled.div`
     text-align: center;
     margin-bottom: 10px;
     font-weight: 900;
-    color: var(--purple-400);
+    color: var(--purple-900);
   }
   p {
     font-size: 1.2rem;
