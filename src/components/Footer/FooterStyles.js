@@ -8,10 +8,9 @@ export const FooterContainer = styled.footer`
 
 export const FooterRow = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 50px 100px;
+  padding: 10px;
 `;
 
 export const FooterLinks = styled.div`

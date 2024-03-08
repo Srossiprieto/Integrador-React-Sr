@@ -22,7 +22,8 @@ export const AboutContainer = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100%;
-  background-color: var(--purple-200);
+  padding-block-start: 100px;
+  background-color: var(--bg);
 
 `;
 
@@ -37,11 +38,11 @@ export const AboutContainerTextStyled = styled.div`
     text-align: center;
     margin-bottom: 10px;
     font-weight: 900;
-    color: var(--purple-400);
+    color: var(--purple-900);
   }
   p {
     font-size: 1.2rem;
-    color: var(--bg);
+    color: var(--gray-50);
     text-align: center;
     max-width: 400px;
     font-weight: 500;
@@ -53,15 +54,21 @@ export const AboutContainerTextStyled = styled.div`
     margin-top: 20px;
     border: none;
     border-radius: 5px;
-    background-color: var(--purple-400);
+    background-color: var(--purple-900);
     color: var(--text);
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
   }
   button:hover {
-    background-color: var(--purple-600);
+    background-color: var(--purple-700);
   }
-  
+  div{
+    width: 100%;
+    margin-top: 10vh;
+    height: 5px;
+    border-top: 1px solid var(--text);  
+  }
   @media (max-width: 768px) {
     padding: 20px;
     h1 {
@@ -85,14 +92,3 @@ export const AboutContainerTextStyled = styled.div`
 
   }
   `;
-
-export const AboutContainer2 = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  background: var(--bg-2) ;
-  color: black;
-
-`

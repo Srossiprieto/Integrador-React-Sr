@@ -51,9 +51,10 @@ export const NavbarUlStyled = styled.ul`
     text-decoration: none;
     color: var(--text);
     margin: 0 10px;
-	font-weight: 600;
+	  font-weight: 500;
+    transition: all 0.3s ease-in-out;
 	&:hover{
-		color: var(--decoration);
+		color: var(--purple-900);
 	}
   }
   @media (max-width: 968px) {
@@ -90,7 +91,7 @@ export const ShoppingBagBubble = styled.span`
   position: absolute;
   top: -5px; // Ajusta este valor según sea necesario
   right: -10px; // Ajusta este valor según sea necesario
-  background-color: var(--decoration);
+  background-color: var(--purple-900);
   color: white;
   border-radius: 50%;
   width: 1.25em;
@@ -99,6 +100,7 @@ export const ShoppingBagBubble = styled.span`
   justify-content: center;
   align-items: center;
   font-size: 11px;
+  font-weight: 600;
 `;
 
 
@@ -140,7 +142,7 @@ export const DropDownMenuStyled = styled.div`
   text-decoration: none;
   color: var(--text);
   margin: 0 10px;
-  font-weight: 600;
+  font-weight: 500;
   &:hover {
     color: var(--bg);
   }
@@ -156,7 +158,7 @@ export const DropDownMenuStyled = styled.div`
   right: 75px;
   width: 200px;
   height: 300px;
-  background-color: var(--decoration);
+  background-color: var(--purple-900);
   opacity: ${({ open }) => (open ? '1' : '0')};
   transform: ${({ open }) => open ? 'translateX(0%)' : 'translateX(200%)'};
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;

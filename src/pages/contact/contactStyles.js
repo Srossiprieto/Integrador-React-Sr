@@ -15,7 +15,7 @@ export const TitleForm = styled.h1`
     justify-content: center;
     font-size: 2rem;
     font-weight: 800;
-    color: var(--purple-500);
+    color: var(--purple-900);
 `
 
 export const ContactForm = styled.form`
@@ -80,7 +80,7 @@ export const ButtonFormStyles = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: var(--purple-500);
+    background-color: var(--purple-900);
     color: var(--text);
     margin-top: 10px;
     padding: 5px;
@@ -91,6 +91,6 @@ export const ButtonFormStyles = styled.div`
   }
 
   a:hover {
-    background-color: var(--purple-800);
+    background-color: var(--purple-700);
   }
 `

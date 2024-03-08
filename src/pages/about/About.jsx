@@ -1,12 +1,11 @@
 import { AboutContainerWidth, 
   AboutContainer,
   AboutContainerTextStyled, 
-  AboutContainer2,
 
   } 
 from './aboutStyle';
 
-import ShapesDivider from '../../components/Shapes/ShapesDivider';
+import logoNav from '../../components/assets/img/logoNav.webp';
 
 function About() {
   return (
@@ -22,14 +21,11 @@ function About() {
                   Nuestro objetivo es ayudar a las empresas a mejorar su presencia en línea y 
                   aumentar sus ventas.
                 </p>
-                <button>Enviar</button>
+                <button>Ver más</button>
+                <div></div>
               </AboutContainerTextStyled>
           </AboutContainerWidth> 
-          <ShapesDivider />
         </AboutContainer>
-        <AboutContainer2> 
-          <h1> About 2 </h1>
-        </AboutContainer2>
         
     </>
   );
