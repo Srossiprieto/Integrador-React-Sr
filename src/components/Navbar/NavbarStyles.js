@@ -76,8 +76,6 @@ export const BagIconContainer = styled.div`
 
 export const StyledIoClose = styled(IoClose)`
   position: relative;
-  color: var(--text);
-  height: 15px;
   cursor: pointer;
   z-index: 113; // Aumenta este valor
 `;
