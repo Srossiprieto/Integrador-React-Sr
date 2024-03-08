@@ -1,23 +1,23 @@
 import styled from 'styled-components';
 
 export const ShapesContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh; // Cambia a 100vh
-  overflow: hidden;
-`;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(1, -1);
+    height: 250px;
+    width: 100%; // Asegúrate de que el ancho sea 100%
+    fill: #f5f5f5;
 
-export const ShapesImg = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
-  }
+    img {
+        width: 100%; // Asegúrate de que el ancho de la imagen sea 100%
+    }
+
+    @media (max-width: 991px) {
+        height: 150px;
+    }
+
+    @media (max-width: 479px) {
+        height: 50px;
+    }
 `;

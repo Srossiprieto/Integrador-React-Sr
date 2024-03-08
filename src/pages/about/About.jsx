@@ -12,6 +12,7 @@ function About() {
   return (
     <>
         <AboutContainer>
+          <ShapesDivider />
           <AboutContainerWidth>
               <AboutContainerTextStyled>
                 <h1>
@@ -26,8 +27,7 @@ function About() {
               </AboutContainerTextStyled>
           </AboutContainerWidth> 
         </AboutContainer>
-        <AboutContainer2>
-          <ShapesDivider /> 
+        <AboutContainer2> 
           <h1> About 2 </h1>
         </AboutContainer2>
         
