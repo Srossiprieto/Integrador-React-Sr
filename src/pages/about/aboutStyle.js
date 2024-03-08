@@ -22,7 +22,6 @@ export const AboutContainer = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100%;
-  padding-block-start: 100px;
   background-color: var(--purple-200);
 
 `;
