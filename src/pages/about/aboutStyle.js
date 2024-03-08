@@ -5,6 +5,7 @@ export const AboutContainerWidth = styled.div`
   align-items: center;
   justify-content: center;
   max-width: 1300px;
+  padding-block-start: 100px;
 `
 
 
@@ -26,11 +27,10 @@ export const AboutContainerTextStyled = styled.div`
   z-index: 2;
   h1 {
     font-size: 90px;
-    margin-top: 140px;
     text-align: center;
     margin-bottom: 10px;
     font-weight: 900;
-    color: var(--purple-900);
+    color: var(--purple-400);
   }
   p {
     font-size: 1.2rem;
