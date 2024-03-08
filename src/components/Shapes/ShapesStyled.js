@@ -7,7 +7,6 @@ export const ShapesContainer = styled.div`
     transform: translateX(-50%) scale(1, -1);
     height: 250px;
     width: 100%; // Asegúrate de que el ancho sea 100%
-    fill: #f5f5f5;
 
     img {
         width: 100%; // Asegúrate de que el ancho de la imagen sea 100%

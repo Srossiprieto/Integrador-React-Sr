@@ -12,7 +12,6 @@ function About() {
   return (
     <>
         <AboutContainer>
-          <ShapesDivider />
           <AboutContainerWidth>
               <AboutContainerTextStyled>
                 <h1>
@@ -26,6 +25,7 @@ function About() {
                 <button>Enviar</button>
               </AboutContainerTextStyled>
           </AboutContainerWidth> 
+          <ShapesDivider />
         </AboutContainer>
         <AboutContainer2> 
           <h1> About 2 </h1>

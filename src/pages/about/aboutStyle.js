@@ -4,9 +4,16 @@ export const AboutContainerWidth = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 1300px;
-  padding-block-start: 100px;
-`
+  width: 100%;
+  padding-inline: 20px;
+  position: relative;
+  z-index: 2;
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+
+  
+  `
 
 
 export const AboutContainer = styled.div`
@@ -15,6 +22,7 @@ export const AboutContainer = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100%;
+  padding-block-start: 100px;
   background-color: var(--purple-200);
 
 `;
@@ -65,6 +73,17 @@ export const AboutContainerTextStyled = styled.div`
       text-align: center;
       width: 100%;
     }
+
+    @media (max-width: 479px) {
+      h1 {
+        font-size: 40px;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+
+
   }
   `;
 
