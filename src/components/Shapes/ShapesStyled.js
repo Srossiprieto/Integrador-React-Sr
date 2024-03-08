@@ -1,26 +1,23 @@
 import styled from 'styled-components';
 
-
 export const ShapesContainer = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50vh; // Asegúrate de que el contenedor tenga una altura definida
+  height: 100vh; // Cambia a 100vh
   overflow: hidden;
-  line-height: 0;
-  `;
-  export const ShapesImg = styled.div`
-    position: absolute;
-    bottom: 0;
-    left: 0;
+`;
+
+export const ShapesImg = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  img {
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    line-height: 0;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-
-  `;
+  }
+`;
