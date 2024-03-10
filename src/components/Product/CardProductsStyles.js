@@ -38,8 +38,8 @@ export const CardProductDest = styled.div`
 
 
 export const ProductContainer = styled.div`
-  padding-block-start: 100px;
   display: flex;
+  padding-block-start: 100px;
   flex-direction: column;
   user-select: none;
   h1{

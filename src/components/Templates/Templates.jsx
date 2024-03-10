@@ -1,11 +1,21 @@
-import React from 'react'
 
-function Templates() {
+import { CardTemplateDest, ButtonContainer, Button } from "./TemplateStyledCard"
+
+
+function Templates({title, img, desc, price}) {
   return (
     <>
-      <h1>
-        Nuestros Planes
-      </h1>
+    <CardTemplateDest>
+          
+          <img src={img} alt={title} />
+          <h2>{title}</h2>
+          <p>{price}</p>
+          <h3>{desc}</h3>
+        <ButtonContainer>
+          <Button>Comprar</Button>
+        </ButtonContainer>
+        
+    </CardTemplateDest>
     </>
   )
 }

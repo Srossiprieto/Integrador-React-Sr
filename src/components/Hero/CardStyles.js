@@ -3,14 +3,28 @@ import styled from 'styled-components';
 
 export const CardContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-direction: column;;
   width: 100%; /* Ajustar el tamaño para ocupar el ancho disponible */
-  box-sizing: border-box;
   position: relative;
   background: var(--grey);
   padding: 20px;
+  gap: 20px;
   border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background: var(--purple-900);
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+
+
 `;
 
 export const Image = styled.img`
@@ -20,10 +34,10 @@ export const Image = styled.img`
 
 export const Title = styled.div`
   font-size: 18px;
+  width: 100px;
   color: var(--text);
 `;
 
 export const Description = styled.div`
-  font-size: 14px;
   color: var(--text-grey);
 `;

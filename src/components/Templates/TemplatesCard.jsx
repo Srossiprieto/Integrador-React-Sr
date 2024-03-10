@@ -6,7 +6,6 @@ import {
     TemplateWrapper
  } from "./TemplateStyledCard"
 
- 
 import Templates from "./Templates"
 
 
@@ -16,18 +15,17 @@ function TemplatesCard() {
   return (
     <>
       <TemplateContainer>
-          <h1>Nuestros Planes</h1>
+          <h1>Templates</h1>
           <ContainerTemplateWrapper>
               <TemplateWrapper>
-                {products.map(prod =>(
+                {templates.map(prod =>(
 
-                <CardProduct key={prod.id} {...prod} />
+                <Templates key={prod.id} {...prod} />
 
                 ))}
               </TemplateWrapper>
           </ContainerTemplateWrapper>
       </TemplateContainer>
-    );
      </>
   )
 }
