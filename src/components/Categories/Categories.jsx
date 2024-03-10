@@ -1,11 +1,19 @@
-import React from 'react'
+// import { Categories } from "../../data/Categories";
+import Category from "./Category";
+import { CategoriesContainer } from "./CategoriesStyles";
+import {useSelector} from "react-redux"
 
-function Categories() {
+const Categories = () => {
+
+ const {categories} = useSelector((state)=>state.categories)
+
   return (
-    <div>
-      Categories
-    </div>
-  )
-}
-
-export default Categories
+    <CategoriesContainer>
+      {categories.map((category)=>(
+        <Category key={category.id} {...category}/>
+        ))
+      }
+      </CategoriesContainer>
+  );
+    }
+export default Categories;

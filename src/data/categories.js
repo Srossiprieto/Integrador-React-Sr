@@ -1,20 +1,39 @@
-export const categories = [
+
+export const Categories = [
     {
-        id:1,
-        img: './src/img/startup-rocket-com.svg',
-        title: 'Marketing',
-        category: '',
+      id: 1,
+      title: "Mouses",
+      category: "Mouses",
     },
     {
-        id:2,
-        img: './src/img/page-rank-com.svg',
-        title: 'Diseño Web',
-        category: '',
+      id: 2,
+      title: "Teclados",
+      category: "Teclados",
     },
     {
-        id:3,
-        img: './src/img/brush-com.svg',
-        title: 'Diseño UX/UI',
-        category: '',
+      id: 3,
+      title: "Notebooks",
+      category: "Notebooks",
     },
-]
+    {
+      id: 4,
+      title: "Impresoras",
+      category: "Impresoras",
+    },
+    {
+      id: 5,
+      title: "Sillas",
+      category: "Sillas",
+    },
+    {
+      id: 6,
+      title: "AllInOne",
+      category: "AllInOne",
+    },
+    {
+      id: 7,
+      title: "Escritorios",
+      category: "Escritorios",
+    },
+  ];
+  

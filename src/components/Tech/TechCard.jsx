@@ -1,5 +1,5 @@
-import { tech } from '../../data/tech'
-
+// import { tech } from '../../data/tech'
+import {useSelector} from 'react-redux'
 import { 
     TechContainer,
     ContainerTechWrapper,
@@ -12,6 +12,7 @@ import Tech from "./Tech"
 
 
 function TechCard() {
+  let tech = useSelector((state) => state.products.tech)
   return (
     <>
       <TechContainer>

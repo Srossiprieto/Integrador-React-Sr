@@ -293,3 +293,6 @@ export const tech = [
 
 
 ];
+
+
+export const TotalProducts = tech.length; // exportamos la cantidad de productos que tenemos en el array de productos

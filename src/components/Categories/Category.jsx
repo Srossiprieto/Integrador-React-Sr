@@ -1,11 +1,23 @@
-import React from 'react'
+import { BorderDecoration, CardCategories } from "./CategoriesStyles";
+import {useDispatch,useSelector} from "react-redux";
 
-function category() {
+
+// puse el = "" para que no tire error 
+
+export const Category = ({title,category}) => {
+  const {selectedCategory = ""} = useSelector((state)=>state.categories);
+  const dispatch =useDispatch();
+
   return (
-    <div>
-      Category
-    </div>
-  )
-}
+    <CardCategories
+      selected={category===selectedCategory}
+      onClick={(e) => dispatch(selectCategory(category))}
+      whileTap={{ scale: 0.95 }}
+    >
+      <h2>{title}</h2>
+      <BorderDecoration></BorderDecoration>
+    </CardCategories>
+  );
+};
 
-export default category
+export default Category;
