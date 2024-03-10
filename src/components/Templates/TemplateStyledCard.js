@@ -82,6 +82,7 @@ export const ContainerTemplateWrapper = styled.div`
 export const TemplateWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
+    max-width: 1200px;
     gap: 10px;
     justify-content: center;
     margin: 15px 15px;
