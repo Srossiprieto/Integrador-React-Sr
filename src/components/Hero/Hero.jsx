@@ -16,8 +16,8 @@ function Hero() {
     <HeroContainerStyled>
       <HeroWidthContainer>
         <HeroTextContainerStyled>
-          <h1>Aumenta la <span>calidad</span> de tu <span>empresa</span>.</h1>
-          <h2>¡Hasta un x10 garantizado en tus ventas!</h2>
+        <h1><span>Equipa</span> y <span>potencia</span> tu empresa.</h1>
+          <h2>Tecnología de vanguardia para empresas en crecimiento</h2>
           <Link to="/contacto">
             Contactanos <img src={arrowRight} alt="arrowRight" />
           </Link>

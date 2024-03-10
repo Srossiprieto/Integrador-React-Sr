@@ -12,21 +12,22 @@ export const HeroContainerStyled = styled.div`
     margin-bottom: 2rem;
   }
   a {
+
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    background-color: var(--purple-500);
+    border-radius: 8px;
     color: var(--text);
-    margin-top: 10px;
-    padding: 5px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 800;
+    background-color: var(--purple-900);
+    font-weight: 700;
+    padding: 3px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
 
   a:hover {
-    background-color: var(--purple-800);
+    background-color: var(--purple-700);
   }
 
 
@@ -75,7 +76,7 @@ export const HeroTextContainerStyled = styled.div`
 
   h2 {
     font-size: 1rem;
-    font-weight: 800;
+    font-weight: 300;
     margin: 0;
     color: var(--text-grey);
   }

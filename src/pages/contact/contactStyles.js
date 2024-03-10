@@ -15,7 +15,7 @@ export const TitleForm = styled.h1`
     justify-content: center;
     font-size: 2rem;
     font-weight: 800;
-    color: var(--purple-900);
+    color: var(--text);
 `
 
 export const ContactForm = styled.form`
@@ -79,15 +79,15 @@ export const ButtonFormStyles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    background-color: var(--purple-900);
+    border-radius: 8px;
+    font-size: 18px;
     color: var(--text);
-    margin-top: 10px;
-    padding: 5px;
+    background-color: var(--purple-900);
+    font-weight: 700;
+    padding: 3px;
+    margin-top: 20px;
     cursor: pointer;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 800;
+    transition: all 0.3s ease;
   }
 
   a:hover {
