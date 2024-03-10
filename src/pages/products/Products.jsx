@@ -1,12 +1,12 @@
 import CardsProducts from '../../components/Product/CardsProducts';
-import TemplatesCard from '../../components/Templates/TemplatesCard';
+import TechCard from '../../components/Tech/TechCard';
 
 
 function Products() {
   return (
     <>
       <CardsProducts />
-      <TemplatesCard />
+      <TechCard />
     </>
   )
 }

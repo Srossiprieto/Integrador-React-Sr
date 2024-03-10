@@ -1,11 +1,11 @@
 import { CardProductDest, CheckItem, StyledCheckIcon, ButtonContainer, Button } from "./CardProductsStyles"
 
 
-function CardProduct({title, desc, price, month,check1, check2, check3, check4, check5, check6, check7, check8}) {
+function CardProduct({title, desc, price, currency,check1, check2, check3, check4, check5, check6, check7, check8}) {
   return (
     <CardProductDest>
       <h2>{title}</h2>
-      <p>{price} <span>{month}</span></p>
+      <p>{price} <span>{currency}</span></p>
       <h3>{desc}</h3>
       {check1 && <CheckItem><StyledCheckIcon /> {check1}</CheckItem>}
       {check2 && <CheckItem><StyledCheckIcon /> {check2}</CheckItem>}

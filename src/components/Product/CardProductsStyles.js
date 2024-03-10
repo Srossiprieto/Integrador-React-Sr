@@ -16,13 +16,13 @@ export const CardProductDest = styled.div`
   }
   h3 {
     color: var(--text);
-    font-weight: 600;
+    font-weight: 400;
     font-size: 15px;
   }
   p {
     font-size: 26px;
     color: var(--purple-700);
-    font-weight: 800;
+    font-weight: 700;
   }
   span{
     color: var(--gray);
@@ -77,7 +77,7 @@ export const CheckItem = styled.div`
   gap: 5px;
   align-items: center;
   color: var(--gray);
-  font-weight: 700;
+  font-weight: 300;
   font-size: 15px;
 
 `

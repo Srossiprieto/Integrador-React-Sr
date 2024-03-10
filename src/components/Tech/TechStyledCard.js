@@ -1,27 +1,56 @@
 import styled from 'styled-components';
 
 
-// =============================== Templates ===============================
+// =============================== Tech ===============================
 
 
-export const CardTemplateDest = styled.div`
+export const CardTechDest = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
   width: 300px;
   gap: 10px;
-  border: 1px solid var(--gray);
-  padding: 20px;
+  background: #1a1a1af0;
   border-radius: 8px;
-    img{
+  img{
         width: 100%;
         height: 200px;
-        object-fit: cover;
-        border-radius: 8px;
+        border-radius: 8px 8px 0 0;
+        object-fit: contain;
+        background: white;
+        
+    }
     
+    `;
+    export const TextTechContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 10px;
+    gap: 10px;
+    h2 {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text);
+    }
+    p {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text);
+    }
+    h3 {
+        font-size: 15px;
+        font-weight: 300;
+        color: var(--gray);
     }
 
-`;
+
+    `
+
+
+
+
+
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -29,6 +58,7 @@ export const ButtonContainer = styled.div`
     width: 100%;
     gap: 10px;
     margin-top: auto;
+    padding: 10px;
 
 
 `;
@@ -53,11 +83,11 @@ export const Button = styled.div`
     }
 
 `;
-// =============================== Templates ===============================
+// =============================== Tech ===============================
 
-// =============================== TemplatesCard ===============================
+// =============================== TechCard ===============================
 
-export const TemplateContainer = styled.div`
+export const TechContainer = styled.div`
     display: flex;
     flex-direction: column;
     user-select: none;
@@ -72,17 +102,17 @@ export const TemplateContainer = styled.div`
 
 
 
-export const ContainerTemplateWrapper = styled.div`
+export const ContainerTechWrapper = styled.div`
     display: flex;
     justify-content: center;
     padding-bottom: 100px;
     
     
     `;
-export const TemplateWrapper = styled.div`
+export const TechWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
-    max-width: 1200px;
+    max-width: 1300px;
     gap: 10px;
     justify-content: center;
     margin: 15px 15px;
@@ -92,4 +122,4 @@ export const TemplateWrapper = styled.div`
     
 `;
 
-// =============================== TemplatesCard ===============================
+// =============================== TechCard ===============================
