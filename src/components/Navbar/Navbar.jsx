@@ -24,9 +24,14 @@ import {AiOutlineMenu} from "react-icons/ai"
 
 import { Outlet, Link } from "react-router-dom";
 
+import ModalCart from './ModalCart/ModalCart';
+
+
+
 
 
 function Navbar() {
+  // ======= MENU DESPLEGABLE =======
   const { isOpen, toggle } = useContext(DropDownContext);
 
   useEffect(() => {
@@ -44,6 +49,12 @@ function Navbar() {
       window.removeEventListener('click', closeMenu);
     };
   }, [isOpen, toggle]);
+  // ======= MENU DESPLEGABLE =======
+
+  // ======= CARRITO DESPLEGABLE =======
+
+
+  // ======= CARRITO DESPLEGABLE =======
 
   return (
     <>
@@ -70,10 +81,12 @@ function Navbar() {
               <Outlet />
             </NavbarUlStyled>
               <StyledUserIcon/>
-              <BagIconContainer>
+
+              <BagIconContainer  >
                 <StyledBagIcon/>
                 <ShoppingBagBubble>0</ShoppingBagBubble>
               </BagIconContainer>
+                <ModalCart/>
               <MenuContainerStyled>
                 <MenuContainerStyledBtn onClick={(e) => {e.stopPropagation(); toggle();}}>
                           {isOpen ? <StyledIoClose />: <AiOutlineMenu/>}

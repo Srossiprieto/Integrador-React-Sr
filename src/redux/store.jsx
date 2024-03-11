@@ -6,18 +6,20 @@ import storage from 'redux-persist/lib/storage';
 import  categoriesReducer  from './categories/categoriesSlice'; // new slice name(reducer) to default export
 import  productsReducer  from './products/productsSlice'; // new slice name(reducer) to default export
 
+import cartReducer from './cart/cartSlice';
 
 
 const reducers = combineReducers({
     categories: categoriesReducer,
-    products: productsReducer
+    products: productsReducer,
+    cart: cartReducer
 })
 
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: [] // Reducers saved in local storage --> Array vacio todos
+    whitelist: [ 'cart' ] // solo persistimos el carrito de compras, whitelist = lista blanca herramienta de redux-persist que permite persistir solo los reducers que se pasen en el array.
     
 }
 

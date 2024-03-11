@@ -17,7 +17,7 @@ export const CardCategories = styled(motion.div)`
     padding: 10px;
     margin: 5px;
     background-color: ${({ selected }) =>
-        selected ? 'var(--purple-500)' : 'var(--purple-900)'};
+        selected ? '#1a1a1af0' : 'var(--purple-900)'};
     border-radius: 10px;
     width: 90px;
     cursor: pointer;
@@ -25,9 +25,6 @@ export const CardCategories = styled(motion.div)`
     h2 {
         font-size: 12px;
     }
-        &:hover {
-            background-color: var(--purple-500);
-        }
 `;
 
 export const BorderDecoration = styled.div`

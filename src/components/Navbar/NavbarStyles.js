@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 import { FaUserAlt } from "react-icons/fa";
 import { FaBagShopping } from "react-icons/fa6";
@@ -154,7 +153,7 @@ export const DropDownMenuStyled = styled.div`
   justify-content: center;
   position: absolute;
   border-radius: 10px 10px;
-  top: 15px;
+  top: 13px;
   right: 75px;
   width: 200px;
   height: 300px;

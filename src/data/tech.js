@@ -42,7 +42,7 @@ export const tech = [
         img: mouse1,
         title: 'Mouse 1',
         desc: 'Mouse con diseño ergonómico y alta precisión, ideal para uso en oficina.',
-        price: '$49.99',
+        price: 49.99,
         category: 'Mouses'
     },
     {
@@ -50,7 +50,7 @@ export const tech = [
         img: mouse2,
         title: 'Mouse 2',
         desc: 'Mouse con diseño cómodo y duradero, perfecto para uso diario.',
-        price: '$39.99',
+        price: 39.99,
         category: 'Mouses'
     },
     {
@@ -58,7 +58,7 @@ export const tech = [
         img: mouse3,
         title: 'Mouse 3',
         desc: 'Mouse con diseño compacto y ligero, ideal para llevar en el maletín de la laptop.',
-        price: '$39.99',
+        price: 39.99,
         category: 'Mouses'
     },
     {
@@ -66,7 +66,7 @@ export const tech = [
         img: mouse4,
         title: 'Mouse 4',
         desc: 'Mouse con diseño moderno y funcional, perfecto para cualquier espacio de trabajo.',
-        price: '$39.99',
+        price: 39.99,
         category: 'Mouses'
     },
     
@@ -78,7 +78,7 @@ export const tech = [
         img: keiboard1,
         title: 'Teclado  1',
         desc: 'Teclado con teclas programables, ideal para optimizar tareas de oficina.',
-        price: '$59.99',
+        price: 59.99,
         category: 'Teclados'
     },
     {
@@ -86,7 +86,7 @@ export const tech = [
         img: keiboard2,
         title: 'Teclado  2',
         desc: 'Teclado con diseño compacto y duradero, perfecto para uso diario.',
-        price: '$69.99',
+        price: 69.99,
         category: 'Teclados'
     },
     {
@@ -94,7 +94,7 @@ export const tech = [
         img: keiboard3,
         title: 'Teclado  3',
         desc: 'Teclado con diseño ergonómico, ideal para largas horas de trabajo.',
-        price: '$69.99',
+        price: 69.99,
         category: 'Teclados'
     },
     {
@@ -102,7 +102,7 @@ export const tech = [
         img: keiboard4,
         title: 'Teclado  4',
         desc: 'Teclado con teclas de bajo ruido, perfecto para un ambiente de trabajo tranquilo.',
-        price: '$69.99',
+        price: 69.99,
         category: 'Teclados'
     },
 
@@ -114,7 +114,7 @@ export const tech = [
         img: notebook1,
         title: 'Notebook  1',
         desc: 'Notebook con procesador de alta velocidad y gran capacidad de almacenamiento, ideal para manejar grandes volúmenes de datos.',
-        price: '$1299.99',
+        price: 1299.99,
         category: 'Notebooks'
     },
     {
@@ -122,7 +122,7 @@ export const tech = [
         img: notebook2,
         title: 'Notebook  2',
         desc: 'Notebook ligera y potente, perfecta para es en movimiento.',
-        price: '$1499.99',
+        price: 1499.99,
         category: 'Notebooks'
     },
     {
@@ -130,7 +130,7 @@ export const tech = [
         img: notebook3,
         title: 'Notebook  3',
         desc: 'Notebook con pantalla de alta resolución, ideal para presentaciones y videoconferencias.',
-        price: '$1499.99',
+        price: 1499.99,
         category: 'Notebooks'
     },
     {
@@ -138,7 +138,7 @@ export const tech = [
         img: notebook4,
         title: 'Notebook  4',
         desc: 'Notebook con batería de larga duración, perfecta para largas jornadas de trabajo.',
-        price: '$1499.99',
+        price: 1499,
         category: 'Notebooks'
     },
 
@@ -148,7 +148,7 @@ export const tech = [
         img: printer1,
         title: 'Impresora  1',
         desc: 'Impresora multifuncional, ideal para manejar diversas tareas de oficina con alta calidad de impresión.',
-        price: '$199.99',
+        price: 199.99,
         category: 'Impresoras'
     },
     {
@@ -156,7 +156,7 @@ export const tech = [
         img: printer2,
         title: 'Impresora  2',
         desc: 'Impresora con conexión inalámbrica, perfecta para un entorno de oficina moderno y alta velocidad de impresión.',
-        price: '$249.99',
+        price: 249.99,
         category: 'Impresoras'
     },
     {
@@ -164,7 +164,7 @@ export const tech = [
         img: printer3,
         title: 'Impresora  3',
         desc: 'Impresora multifuncional con funciones avanzadas, ideal para manejar grandes volúmenes de trabajo.',
-        price: '$199.99',
+        price: 199,
         category: 'Impresoras'
     },
     {
@@ -172,7 +172,7 @@ export const tech = [
         img: printer4,
         title: 'Impresora  4',
         desc: 'Impresora con conexión inalámbrica y capacidad de impresión a doble cara, perfecta para ahorrar papel en la oficina.',
-        price: '$249.99',
+        price: 249.99,
         category: 'Impresoras'
     },
 
@@ -187,7 +187,7 @@ export const tech = [
         img: chair1,
         title: 'Silla de Oficina  1',
         desc: 'Silla de oficina con diseño ergonómico y ajuste de altura, ideal para largas jornadas de trabajo.',
-        price: '$99.99',
+        price: 99.99,
         category: 'Sillas de Oficina'
     },
     {
@@ -195,7 +195,7 @@ export const tech = [
         img: chair2,
         title: 'Silla de Oficina  2',
         desc: 'Silla de oficina con soporte lumbar y reposabrazos ajustables, perfecta para mantener una postura correcta.',
-        price: '$129.99',
+        price: 129.99,
         category: 'Sillas de Oficina'
     },
     {
@@ -203,7 +203,7 @@ export const tech = [
         img: chair3,
         title: 'Silla de Oficina  3',
         desc: 'Silla de oficina con respaldo de malla y ajuste de altura, ideal para mantener la frescura durante el trabajo.',
-        price: '$99.99',
+        price: 99.99,
         category: 'Sillas de Oficina'
     },
     {
@@ -211,7 +211,7 @@ export const tech = [
         img: chair4,
         title: 'Silla de Oficina  4',
         desc: 'Silla de oficina con soporte lumbar avanzado y reposabrazos ajustables, perfecta para prevenir dolores de espalda.',
-        price: '$129.99',
+        price: 129.99,
         category: 'Sillas de Oficina'
     },
 
@@ -225,7 +225,7 @@ export const tech = [
         img: allinone1,
         title: 'Computadora Todo en Uno  1',
         desc: 'Computadora todo en uno con pantalla de alta resolución y procesador potente, ideal para multitareas.',
-        price: '$1599.99',
+        price: 1599.99,
         category: 'Computadoras Todo en Uno'
     },
     {
@@ -233,7 +233,7 @@ export const tech = [
         img: allinone2,
         title: 'Computadora Todo en Uno  2',
         desc: 'Computadora todo en uno con gran capacidad de almacenamiento y diseño elegante, perfecta para cualquier entorno de oficina.',
-        price: '$1699.99',
+        price: 1699,
         category: 'Computadoras Todo en Uno'
     },
     {
@@ -241,7 +241,7 @@ export const tech = [
         img: allinone3,
         title: 'Computadora Todo en Uno  3',
         desc: 'Computadora todo en uno con pantalla táctil y procesador de alta velocidad, ideal para una productividad eficiente.',
-        price: '$1599.99',
+        price: 1599.99,
         category: 'Computadoras Todo en Uno'
     },
     {
@@ -249,7 +249,7 @@ export const tech = [
         img: allinone4,
         title: 'Computadora Todo en Uno  4',
         desc: 'Computadora todo en uno con gran capacidad de almacenamiento y gráficos avanzados, perfecta para diseño y edición.',
-        price: '$1699.99',
+        price: 1699.99,
         category: 'Computadoras Todo en Uno'
     },
 
@@ -260,7 +260,7 @@ export const tech = [
         img: table1,
         title: 'Escritorio  1',
         desc: 'Escritorio con diseño moderno y amplio espacio de trabajo, ideal para cualquier entorno de oficina.',
-        price: '$199.99',
+        price: 199.99,
         category: 'Escritorios'
     },
     {
@@ -268,7 +268,7 @@ export const tech = [
         img: table2,
         title: 'Escritorio  2',
         desc: 'Escritorio con diseño ergonómico y acabado en madera, perfecto para un espacio de trabajo cómodo y productivo.',
-        price: '$249.99',
+        price: 249.99,
         category: 'Escritorios'
     },
     {
@@ -276,7 +276,7 @@ export const tech = [
         img: table3,
         title: 'Escritorio  3',
         desc: 'Escritorio con diseño compacto y almacenamiento integrado, ideal para optimizar el espacio de trabajo.',
-        price: '$199.99',
+        price: 199,
         category: 'Escritorios'
     },
     {
@@ -284,7 +284,7 @@ export const tech = [
         img: table4,
         title: 'Escritorio  4',
         desc: 'Escritorio con diseño ajustable y superficie amplia, perfecto para adaptarse a cualquier necesidad de trabajo.',
-        price: '$249.99',
+        price: 249.99,
         category: 'Escritorios'
     },
 

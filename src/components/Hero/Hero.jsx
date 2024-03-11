@@ -7,8 +7,11 @@ import { HeroContainerStyled,
   HeroGridContainerStyled,
   HeroWidthContainer } from './HeroStyles';
 import Card from '../Hero/HeroCard'; 
+
 import { cardsData } from './data';
 import { Link } from 'react-router-dom';
+
+
 
 
 function Hero() {
@@ -42,3 +45,5 @@ function Hero() {
 }
 
 export default Hero;
+
+
