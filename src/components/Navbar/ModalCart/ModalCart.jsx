@@ -3,7 +3,7 @@ import { ModalCartContainer, CardCart, CartWrapper, CartFooterStyled, Button } f
 import ModalCard from './ModalCard';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearAllCart, toggleHiddenCart } from '../../../redux/cart/cartSlice';
+import { clearCart, toggleHiddenCart } from '../../../redux/cart/cartSlice';
 import { IoClose } from 'react-icons/io5';
 
 
@@ -47,7 +47,7 @@ function ModalCart() {
           Comprar
         </Button>
         <hr />
-        <Button onClick={() => dispatch(clearAllCart())}>Limpiar Carrito</Button>
+        <Button onClick={() => dispatch(clearCart())}>Limpiar Carrito</Button>
       </CardCart>
     </ModalCartContainer>
   );

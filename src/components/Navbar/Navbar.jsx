@@ -27,6 +27,7 @@ import { Outlet, Link } from "react-router-dom";
 import ModalCart from './ModalCart/ModalCart';
 
 
+import CartIcon from './CartIcon/CartIcon';
 
 
 
@@ -83,6 +84,7 @@ function Navbar() {
               <StyledUserIcon/>
 
               <BagIconContainer  >
+                <CartIcon/>
                 <StyledBagIcon/>
                 <ShoppingBagBubble>0</ShoppingBagBubble>
               </BagIconContainer>
