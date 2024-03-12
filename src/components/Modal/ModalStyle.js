@@ -1,25 +1,34 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const slideUp = keyframes`
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
 
 export const ModalBackground = styled.div`
-    position: fixed;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    margin: 1em;
-    padding: 1em;
-    z-index: 10;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 1em;
+  padding: 1em;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  animation: ${slideUp} 0.3s ease-out;
+`;
     
-    `;
 
 export const ModalContent = styled.div`
     background-color: var(--purple-400);
     border-radius: 8px;
     display: flex;
     gap: 10px;
-    height: 70px;
+    height: 50px;
     padding: 10px;
     justify-content: center;
     align-items: center;

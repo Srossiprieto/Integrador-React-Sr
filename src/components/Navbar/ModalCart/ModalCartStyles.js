@@ -18,6 +18,12 @@ export const ModalCartContainer = styled.div`
   hr {
     border: 1px solid var(--text);
   }
+  @media (max-width: 968px) {
+    top: 0px;
+    width: 350px;
+
+  }
+
 `;
 
 

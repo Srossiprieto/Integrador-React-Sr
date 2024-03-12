@@ -6,11 +6,13 @@ import Modal from '../Modal/Modal'
 
 function Tech({title, img, desc, price, id}) {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     dispatch(addToCart({img,title,desc,price,id}));
     setModalOpen(true);
+    setButtonDisabled(true);
   };
 
   useEffect(() => {
@@ -18,6 +20,7 @@ function Tech({title, img, desc, price, id}) {
     if (isModalOpen) {
       timer = setTimeout(() => {
         setModalOpen(false);
+        setButtonDisabled(false);
       }, 3000);
     }
     return () => {
@@ -36,7 +39,7 @@ function Tech({title, img, desc, price, id}) {
         <h3>{desc}</h3>
       </TextTechContainer>
       <ButtonContainer>
-        <Button onClick={handleAddToCart}>Agregar</Button>
+        <Button disabled={isButtonDisabled} onClick={handleAddToCart}>Agregar</Button>
       </ButtonContainer>
 
       <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>

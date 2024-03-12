@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, toggleHiddenCart } from '../../../redux/cart/cartSlice';
 import { IoClose } from 'react-icons/io5';
 
+import Modal from '../../Modal/Modal'
+
 
 
 function ModalCart() {
