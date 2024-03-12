@@ -1,11 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CardTechDest, TextTechContainer, ButtonContainer, Button } from "./TechStyledCard"
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cart/cartSlice'
 import Modal from '../Modal/Modal'
-
-
-
 
 function Tech({title, img, desc, price, id}) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -14,11 +11,21 @@ function Tech({title, img, desc, price, id}) {
   const handleAddToCart = () => {
     dispatch(addToCart({img,title,desc,price,id}));
     setModalOpen(true);
-
-    setTimeout(() => {
-      setModalOpen(false);
-    }, 2000);
   };
+
+  useEffect(() => {
+    let timer;
+    if (isModalOpen) {
+      timer = setTimeout(() => {
+        setModalOpen(false);
+      }, 3000);
+    }
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [isModalOpen]);
 
   return (
     <CardTechDest> 
