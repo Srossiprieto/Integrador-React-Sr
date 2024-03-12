@@ -12,7 +12,6 @@ const INITIAL_STATE = {
     hidden: true
 }
 
-
 const cartSlice = createSlice({
     name: "cart",
     initialState: INITIAL_STATE,
@@ -20,20 +19,19 @@ const cartSlice = createSlice({
         addToCart: (state,action) => {
             return {
                 ...state,
-                cartItems: addItemToCart(state.cartItems,action.payload),
+                cartItems: addItemToCart(state.cartItems,action.payload)
             };
         },
         removeFromCart: (state,action) =>{
             return {
                 ...state,
-                cartItem:removeItemFromCart(state.cartItems,action.payload),
-            
+                cartItems: removeItemFromCart(state.cartItems,action.payload)
             }
         },
         clearCart:state=> {
             return {
                 ...state,
-                cartItems:[],
+                cartItems:[]
             };
         },
         toggleHiddenCart: state=> {
@@ -43,7 +41,6 @@ const cartSlice = createSlice({
             };
         }
     }
-
 });
 
 

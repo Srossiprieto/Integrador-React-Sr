@@ -25,7 +25,7 @@ function ModalCart() {
   }, 0) : 0;
 
   return (
-    <ModalCartContainer onClick={() => dispatch(toggleHiddenCart())}>
+    <ModalCartContainer>
       <h3>Tus Productos:</h3> <IoClose onClick={() => dispatch(toggleHiddenCart())} />
       <CardCart>
         <CartWrapper>
@@ -34,7 +34,7 @@ function ModalCart() {
                     <ModalCard key={item.id} {...item} />
                   ))
                 ) : (
-                  <p>No seas amarrete, compra algo</p>
+                  <p> El carrito esta vacio...</p>
                 )}
         </CartWrapper>
         <hr />

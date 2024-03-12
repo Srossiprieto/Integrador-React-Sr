@@ -26,6 +26,9 @@ import { Outlet, Link } from "react-router-dom";
 
 import ModalCart from './ModalCart/ModalCart';
 
+import { toggleHiddenCart } from '../../redux/cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 import CartIcon from './CartIcon/CartIcon';
 
@@ -53,7 +56,8 @@ function Navbar() {
   // ======= MENU DESPLEGABLE =======
 
   // ======= CARRITO DESPLEGABLE =======
-
+  const dispatch = useDispatch();
+  const hidden = useSelector((state) => state.cart.hidden);
 
   // ======= CARRITO DESPLEGABLE =======
 
@@ -83,12 +87,15 @@ function Navbar() {
             </NavbarUlStyled>
               <StyledUserIcon/>
 
-              <BagIconContainer  >
-                <CartIcon/>
-                <StyledBagIcon/>
+              <BagIconContainer>
+                <StyledBagIcon  onClick={() => dispatch(toggleHiddenCart())}/>
                 <ShoppingBagBubble>0</ShoppingBagBubble>
               </BagIconContainer>
-                <ModalCart/>
+              {hidden && <ModalCart/>}
+
+
+
+
               <MenuContainerStyled>
                 <MenuContainerStyledBtn onClick={(e) => {e.stopPropagation(); toggle();}}>
                           {isOpen ? <StyledIoClose />: <AiOutlineMenu/>}

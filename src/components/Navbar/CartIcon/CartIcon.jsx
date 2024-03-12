@@ -1,4 +1,5 @@
-import { FaBagShopping } from "react-icons/fa";
+import { FaBagShopping } from "react-icons/fa6";
+
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleHiddenCart } from '../../../redux/cart/cartSlice';
 import { BagIconContainer } from '../NavbarStyles';
@@ -9,8 +10,8 @@ function CartIcon() {
   const totalCartItems = useSelector((state) => state.cart.cartItems.reduce((acc, item) => (acc + item.quantity), 0));
 
   return (
-      <BagIconContainer onClick={() => dispatch(toggleHiddenCart())}>
-        <FaBagShopping />
+      <BagIconContainer>
+        <FaBagShopping onClick={() => dispatch(toggleHiddenCart())}/>
         <span>{totalCartItems}</span>
       </BagIconContainer>
   );
