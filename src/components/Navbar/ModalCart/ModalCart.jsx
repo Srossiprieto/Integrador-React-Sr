@@ -1,4 +1,11 @@
-import { ModalCartContainer, CardCart, CartWrapper, CartFooterStyled, Button } from './ModalCartStyles';
+import { 
+  ModalCartContainer, 
+  CardCart, 
+  CartWrapper, 
+  CartFooterStyled, 
+  Button, 
+  CardCartTop } 
+  from './ModalCartStyles';
 
 import ModalCard from './ModalCard';
 import { useEffect } from 'react';
@@ -26,7 +33,10 @@ function ModalCart() {
 
   return (
     <ModalCartContainer>
-      <h3>Tus Productos:</h3> <IoClose onClick={() => dispatch(toggleHiddenCart())} />
+      <CardCartTop>
+
+        <h3>Tus Productos:</h3> <IoClose onClick={() => dispatch(toggleHiddenCart())} />
+      </CardCartTop>
       <CardCart>
         <CartWrapper>
         {cartItems.length ? (

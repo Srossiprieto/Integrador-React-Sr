@@ -74,12 +74,12 @@ export const CardCartDest = styled.div`
     align-items: start;
     gap: 10px;
     h2 {
-        font-size: 12px;
+        font-size: 15px;
         font-weight: 700;
         color: var(--text);
     }
     p {
-        font-size: 8px;
+        font-size: 11px;
         font-weight: 500;
         color: var(--text);
     }
@@ -92,29 +92,28 @@ export const CardCartDest = styled.div`
 
     `
 
+    export const CardCartTop = styled.div`
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      svg { 
+        cursor: pointer;
+        font-size: 20px;
+        position: relative;
+        top: -25px;
+        right: -15px;
+        color: var(--text);
+        transition: all 0.3s ease;
+      }
+    `
 
 
 
 
 
-export const Increase = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 40px;
-    border-radius: 8px;
-    color: var(--text);
-    background-color: var(--purple-700);
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    &:hover {
-        background-color: var(--purple-600);
-    }
 
-`;
+
 export const Button = styled.div`
     display: flex;
     justify-content: center;
@@ -159,7 +158,7 @@ export const ContainerCartWrapper = styled.div`
     
     
     `;
-export const CartWrapper = styled.div`
+    export const CartWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -209,20 +208,22 @@ export const CartFooterStyled = styled.div`
 
 // =============================== ModalCard ===============================
 
+export const Increase = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 15px;
+    padding: 10px;
+    transition: all 0.3s ease;
+    &:hover {
+        color: var(--text);
+    }
+  `;
 export const Count = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 40px;
-    border-radius: 8px;
-    color: var(--text);
-    background-color: var(--purple-700);
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    &:hover {
-        background-color: var(--purple-600);
-    }
+    font-size: 12px;
 `;

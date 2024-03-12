@@ -1,5 +1,6 @@
 import { CardCartDest, TextCartContainer, Increase, Count } from "./ModalCartStyles";
 import { FaTrash } from "react-icons/fa";
+import { LuTrash } from "react-icons/lu";
 
 
 import { removeFromCart, addToCart } from "../../../redux/cart/cartSlice";
@@ -19,7 +20,7 @@ function ModalCard({ title, img, price, quantity, id }) {
           <p>$ {price}</p>
         </TextCartContainer>
         <Increase onClick={() => dispatch(removeFromCart(id))}>
-          {quantity === 1 ? <FaTrash /> : <IoRemoveCircleOutline />}
+          {quantity === 1 ? <LuTrash /> : <IoRemoveCircleOutline />}
         </Increase>
         <Count>{quantity}</Count>
         <Increase onClick={() => dispatch(addToCart({ img, title, price, id }))}>
