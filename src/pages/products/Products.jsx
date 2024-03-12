@@ -5,9 +5,9 @@ import Categories from '../../components/Categories/Categories';
 function Products() {
   return (
     <>
-      <CardsProducts />
       <Categories /> 
       <TechCard />
+      <CardsProducts />
     </>
   )
 }

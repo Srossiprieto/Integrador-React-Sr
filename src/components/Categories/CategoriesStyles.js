@@ -2,12 +2,14 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 
+
 export const CategoriesContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
   user-select: none;
+  padding-block-start: 100px;
 `;
 
 export const CardCategories = styled(motion.div)`
