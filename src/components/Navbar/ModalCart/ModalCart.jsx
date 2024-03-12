@@ -43,7 +43,10 @@ function ModalCart() {
           <p>${totalPrice}</p>
         </CartFooterStyled>
         <hr />
-        <Button onClick={() => dispatch(toggleHiddenCart())}>
+        <Button 
+          onClick={() => dispatch(toggleHiddenCart()) 
+          && dispatch(clearCart())
+        }>
           Comprar
         </Button>
         <hr />

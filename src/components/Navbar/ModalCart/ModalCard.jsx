@@ -16,7 +16,7 @@ function ModalCard({ title, img, price, quantity, id }) {
         <img src={img} alt={title} />
         <TextCartContainer>
           <h2>{title}</h2>
-          <p>{price}</p>
+          <p>$ {price}</p>
         </TextCartContainer>
         <Increase onClick={() => dispatch(removeFromCart(id))}>
           {quantity === 1 ? <FaTrash /> : <IoRemoveCircleOutline />}

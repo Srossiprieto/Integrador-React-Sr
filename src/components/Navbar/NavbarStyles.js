@@ -89,18 +89,25 @@ export const StyledBagIcon = styled(FaBagShopping)`
 export const ShoppingBagBubble = styled.span`
   position: absolute;
   top: -5px; // Ajusta este valor según sea necesario
-  right: -10px; // Ajusta este valor según sea necesario
+  right: -12px; // Ajusta este valor según sea necesario
   background-color: var(--purple-900);
   color: white;
   border-radius: 50%;
-  width: 1.25em;
-  height: 1.25em;
+  width: 1em;
+  height: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 11px;
-  font-weight: 600;
-`;
+  `;
+  export const ShoppingNumber = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 500;
+
+
+  `
 
 
 

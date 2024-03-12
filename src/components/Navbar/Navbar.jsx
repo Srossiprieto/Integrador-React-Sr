@@ -9,6 +9,7 @@ import {
   RightContainer,
   StyledUserIcon,
   StyledBagIcon,
+  ShoppingNumber,
   StyledIoClose,
   ShoppingBagBubble,
   BagIconContainer,
@@ -58,12 +59,17 @@ function Navbar() {
   // ======= CARRITO DESPLEGABLE =======
   const dispatch = useDispatch();
   const hidden = useSelector((state) => state.cart.hidden);
+  // Obtén la cantidad total de items en el carrito desde el estado de Redux
+  const quantity = useSelector((state) => state.cart.cartItems.reduce((accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity, 0));
 
+// Luego, pasa el valor de quantity a ShoppingBagBubble
+<ShoppingBagBubble>{quantity}</ShoppingBagBubble>
   // ======= CARRITO DESPLEGABLE =======
 
   return (
     <>
       {isOpen && <BlurBackground onClick={toggle} />}
+      {hidden && <BlurBackground onClick={toggle} />}
       <NavbarContainerStyled>
           <NavbarContainer>
             <a href="#">
@@ -89,7 +95,12 @@ function Navbar() {
 
               <BagIconContainer>
                 <StyledBagIcon  onClick={() => dispatch(toggleHiddenCart())}/>
-                <ShoppingBagBubble>0</ShoppingBagBubble>
+                <ShoppingBagBubble onClick={() => dispatch(toggleHiddenCart())}>
+                  <ShoppingNumber>
+                    {quantity}
+                  </ShoppingNumber>
+                  
+                </ShoppingBagBubble>
               </BagIconContainer>
               {hidden && <ModalCart/>}
 
