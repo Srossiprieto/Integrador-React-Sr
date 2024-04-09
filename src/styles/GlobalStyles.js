@@ -7,6 +7,7 @@ export const GlobalStyles = createGlobalStyle`
         --text: #fff;
         --gray: #707070;
         --text-footer: #04040470 ;
+        --text: white;
         --decoration: #46b5be;
         --grey: #0404046b;
         --text-grey: #c4c1c6b8;

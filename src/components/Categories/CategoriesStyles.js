@@ -9,7 +9,7 @@ export const CategoriesContainer = styled.div`
   flex-wrap: wrap;
   gap: 5px;
   user-select: none;
-  padding-block-start: 100px;
+  padding-top: 10px;
 `;
 
 export const CardCategories = styled(motion.div)`
