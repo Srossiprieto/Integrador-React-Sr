@@ -22,6 +22,7 @@ export const Button = styled.button`
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  border: none;
   &:hover {
     background-color: var(--purple-500);
   }
