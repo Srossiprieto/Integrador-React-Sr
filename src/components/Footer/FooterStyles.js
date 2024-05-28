@@ -125,16 +125,5 @@ export const NewsletterForm = styled.form`
   }
 
 
-  button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--purple-400);
-    color: var(--text);
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
-  button:hover {
-    background-color: var(--purple-600);
-  }
+ 
 `;

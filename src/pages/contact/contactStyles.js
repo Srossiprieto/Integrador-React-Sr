@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+
+
 export const ContactContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -9,6 +11,8 @@ export const ContactContainer = styled.div`
     font-size: 2rem;
     color: var(--text);
 `;
+
+
 
 export const TitleForm = styled.h1`
     display: flex;
