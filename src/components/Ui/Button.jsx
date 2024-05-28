@@ -1,11 +1,16 @@
-import React from 'react'
+import { ButtonContainer, Button } from './ButtonStyles'
 
-function Button() {
+function ButtonPrimary({ text, img, onClick, disabled }) {
   return (
-    <div>
-      Button
-    </div>
+    <ButtonContainer >
+        
+        <Button onClick={onClick} disabled={disabled}>
+          {text}
+          {img && <img src={img} alt = "" />}
+         
+        </Button>
+      </ButtonContainer>
   )
 }
 
-export default Button
+export default ButtonPrimary

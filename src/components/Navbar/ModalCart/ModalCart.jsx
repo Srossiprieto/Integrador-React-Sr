@@ -3,7 +3,7 @@ import {
   CardCart, 
   CartWrapper, 
   CartFooterStyled, 
-  Button, 
+  ButtonCartContainer, 
   CardCartTop } 
   from './ModalCartStyles';
 
@@ -15,7 +15,7 @@ import { IoClose } from 'react-icons/io5';
 
 import Modal from '../../Modal/Modal'
 
-
+import ButtonPrimary from '../../Ui/Button';
 
 function ModalCart() {
 
@@ -46,6 +46,7 @@ function ModalCart() {
                     <ModalCard key={item.id} {...item} />
                   ))
                 ) : (
+                  // console.log(cartItems.length),
                   <p> El carrito esta vacio...</p>
                 )}
         </CartWrapper>
@@ -55,14 +56,28 @@ function ModalCart() {
           <p>${totalPrice}</p>
         </CartFooterStyled>
         <hr />
-        <Button 
+        {/* <Button 
           onClick={() => dispatch(toggleHiddenCart()) 
           && dispatch(clearCart())
         }>
           Comprar
-        </Button>
-        <hr />
-        <Button onClick={() => dispatch(clearCart())}>Limpiar Carrito</Button>
+        </Button> */}
+        <ButtonCartContainer>
+          <ButtonPrimary 
+            onClick={() => {
+              dispatch(toggleHiddenCart());
+              dispatch(clearCart());
+            }} 
+            text={"Comprar"} 
+            disabled={cartItems.length === 0}
+          />
+          <ButtonPrimary 
+            onClick={() => dispatch(clearCart())} 
+            text={"Limpiar Carrito"}
+            disabled={cartItems.length === 0}
+          />
+        </ButtonCartContainer>
+        {/* <Button onClick={() => dispatch(clearCart())}>Limpiar Carrito</Button> */}
       </CardCart>
     </ModalCartContainer>
   );

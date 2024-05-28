@@ -120,22 +120,10 @@ export const CardCartDest = styled.div`
 
 
 
-export const Button = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 40px;
-    border-radius: 8px;
-    color: var(--text);
-    background-color: var(--purple-700);
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    &:hover {
-        background-color: var(--purple-600);
-    }
+export const ButtonCartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
 
 `;
 // =============================== ModalCart ===============================

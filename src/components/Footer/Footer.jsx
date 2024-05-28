@@ -2,6 +2,8 @@ import React from 'react';
 import { FooterContainer, FooterRow, FooterLinks, FooterBottom, SocialLink, Copyright, NewsletterForm} from './FooterStyles';
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import payment from '../assets/img/payment.webp';
+import ButtonPrimary  from '../Ui/Button';
+
 function Footer() {
   return (
     <FooterContainer>
@@ -35,7 +37,7 @@ function Footer() {
           <NewsletterForm>
             <span>¡Suscríbete a nuestro boletín!</span>
             <input type="email" placeholder="Correo electrónico" />
-            <button type="submit">Suscribirse</button>
+            <ButtonPrimary text={"Suscribirse"}/>
           </NewsletterForm>
         </FooterLinks>
       </FooterRow>

@@ -11,24 +11,7 @@ export const HeroContainerStyled = styled.div`
   h1 {
     margin-bottom: 2rem;
   }
-  a {
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    color: var(--text);
-    background-color: var(--purple-900);
-    font-weight: 700;
-    padding: 3px;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  a:hover {
-    background-color: var(--purple-700);
-  }
+ 
 
 
   @media (max-width: 968px) {
@@ -77,6 +60,7 @@ export const HeroTextContainerStyled = styled.div`
   h2 {
     font-size: 1rem;
     font-weight: 300;
+    padding-bottom: 5px;
     margin: 0;
     color: var(--text-grey);
   }

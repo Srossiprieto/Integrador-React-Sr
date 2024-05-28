@@ -10,7 +10,7 @@ import Card from '../Hero/HeroCard';
 
 import { cardsData } from './data';
 import { Link } from 'react-router-dom';
-
+import ButtonPrimary  from '../Ui/Button';
 
 
 
@@ -22,7 +22,9 @@ function Hero() {
         <h1><span>Equipa</span> y <span>potencia</span> tu empresa.</h1>
           <h2>Tecnología de vanguardia para empresas en crecimiento</h2>
           <Link to="/contacto">
-            Contactanos <img src={arrowRight} alt="arrowRight" />
+            {/* Contactanos <img src={arrowRight} alt="arrowRight" /> */}
+            <ButtonPrimary text={"Contactanos"} img={arrowRight}/>
+          
           </Link>
         </HeroTextContainerStyled>
         <HeroImageContainerStyled>
