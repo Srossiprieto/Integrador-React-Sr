@@ -1,6 +1,7 @@
 import React from 'react'
 import { ContactContainer, ContactForm,TitleForm ,InputFormStyles, InputStyles, TextAreaFormStyles, ButtonFormStyles, TextAreaContainer} from './contactStyles'
 import arrowRight from '../../components/assets/img/arrow-right.svg'
+import ButtonPrimary from '../../components/Ui/Button'
 function Contact() {
   return (
     <ContactContainer>
@@ -17,7 +18,8 @@ function Contact() {
           </TextAreaFormStyles>
         </TextAreaContainer>
         <ButtonFormStyles>
-          <a type="submit">Enviar <img src={arrowRight} alt="arrowRight" /></a>
+          {/* <a type="submit">Enviar <img src={arrowRight} alt="arrowRight" /></a> */}
+          <ButtonPrimary type="submit" text={"Enviar"} img={arrowRight} alt="arrowRight" />
         </ButtonFormStyles>
 
       </ContactForm>

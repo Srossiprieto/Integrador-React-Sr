@@ -27,6 +27,7 @@ export const NavbarContainer = styled.div`
   background-color: var(--bg);
   padding: 0.5rem 5rem;
   gap: 20px;
+  height: 55px;
   a {
     text-decoration: none;
   }
