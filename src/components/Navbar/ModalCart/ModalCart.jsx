@@ -23,11 +23,11 @@ function ModalCart() {
   const hiddenCart = useSelector((state) => state.cart.hidden);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!hiddenCart) {
-      dispatch(toggleHiddenCart());
-    }
-  }, [dispatch, hiddenCart]);
+  // useEffect(() => {
+  //   if (!hiddenCart) {
+  //     dispatch(toggleHiddenCart());
+  //   }
+  // }, [dispatch, hiddenCart]);
 
   const totalPrice = Array.isArray(cartItems) ? cartItems.reduce((acc, item) => {
     return (acc += item.price * item.quantity);
