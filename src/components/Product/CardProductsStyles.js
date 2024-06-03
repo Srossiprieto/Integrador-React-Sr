@@ -7,7 +7,8 @@ export const CardProductDest = styled.div`
   align-items: start;
   width: 300px;
   gap: 10px;
-  border: 1px solid var(--gray);
+  /* border: 1px solid var(--gray); */
+  background-color: var(--bg-card);
   padding: 20px;
   border-radius: 8px;
   h2 {

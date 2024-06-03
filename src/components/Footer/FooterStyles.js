@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
   margin-top: 30px;
-  background: var(--gray-900);
+  background: var(--bg-footer);
   width: 100%;
 `;
 
@@ -71,7 +71,7 @@ export const FooterBottom = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--gray-500);
+  background: var(--bg-footer-bottom);
   border-top: 1px solid var(--gray-400);
   font-size: 14px;
   font-weight: 500;
