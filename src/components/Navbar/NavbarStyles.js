@@ -31,10 +31,6 @@ export const NavbarContainer = styled.div`
   a {
     text-decoration: none;
   }
-  img {
-    width: 35px;
-    height: 35px;
-  }
   @media (max-width: 968px) {
     width: 100%;
   }
@@ -54,7 +50,7 @@ export const NavbarUlStyled = styled.ul`
 	  font-weight: 500;
     transition: all 0.3s ease-in-out;
 	&:hover{
-		color: var(--purple-900);
+		color: var(--nav-hover);
 	}
   }
   @media (max-width: 968px) {

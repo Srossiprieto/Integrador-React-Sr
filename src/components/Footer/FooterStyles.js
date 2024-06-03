@@ -21,7 +21,7 @@ export const FooterLinks = styled.div`
   }
   h3{
     font-size: 19px;
-    color: var(--purple-300);
+    color: var(--text-footer);
     font-weight: 800;
     padding: 10px 0;
 
@@ -36,7 +36,7 @@ export const FooterLinks = styled.div`
     transition: all 0.3s ease-in-out;
   }
   p a:hover {
-    color: var(--purple-300);
+    color: var(--text-footer);
   }
 
   li {
@@ -49,7 +49,7 @@ export const FooterLinks = styled.div`
     transition: all 0.3s ease-in-out;
   }
   a:hover {
-    color: var(--purple-300);
+    color: var(--text-footer);
   }
 
 `;
@@ -62,7 +62,7 @@ padding-top: 10px;
     margin-right: 20px;
   }
   a:hover {
-    color: var(--purple-300);
+    color: var(--text-footer);
   }
 `;
 
@@ -99,7 +99,7 @@ export const Copyright = styled.p`
     transition: all 0.3s ease-in-out;
   }
   a:hover {
-    color: var(--purple-300);
+    color: var(--text-footer);
   }
 
 `;

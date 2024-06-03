@@ -8,10 +8,21 @@ export const GlobalStyles = createGlobalStyle`
         --bg-card:#1F2937;
         --bg-footer: #1F2937;
         --bg-footer-bottom: #394659;
+        --bg-btn: #4c5a6d;
+        --bg-btn-hover: #7a8ba1;
 
+        --bg-btn-category: #4c5a6d;
+        --bg-btn-category-selected: #697079;
+
+        --bg-modal: #181f29;
+
+        --nav-hover: #7a8ba1;
+
+        --text-contrast: #b7c9e1;
+        
         --text: #fff;
         --gray: #707070;
-        --text-footer: #04040470 ;
+        --text-footer: #98b1d5 ;
         --text: white;
         --decoration: #46b5be;
         --grey: #0404046b;

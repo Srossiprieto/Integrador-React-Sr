@@ -19,7 +19,7 @@ export const CardCategories = styled(motion.div)`
     padding: 10px;
     margin: 5px;
     background-color: ${({ selected }) =>
-        selected ? '#1a1a1af0' : 'var(--purple-900)'};
+        selected ? 'var(--bg-btn-category-selected)' : 'var(--bg-btn-category)'};
     border-radius: 10px;
     width: 90px;
     cursor: pointer;

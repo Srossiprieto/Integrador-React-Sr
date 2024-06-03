@@ -72,31 +72,33 @@ export const CardCartDest = styled.div`
     }
     
     `;
-    export const TextCartContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    align-items: start;
-    gap: 10px;
-    h2 {
-        font-size: 15px;
-        font-weight: 700;
-        color: var(--text);
-    }
-    p {
-        font-size: 11px;
-        font-weight: 500;
-        color: var(--text);
-    }
-    h3 {
-        font-size: 15px;
-        font-weight: 300;
-        color: var(--gray);
-    }
-
-
-    `
+export const TextCartContainer = styled.div`
+display: flex;
+flex-direction: column;
+width: 100%;
+justify-content: center;
+align-items: start;
+gap: 10px;
+h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    overflow: hidden;
+    max-width: 95px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+p {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text);
+}
+h3 {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--gray);
+}
+`
 
     export const CardCartTop = styled.div`
       display: flex;

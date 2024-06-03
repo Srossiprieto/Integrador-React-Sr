@@ -10,7 +10,7 @@ export const CardTechDest = styled.div`
   align-items: start;
   width: 300px;
   gap: 10px;
-  background: #1a1a1af0;
+  background: var(--bg-card);
   border-radius: 8px;
   img{
         width: 100%;

@@ -22,7 +22,7 @@ export const CardProductDest = styled.div`
   }
   p {
     font-size: 26px;
-    color: var(--purple-700);
+    color: var(--text-contrast);
     font-weight: 700;
   }
   span{
@@ -84,7 +84,7 @@ export const CheckItem = styled.div`
 `
 
 export const StyledCheckIcon = styled(FaCheck)`
-  color: var(--purple-700);
+  color: var(--text-contrast);
 `;
 
 export const ButtonContainer = styled.div`

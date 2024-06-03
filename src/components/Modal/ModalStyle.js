@@ -24,7 +24,7 @@ export const ModalBackground = styled.div`
     
 
 export const ModalContent = styled.div`
-    background-color: var(--purple-400);
+    background-color: var(--bg-modal);
     border-radius: 8px;
     display: flex;
     gap: 10px;

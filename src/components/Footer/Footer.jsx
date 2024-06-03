@@ -3,6 +3,7 @@ import { FooterContainer, FooterRow, FooterLinks, FooterBottom, SocialLink, Copy
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import payment from '../assets/img/payment.webp';
 import ButtonPrimary  from '../Ui/Button';
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -20,17 +21,36 @@ function Footer() {
         </FooterLinks>
         <FooterLinks>
           <h3>Enlaces</h3>
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Productos</a></li>
-          <li><a href="#">Contacto</a></li>
-          <li><a href="#">Acerca de</a></li>
+          <Link to="/">
+            <li>Inicio</li>
+          </Link>
+          <Link to="/productos">
+            <li>Productos</li>
+          </Link>
+          <Link to="/contacto">
+            <li>Contacto</li>
+          </Link>
+          <Link to="/nosotros">
+            <li>Acerca de</li>
+          </Link>
         </FooterLinks>
         <FooterLinks>
           <h3>Legal</h3>
-          <li><a href="#">Términos y condiciones</a></li>
-          <li><a href="#">Política de privacidad</a></li>
-          <li><a href="#">Política de cookies</a></li>
-          <li><a href="#">Política de devoluciones</a></li>
+
+          <Link to="/contacto">
+            <li>Contacto</li>
+          </Link>
+          <Link to="/nosotros">
+            <li>Términos y condiciones</li>
+          </Link>
+          <Link to="/nosotros">
+            <li>Política de privacidad</li>
+          </Link>
+          <Link to="/nosotros">
+            <li>Política de cookies</li>
+          </Link>
+          
+
         </FooterLinks>
         <FooterLinks>
           <h3>Miembro</h3>

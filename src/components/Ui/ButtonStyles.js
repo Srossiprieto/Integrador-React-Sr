@@ -18,13 +18,13 @@ export const Button = styled.button`
   padding: 1vh;
   border-radius: 8px;
   color: var(--text);
-  background-color: var(--purple-700);
+  background-color: var(--bg-btn);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
   &:hover {
-    background-color: var(--purple-500);
+    background-color: var(--bg-btn-hover);
   }
   &:disabled {
   /* Tus estilos para el botón deshabilitado van aquí */
