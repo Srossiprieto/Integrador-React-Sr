@@ -1,94 +1,139 @@
+// AboutStyles.js
 import styled from 'styled-components';
 
-export const AboutContainerWidth = styled.div`
+export const AboutContainerStyled = styled.div`
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding-inline: 20px;
-  position: relative;
-  z-index: 2;
-  @media (max-width: 768px) {
-    padding: 20px;
+  margin: 0 100px 0 100px;
+  gap: 30px;
+  height: 100vh;
+
+  h1 {
+    margin-bottom: 2rem;
   }
 
-  
-  `
-
-
-export const AboutContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  padding-block-start: 100px;
-  background-color: var(--bg);
-
+  @media (max-width: 968px) {
+    flex-direction: column;
+    gap: 100px;
+  }
 `;
 
-export const AboutContainerTextStyled = styled.div`
+export const AboutWidthContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1300px;
+  gap: 30px;
+  @media (max-width: 968px) {
+    flex-direction: column;
+    gap: 100px;
+  }
+`;
+
+export const AboutTextContainerStyled = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  z-index: 2;
+  align-items: flex-start;
+  width: 100%;
+
   h1 {
-    font-size: 90px;
-    text-align: center;
-    margin-bottom: 10px;
-    font-weight: 900;
-    color: var(--purple-900);
-  }
-  p {
-    font-size: 1.2rem;
-    color: var(--gray-50);
-    text-align: center;
-    max-width: 400px;
-    font-weight: 500;
-    line-height: 1.5;
-    border-radius: 10px;
-  }
-  button {
-    padding: 10px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--purple-900);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 2px;
     color: var(--text);
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
   }
-  button:hover {
-    background-color: var(--purple-700);
+
+  span{
+    background: linear-gradient(to bottom, var(--decoration),var(--purple-500) ,var(--purple-400));
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
   }
-  div{
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 300;
+    padding-bottom: 5px;
+    margin: 0;
+    color: var(--text-grey);
+  }
+
+  p {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 968px) {
+    width: 80%;
+    align-items: center;
+    text-align: center;
+    h1{
+      font-size: 2.5rem;
+      width: 270px;
+    }
+    h2{
+      font-size: 1.5rem;
+    }
+  }
+  @media (max-width: 468px) {
+    h2{
+      font-size: 1.2rem;
+    }
+  }
+`;
+
+export const AboutImageContainerStyled = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, var(--decoration),var(--purple-500) ,var(--purple-400));
+    z-index: -1;
+    border-radius: 8px;
+    filter: blur(7px);
+  }
+  @media (max-width: 968px) {
     width: 100%;
-    margin-top: 10vh;
-    height: 5px;
-    border-top: 1px solid var(--text);  
   }
   @media (max-width: 768px) {
-    padding: 20px;
-    h1 {
-      text-align: center;
-      font-size: 60px;
-    }
-    p {
-      text-align: center;
-      width: 100%;
-    }
-
-    @media (max-width: 479px) {
-      h1 {
-        font-size: 40px;
-      }
-      p {
-        font-size: 1rem;
-      }
-    }
-
-
+    width: 100%;
   }
-  `;
+  @media (max-width: 468px) {
+    width: 170%;
+  }
+`;
+
+export const AboutGridContainerStyled = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  padding: 20px;
+  border-radius: 8px;
+
+  @media (max-width: 968px) {
+    width: 80%;
+    justify-content: center;
+  }
+  @media (max-width: 768px) { 
+    gap: 20px;
+    width: 80%;
+  }
+  @media (max-width: 468px) {
+    gap: 10px;
+    width: 20%;
+  }
+`;

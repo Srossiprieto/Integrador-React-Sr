@@ -1,33 +1,50 @@
-import { AboutContainerWidth, 
-  AboutContainer,
-  AboutContainerTextStyled, 
+// About.jsx
+import React from 'react';
+import arrowRight from '../../components/assets/img/arrow-right.svg';
+import { AboutContainerStyled, 
+  AboutTextContainerStyled, 
+  AboutImageContainerStyled, 
+  AboutGridContainerStyled,
+  AboutWidthContainer } from './aboutStyle';
 
-  } 
-from './aboutStyle';
+import Card from '../about/HeroCard'; 
 
-import logoNav from '../../components/assets/img/logoNav.webp';
+import { cardsData } from './data';
+import { Link } from 'react-router-dom';
+import ButtonPrimary  from '../../components/Ui/Button';
+
+
 
 function About() {
   return (
-    <>
-        <AboutContainer>
-          <AboutContainerWidth>
-              <AboutContainerTextStyled>
-                <h1>
-                  ¿Quienes Somos?
-                </h1>
-                <p>
-                  Somos una empresa que se dedica a la creación de software y desarrollo web. 
-                  Nuestro objetivo es ayudar a las empresas a mejorar su presencia en línea y 
-                  aumentar sus ventas.
-                </p>
-                <button>Ver más</button>
-                <div></div>
-              </AboutContainerTextStyled>
-          </AboutContainerWidth> 
-        </AboutContainer>
-        
-    </>
+    <AboutContainerStyled>
+      <AboutWidthContainer>
+        <AboutTextContainerStyled>
+        <h1><span>¿Quienes somos?</span></h1>
+          <h2>Empresa lider en equipamiento técnico</h2>
+          <Link to="/contacto">
+            {/* Contactanos <img src={arrowRight} alt="arrowRight" /> */}
+            <ButtonPrimary text={"Contactanos"} img={arrowRight}/>
+          
+          </Link>
+        </AboutTextContainerStyled>
+        <AboutImageContainerStyled>
+          <AboutGridContainerStyled>
+
+          {cardsData.map((card, index) => (
+            <Card
+              key={index}
+              imageSrc={card.imageSrc}
+              alt={card.alt}
+              title={card.title}
+              description={card.description}
+            />
+          ))}
+
+          </AboutGridContainerStyled>
+        </AboutImageContainerStyled>
+      </AboutWidthContainer>
+    </AboutContainerStyled>
   );
 }
 
