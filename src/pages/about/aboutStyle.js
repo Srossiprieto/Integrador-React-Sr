@@ -5,7 +5,7 @@ export const AboutContainerStyled = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 0 100px 0 100px;
+  margin: 50px 100px 50px 100px;
   gap: 30px;
   height: 100vh;
 
@@ -38,11 +38,10 @@ export const AboutTextContainerStyled = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-
-  h1 {
+  gap: 5px;
+  h2 {
     font-size: 3rem;
     font-weight: 800;
-    margin-bottom: 2px;
     color: var(--text);
   }
 
@@ -53,16 +52,12 @@ export const AboutTextContainerStyled = styled.div`
     -webkit-background-clip: text;
   }
 
-  h2 {
+  p {
     font-size: 1rem;
     font-weight: 300;
     padding-bottom: 5px;
     margin: 0;
     color: var(--text-grey);
-  }
-
-  p {
-    font-size: 1.4rem;
   }
 
   @media (max-width: 968px) {

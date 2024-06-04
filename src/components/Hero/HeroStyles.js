@@ -5,15 +5,10 @@ export const HeroContainerStyled = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 100px;
+  margin: 50px 100px 50px 100px;
   gap: 30px;
-
-  h1 {
-    margin-bottom: 2rem;
-  }
- 
-
-
+  height: 100vh;
+  
   @media (max-width: 968px) {
     flex-direction: column;
     gap: 100px;
@@ -23,7 +18,6 @@ export const HeroContainerStyled = styled.div`
 export const HeroWidthContainer = styled.div`
   width: 100%;
   display: flex;
-  padding-block-start: 30px;
   justify-content: space-between;
   align-items: center;
   max-width: 1300px;
@@ -57,7 +51,7 @@ export const HeroTextContainerStyled = styled.div`
 
   }
 
-  h2 {
+  p {
     font-size: 1rem;
     font-weight: 300;
     padding-bottom: 5px;
@@ -65,9 +59,7 @@ export const HeroTextContainerStyled = styled.div`
     color: var(--text-grey);
   }
 
-  p {
-    font-size: 1.4rem;
-  }
+  
 
   @media (max-width: 968px) {
     width: 80%;

@@ -7,11 +7,11 @@ import { AboutContainerStyled,
   AboutGridContainerStyled,
   AboutWidthContainer } from './aboutStyle';
 
-import Card from '../about/HeroCard'; 
+import Card from './AboutCard'; 
 
 import { cardsData } from './data';
 import { Link } from 'react-router-dom';
-import ButtonPrimary  from '../../components/Ui/Button';
+import ButtonLayout  from '../../components/Ui/ButtonLayout';
 
 
 
@@ -20,11 +20,11 @@ function About() {
     <AboutContainerStyled>
       <AboutWidthContainer>
         <AboutTextContainerStyled>
-        <h1><span>¿Quienes somos?</span></h1>
-          <h2>Empresa lider en equipamiento técnico</h2>
-          <Link to="/contacto">
+        <h2>Tu empresa de confianza<span>.</span></h2>
+          <p>Empresa lider en equipamiento técnico</p>
+          <Link to="/productos">
             {/* Contactanos <img src={arrowRight} alt="arrowRight" /> */}
-            <ButtonPrimary text={"Contactanos"} img={arrowRight}/>
+            <ButtonLayout text={"Productos"} img={arrowRight}/>
           
           </Link>
         </AboutTextContainerStyled>

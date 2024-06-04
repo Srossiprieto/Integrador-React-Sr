@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardContainer, Image, Title, Description } from './CardStyles';
 
-const HeroCard = ({ imageSrc, alt, title, description }) => {
+const AboutCard = ({ imageSrc, alt, title, description }) => {
   return (
     <CardContainer>
       <Image src={imageSrc} alt={alt} />
@@ -11,4 +11,4 @@ const HeroCard = ({ imageSrc, alt, title, description }) => {
   );
 };
 
-export default HeroCard;
+export default AboutCard;

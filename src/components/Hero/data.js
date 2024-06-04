@@ -1,6 +1,6 @@
 import crownCard from '../assets/img/crown.svg';
 import graphCard from '../assets/img/graph.svg';
-import magicCard from '../assets/img/magic.svg';
+import energy from '../assets/img/energy.svg';
 import worldCard from '../assets/img/world.svg';
 
 export const cardsData = [
@@ -17,8 +17,8 @@ export const cardsData = [
     description: '¿Qué esperas para elegirnos?',
   },
   {
-    imageSrc: magicCard,
-    alt: 'magicCard',
+    imageSrc: energy,
+    alt: 'energy',
     title: 'A 1 paso del éxito',
     description: 'Estás solo a un paso del éxito, nuestros planes se adaptan a cualquier nicho.',
   },

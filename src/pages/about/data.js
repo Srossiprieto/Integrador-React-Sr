@@ -1,7 +1,7 @@
-import crownCard from '../../components/assets/img/crown.svg';
-import graphCard from '../../components/assets/img/graph.svg';
-import magicCard from '../../components/assets/img/magic.svg';
-import worldCard from '../../components/assets/img/world.svg';
+import earth from '../../components/assets/img/earth.svg';
+import magic from '../../components/assets/img/magic.svg';
+import agreement from '../../components/assets/img/agreement.svg';
+import checkmark from '../../components/assets/img/checkmark.svg';
 
 
 
@@ -9,27 +9,27 @@ import worldCard from '../../components/assets/img/world.svg';
 
 export const cardsData = [
   {
-    imageSrc: crownCard,
-    alt: 'crownCard',
-    title: 'SRP',
-    description: 'Empresa líder en Diseño Web, Marketing y Diseño UX/UI.',
+    imageSrc: earth,
+    alt: 'earth',
+    title: 'Nuestra Misión',
+    description: 'Impulsar el crecimiento con innovación.',
   },
   {
-    imageSrc: graphCard,
-    alt: 'graphCard',
-    title: 'Más de 10 años de experiencia',
-    description: '¿Qué esperas para elegirnos?',
+    imageSrc: magic,
+    alt: 'magic',
+    title: 'Nuestra Experiencia',
+    description: 'Una década ayudando a empresas.',
   },
   {
-    imageSrc: magicCard,
-    alt: 'magicCard',
-    title: 'A 1 paso del éxito',
-    description: 'Estás solo a un paso del éxito, nuestros planes se adaptan a cualquier nicho.',
+    imageSrc: agreement,
+    alt: 'agreement',
+    title: 'Nuestro Compromiso',
+    description: 'Servicio excepcional y adaptable.',
   },
   {
-    imageSrc: worldCard,
-    alt: 'worldCard',
-    title: 'Más de 12 millones de usuarios',
-    description: '¿Serás el próximo?',
+    imageSrc: checkmark,
+    alt: 'checkmark',
+    title: 'Nuestra Comunidad',
+    description: '¿Te unirás a nuestros 12 millones de usuarios?',
   },
 ];

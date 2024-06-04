@@ -8,8 +8,12 @@ export const GlobalStyles = createGlobalStyle`
         --bg-card:#1F2937;
         --bg-footer: #1F2937;
         --bg-footer-bottom: #394659;
+
         --bg-btn: #4c5a6d;
         --bg-btn-hover: #7a8ba1;
+
+        --bg-btn2: #7630f7;
+        --bg-btn2-hover: #8655ff;
 
         --bg-btn-category: #4c5a6d;
         --bg-btn-category-selected: #697079;
