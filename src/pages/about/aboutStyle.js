@@ -5,7 +5,7 @@ export const AboutContainerStyled = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 50px 100px 50px 100px;
+  margin: 100px;
   gap: 30px;
   height: 100vh;
 
