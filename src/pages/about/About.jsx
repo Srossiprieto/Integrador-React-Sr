@@ -9,7 +9,7 @@ import { AboutContainerStyled,
 
 import Card from './AboutCard'; 
 
-import { cardsData } from './data';
+import { cardsData } from './dataAbout';
 import { Link } from 'react-router-dom';
 import ButtonLayout  from '../../components/Ui/ButtonLayout';
 

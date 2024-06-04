@@ -64,17 +64,9 @@ export const AboutTextContainerStyled = styled.div`
     width: 80%;
     align-items: center;
     text-align: center;
-    h1{
+    h2{
       font-size: 2.5rem;
       width: 270px;
-    }
-    h2{
-      font-size: 1.5rem;
-    }
-  }
-  @media (max-width: 468px) {
-    h2{
-      font-size: 1.2rem;
     }
   }
 `;
@@ -93,7 +85,19 @@ export const AboutImageContainerStyled = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    background: linear-gradient(to bottom, var(--decoration),var(--purple-500) ,var(--purple-400));
+    background:linear-gradient(
+  0deg,
+  hsl(180deg 3% 81%) 0%,
+  hsl(187deg 21% 77%) 11%,
+  hsl(193deg 37% 74%) 22%,
+  hsl(198deg 52% 71%) 33%,
+  hsl(202deg 65% 69%) 44%,
+  hsl(206deg 76% 69%) 56%,
+  hsl(212deg 84% 70%) 67%,
+  hsl(221deg 88% 72%) 78%,
+  hsl(235deg 84% 76%) 89%,
+  hsl(258deg 77% 73%) 100%
+);
     z-index: -1;
     border-radius: 8px;
     filter: blur(7px);
