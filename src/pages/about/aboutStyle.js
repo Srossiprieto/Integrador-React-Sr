@@ -14,6 +14,8 @@ export const AboutContainerStyled = styled.div`
   @media (max-width: 968px) {
     flex-direction: column;
     gap: 100px;
+    margin-top: 100px;
+
   }
 
   @media (max-width: 768px) {
