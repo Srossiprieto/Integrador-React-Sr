@@ -105,15 +105,9 @@ export const HeroImageContainerStyled = styled.div`
         filter: blur(7px); // Aplica un desenfoque al fondo
       }
       @media (max-width: 968px) {
-        width: 100%;
+        width: 80%;
+        justify-content: center;
       }
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-      @media (max-width: 468px) {
-        width: 170%;
-      }
-
 
   
       `;

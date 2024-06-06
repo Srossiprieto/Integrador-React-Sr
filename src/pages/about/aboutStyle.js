@@ -108,14 +108,12 @@ export const AboutImageContainerStyled = styled.div`
     filter: blur(7px);
   }
   @media (max-width: 968px) {
-    width: 100%;
-  }
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-  @media (max-width: 468px) {
-    width: 170%;
-  }
+        width: 80%;
+        justify-content: center;
+    }
+
+
+
 `;
 
 export const AboutGridContainerStyled = styled.div`
