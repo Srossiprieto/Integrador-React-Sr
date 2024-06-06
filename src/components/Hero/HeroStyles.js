@@ -18,7 +18,7 @@ export const HeroContainerStyled = styled.div`
   }
 
   @media (max-width: 468px) {
-    height: 100dvh; // ios fix
+    min-height: 100dvh; // ios fix
   }
 
 `;
