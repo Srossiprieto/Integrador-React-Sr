@@ -7,11 +7,18 @@ export const HeroContainerStyled = styled.div`
   align-items: center;
   margin: 100px;
   gap: 30px;
-  height: 70vh;
   
   @media (max-width: 968px) {
     flex-direction: column;
     gap: 100px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
+
+  @media (max-width: 468px) {
+    height: 100dvh; // ios fix
   }
 
 `;

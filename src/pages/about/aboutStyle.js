@@ -7,8 +7,6 @@ export const AboutContainerStyled = styled.div`
   align-items: center;
   margin: 100px;
   gap: 30px;
-  height: 70vh;
-
   h1 {
     margin-bottom: 2rem;
   }
@@ -16,6 +14,14 @@ export const AboutContainerStyled = styled.div`
   @media (max-width: 968px) {
     flex-direction: column;
     gap: 100px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
+
+  @media (max-width: 468px) {
+    height: 100dvh; // ios fix
   }
 `;
 
