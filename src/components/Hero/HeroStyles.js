@@ -7,7 +7,7 @@ export const HeroContainerStyled = styled.div`
   align-items: center;
   margin: 100px;
   gap: 30px;
-  height: 100vh;
+  height: 70vh;
   
   @media (max-width: 968px) {
     flex-direction: column;
@@ -35,11 +35,11 @@ export const HeroTextContainerStyled = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
+  gap: 5px;
 
   h1 {
     font-size: 3rem;
     font-weight: 800;
-    margin-bottom: 2px;
     color: var(--text);
   }
 
@@ -54,7 +54,6 @@ export const HeroTextContainerStyled = styled.div`
   p {
     font-size: 1rem;
     font-weight: 300;
-    padding-bottom: 5px;
     margin: 0;
     color: var(--text-grey);
   }

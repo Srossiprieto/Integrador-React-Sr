@@ -7,7 +7,7 @@ export const AboutContainerStyled = styled.div`
   align-items: center;
   margin: 100px;
   gap: 30px;
-  height: 100vh;
+  height: 70vh;
 
   h1 {
     margin-bottom: 2rem;
