@@ -5,7 +5,7 @@ export const AboutContainerStyled = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 100px;
+  min-height: 100dvh; // ios fix
   gap: 30px;
   h1 {
     margin-bottom: 2rem;
@@ -20,9 +20,6 @@ export const AboutContainerStyled = styled.div`
     gap: 20px;
   }
 
-  @media (max-width: 468px) {
-    min-height: 100dvh; // ios fix
-  }
 `;
 
 export const AboutWidthContainer = styled.div`

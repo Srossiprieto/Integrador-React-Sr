@@ -5,7 +5,7 @@ export const HeroContainerStyled = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 100px;
+  min-height: 100dvh; // ios fix
   gap: 30px;
   
   @media (max-width: 968px) {
@@ -17,9 +17,6 @@ export const HeroContainerStyled = styled.div`
     gap: 20px;
   }
 
-  @media (max-width: 468px) {
-    min-height: 100dvh; // ios fix
-  }
 
 `;
 export const HeroWidthContainer = styled.div`
