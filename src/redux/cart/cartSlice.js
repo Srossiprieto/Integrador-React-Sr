@@ -9,7 +9,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const INITIAL_STATE = {
     cartItems: [],
-    hidden: true
+    hidden: false
 }
 
 const cartSlice = createSlice({
