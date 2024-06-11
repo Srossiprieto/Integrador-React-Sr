@@ -188,7 +188,7 @@ export const tech = [
         title: 'Silla de Oficina  1',
         desc: 'Silla de oficina con diseño ergonómico y ajuste de altura, ideal para largas jornadas de trabajo.',
         price: 99,
-        category: 'Sillas de Oficina'
+        category: 'Sillas'
     },
     {
         id: 18,
@@ -196,7 +196,7 @@ export const tech = [
         title: 'Silla de Oficina  2',
         desc: 'Silla de oficina con soporte lumbar y reposabrazos ajustables, perfecta para mantener una postura correcta.',
         price: 129,
-        category: 'Sillas de Oficina'
+        category: 'Sillas'
     },
     {
         id: 19,
@@ -204,7 +204,7 @@ export const tech = [
         title: 'Silla de Oficina  3',
         desc: 'Silla de oficina con respaldo de malla y ajuste de altura, ideal para mantener la frescura durante el trabajo.',
         price: 99,
-        category: 'Sillas de Oficina'
+        category: 'Sillas'
     },
     {
         id: 20,
@@ -212,7 +212,7 @@ export const tech = [
         title: 'Silla de Oficina  4',
         desc: 'Silla de oficina con soporte lumbar avanzado y reposabrazos ajustables, perfecta para prevenir dolores de espalda.',
         price: 129,
-        category: 'Sillas de Oficina'
+        category: 'Sillas'
     },
 
 
@@ -226,7 +226,7 @@ export const tech = [
         title: 'Computadora Todo en Uno  1',
         desc: 'Computadora todo en uno con pantalla de alta resolución y procesador potente, ideal para multitareas.',
         price: 1599,
-        category: 'Computadoras Todo en Uno'
+        category: 'AllInOne'
     },
     {
         id: 22,
@@ -234,7 +234,7 @@ export const tech = [
         title: 'Computadora Todo en Uno  2',
         desc: 'Computadora todo en uno con gran capacidad de almacenamiento y diseño elegante, perfecta para cualquier entorno de oficina.',
         price: 1699,
-        category: 'Computadoras Todo en Uno'
+        category: 'AllInOne'
     },
     {
         id: 23,
@@ -242,7 +242,7 @@ export const tech = [
         title: 'Computadora Todo en Uno  3',
         desc: 'Computadora todo en uno con pantalla táctil y procesador de alta velocidad, ideal para una productividad eficiente.',
         price: 1599,
-        category: 'Computadoras Todo en Uno'
+        category: 'AllInOne'
     },
     {
         id: 24,
@@ -250,8 +250,9 @@ export const tech = [
         title: 'Computadora Todo en Uno  4',
         desc: 'Computadora todo en uno con gran capacidad de almacenamiento y gráficos avanzados, perfecta para diseño y edición.',
         price: 1699,
-        category: 'Computadoras Todo en Uno'
+        category: 'AllInOne'
     },
+    
 
 
 

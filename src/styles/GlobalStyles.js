@@ -25,6 +25,7 @@ export const GlobalStyles = createGlobalStyle`
         --text-contrast: #b7c9e1;
         
         --text: #fff;
+        --text-black-input: #000;
         --gray: #707070;
         --text-footer: #98b1d5 ;
         --text: white;

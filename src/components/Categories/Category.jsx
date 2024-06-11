@@ -1,4 +1,4 @@
-import { BorderDecoration, CardCategories } from "./CategoriesStyles";
+import { CardCategories } from "./CategoriesStyles";
 import {useDispatch,useSelector} from "react-redux";
 
 import { selectCategory } from "../../redux/categories/categoriesSlice";
@@ -16,7 +16,6 @@ export const Category = ({title,category}) => {
       whileTap={{ scale: 0.95 }} // animacion al hacer click
     >
       <h2>{title}</h2>
-      <BorderDecoration></BorderDecoration>
     </CardCategories>
     </>
   );

@@ -105,7 +105,7 @@ export const TechContainer = styled.div`
 export const ContainerTechWrapper = styled.div`
     display: flex;
     justify-content: center;
-    padding-bottom: 100px;
+    padding-bottom: 5vh;
     
     
     `;
@@ -121,5 +121,19 @@ export const TechWrapper = styled.div`
     }
     
 `;
+
+
+
+export const ButtonContainerPagination = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    background: red;
+    width: auto;
+`;
+
+
 
 // =============================== TechCard ===============================

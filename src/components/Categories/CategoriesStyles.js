@@ -29,5 +29,3 @@ export const CardCategories = styled(motion.div)`
     }
 `;
 
-export const BorderDecoration = styled.div`
-`;

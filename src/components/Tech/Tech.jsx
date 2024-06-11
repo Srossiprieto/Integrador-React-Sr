@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
 import { CardTechDest, TextTechContainer, ButtonContainer, Button } from "./TechStyledCard"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/cart/cartSlice'
 import Modal from '../Modal/Modal'
 import ButtonPrimary from '../Ui/Button';
+
+
+
+
+
 
 function Tech({title, img, desc, price, id}) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -30,6 +35,10 @@ function Tech({title, img, desc, price, id}) {
       }
     };
   }, [isModalOpen]);
+
+
+
+
 
   return (
     <CardTechDest> 
