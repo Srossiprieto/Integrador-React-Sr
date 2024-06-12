@@ -38,7 +38,9 @@ export const FooterLinks = styled.div`
   p a:hover {
     color: var(--text-footer);
   }
-
+  ul{
+    padding: 0;
+  }
   li {
     list-style: none;
     margin: 10px 0;
