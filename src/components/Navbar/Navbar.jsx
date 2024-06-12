@@ -122,7 +122,7 @@ const quantity = useSelector((state) => {
             </RightContainer>
           </NavbarContainer>
             <DropDownMenuStyled open={isOpen} onClick={(e) => e.stopPropagation()}>
-      
+              <ul>
                 <li>
                   <Link to='/'>Home</Link>
                 </li>
@@ -136,6 +136,7 @@ const quantity = useSelector((state) => {
                   <Link to="/contacto">Contacto</Link>
                 </li>
                 <Outlet />
+              </ul>
 
             </DropDownMenuStyled>
       </NavbarContainerStyled>

@@ -141,10 +141,9 @@ export const MenuContainerStyledBtn = styled.div`
   `
 export const DropDownMenuStyled = styled.div`
   display: none;
-  position: absolute;
   top: 100%;
   right: 0;
-
+ 
   a {
   text-decoration: none;
   color: var(--text);
@@ -156,6 +155,14 @@ export const DropDownMenuStyled = styled.div`
 }
 
 @media (max-width: 968px) {
+  ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    position: absolute;
+  }
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -170,7 +177,6 @@ export const DropDownMenuStyled = styled.div`
   transform: ${({ open }) => open ? 'translateX(0%)' : 'translateX(200%)'};
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   z-index: 111;
-  gap: 30px;
 }
 
 `;
