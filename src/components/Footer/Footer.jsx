@@ -21,37 +21,37 @@ function Footer() {
         </FooterLinks>
         <FooterLinks>
           <h3>Enlaces</h3>
-          <ul>
+    
             <Link to="/">
-              <li>Inicio</li>
+              <span>Inicio</span>
             </Link>
             <Link to="/productos">
-              <li>Productos</li>
+              <span>Productos</span>
             </Link>
             <Link to="/contacto">
-              <li>Contacto</li>
+              <span>Contacto</span>
             </Link>
             <Link to="/nosotros">
-              <li>Acerca de</li>
+              <span>Acerca de</span>
             </Link>
-          </ul>
+   
         </FooterLinks>
         <FooterLinks>
           <h3>Legal</h3>
-          <ul>
+      
             <Link to="/contacto">
-              <li>Contacto</li>
+              <span>Contacto</span>
             </Link>
             <Link to="/nosotros">
-              <li>Términos y condiciones</li>
+              <span>Términos y condiciones</span>
             </Link>
             <Link to="/nosotros">
-              <li>Política de privacidad</li>
+              <span>Política de privacidad</span>
             </Link>
             <Link to="/nosotros">
-              <li>Política de cookies</li>
+              <span>Política de cookies</span>
             </Link>
-          </ul>
+
 
         </FooterLinks>
         <FooterLinks>

@@ -38,21 +38,20 @@ export const FooterLinks = styled.div`
   p a:hover {
     color: var(--text-footer);
   }
-  ul{
-    padding: 0;
-  }
-  li {
+  span {
+    display: flex;
+    color: var(--text-contrast2);
+    flex-direction: column;
     list-style: none;
     margin: 10px 0;
-  }
-  a {
-    color: var(--gray-400);
-    font-weight: 500;
     transition: all 0.3s ease-in-out;
   }
-  a:hover {
+
+  span:hover {
     color: var(--text-footer);
+    transition: all 0.3s ease-in-out;
   }
+
 
 `;
 
@@ -121,7 +120,7 @@ export const NewsletterForm = styled.form`
     font-weight: 500;
   }
   span{
-    color: var(--gray-400);
+    color: var(--text-constrast2);
     max-width: 250px;
     font-weight: 500;
   }
