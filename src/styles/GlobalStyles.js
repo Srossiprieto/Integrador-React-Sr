@@ -23,6 +23,7 @@ export const GlobalStyles = createGlobalStyle`
         --nav-hover: #7a8ba1;
 
         --text-contrast: #b7c9e1;
+        --text-contrast2: #e8f1ff;
         
         --text: #fff;
         --text-black-input: #000;
@@ -33,6 +34,7 @@ export const GlobalStyles = createGlobalStyle`
         --grey: #0404046b;
         --text-grey: #c4c1c6b8;
         --text-title2: #dad4ff;
+
 
 
 

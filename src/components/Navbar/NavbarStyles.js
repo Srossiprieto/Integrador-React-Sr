@@ -42,6 +42,10 @@ export const NavbarUlStyled = styled.ul`
   display: flex;
   list-style: none;
   align-items: center;
+  ul{
+    display: flex;
+    gap: 20px;
+  }
   a {
     font-size: 0.9rem;
     text-decoration: none;

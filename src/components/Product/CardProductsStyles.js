@@ -26,7 +26,7 @@ export const CardProductDest = styled.div`
     font-weight: 700;
   }
   span{
-    color: var(--gray);
+    color: var(--text-contrast2);
     font-weight: 600;
     font-size: 15px;
 
@@ -77,7 +77,7 @@ export const CheckItem = styled.div`
   display: flex;
   gap: 5px;
   align-items: center;
-  color: var(--gray);
+  color: var(--text-contrast2);
   font-weight: 300;
   font-size: 15px;
 

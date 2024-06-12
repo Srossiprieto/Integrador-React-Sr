@@ -60,7 +60,13 @@ function Navbar() {
   const dispatch = useDispatch();
   const hidden = useSelector((state) => state.cart.hidden);
   // Obtén la cantidad total de items en el carrito desde el estado de Redux
-  const quantity = useSelector((state) => state.cart.cartItems.reduce((accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity, 0));
+// Obtén la cantidad total de items en el carrito desde el estado de Redux
+const quantity = useSelector((state) => {
+  if (state.cart && state.cart.cartItems) {
+    return state.cart.cartItems.reduce((accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity, 0);
+  }
+  return 0;
+});
 
   // ======= CARRITO DESPLEGABLE =======
 
@@ -75,19 +81,22 @@ function Navbar() {
               </a>
             <RightContainer>
             <NavbarUlStyled>
-              <li>
-                <Link to='/'>Home</Link>
-              </li>
-              <li>
-                <Link to='productos'>Productos</Link>
-              </li>
-              <li>
-                <Link to="nosotros">Nosotros</Link>
-              </li>
-              <li>
-                <Link to="contacto">Contacto</Link>
-              </li>
+              <ul>
+                
+                <li>
+                  <Link to='/'>Home</Link>
+                </li>
+                <li>
+                  <Link to='productos'>Productos</Link>
+                </li>
+                <li>
+                  <Link to="nosotros">Nosotros</Link>
+                </li>
+                <li>
+                  <Link to="contacto">Contacto</Link>
+                </li>
               <Outlet />
+              </ul>
             </NavbarUlStyled>
               <StyledUserIcon/>
 

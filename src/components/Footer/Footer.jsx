@@ -13,10 +13,10 @@ function Footer() {
           <h2>SRP</h2>
           <p>Si tiene alguna pregunta, por favor contáctenos en: <br/><a href="mailto:support@gmail.com">srp@gmail.com</a></p>
           <SocialLink>
-            <a href="#"><FaFacebookF /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaTwitter /></a>
-            <a href="#"><FaYoutube /></a>
+            <a href="https://www.facebook.com/" target='_blanc'><FaFacebookF /></a>
+            <a href="https://www.instagram.com/" target='_blanc'><FaInstagram /></a>
+            <a href="https://x.com/" target='_blanc'><FaTwitter /></a>
+            <a href="https://www.youtube.com" target='_blanc'><FaYoutube /></a>
           </SocialLink>
         </FooterLinks>
         <FooterLinks>
