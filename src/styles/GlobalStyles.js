@@ -20,7 +20,7 @@ export const GlobalStyles = createGlobalStyle`
 
         --bg-modal: #181f29;
 
-        --nav-hover: #7a8ba1;
+        --nav-hover: #c1b1ff;
 
         --text-contrast: #b7c9e1;
         --text-contrast2: #e8f1ff;
