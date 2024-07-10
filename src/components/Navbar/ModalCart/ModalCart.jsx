@@ -27,7 +27,7 @@ function ModalCart() {
 
   // Efecto para cerrar el carrito al navegar entre páginas
   useEffect(() => {
-    dispatch(toggleHiddenCart(true));
+    dispatch(toggleHiddenCart(false));
   }, [location, dispatch]);
 
   // Efecto para manejar el cierre del carrito al actualizar la página
