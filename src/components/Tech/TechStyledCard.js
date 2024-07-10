@@ -20,8 +20,6 @@ export const CardTechDest = styled.div`
         background: white;
         
     }
-   
-
     
     `;
     export const TextTechContainer = styled.div`

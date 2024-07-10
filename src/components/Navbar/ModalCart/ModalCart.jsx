@@ -1,55 +1,56 @@
-import { 
-  ModalCartContainer, 
-  CardCart, 
-  CartWrapper, 
-  CartFooterStyled, 
-  ButtonCartContainer, 
-  CardCartTop 
-} from './ModalCartStyles';
-
-import ModalCard from './ModalCard';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { clearCart, toggleHiddenCart } from '../../../redux/cart/cartSlice';
 import { IoClose } from 'react-icons/io5';
-
-import Modal from '../../Modal/Modal'
-
+import Modal from '../../Modal/Modal';
 import ButtonPrimary from '../../Ui/Button';
+import ModalCard from './ModalCard';
+import {
+  ModalCartContainer,
+  CardCart,
+  CartWrapper,
+  CartFooterStyled,
+  ButtonCartContainer,
+  CardCartTop,
+} from './ModalCartStyles';
 
 function ModalCart() {
-
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const hiddenCart = useSelector((state) => state.cart.hidden);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [isBuyModalOpen, setBuyModalOpen] = useState(false);
   const [isClearModalOpen, setClearModalOpen] = useState(false);
 
-  const totalPrice = Array.isArray(cartItems) ? cartItems.reduce((acc, item) => {
-    return (acc += item.price * item.quantity);
-  }, 0) : 0;
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  // Efecto para cerrar el carrito al navegar entre páginas
   useEffect(() => {
-    if (cartItems.length === 0 && !hiddenCart) {
-      setBuyModalOpen(true);
-      setTimeout(() => setBuyModalOpen(false), 3000);
-    }
-  }, [cartItems, hiddenCart]);
+    dispatch(toggleHiddenCart(true));
+  }, [location, dispatch]);
+
+  // Efecto para manejar el cierre del carrito al actualizar la página
+  useEffect(() => {
+    const handleBeforeUnload = () => dispatch(toggleHiddenCart(true));
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [dispatch]);
 
   return (
     <ModalCartContainer>
       <CardCartTop>
-        <h3>Tus Productos:</h3> <IoClose onClick={() => dispatch(toggleHiddenCart())} />
+        <h3>Tus Productos:</h3> <IoClose onClick={() => dispatch(toggleHiddenCart(true))} />
       </CardCartTop>
       <CardCart>
         <CartWrapper>
-        {cartItems.length ? (
-                  cartItems.map((item) => (
-                    <ModalCard key={item.id} {...item} />
-                  ))
-                ) : (
-                  <p> El carrito esta vacio...</p>
-                )}
+          {cartItems.length ? (
+            cartItems.map((item) => <ModalCard key={item.id} {...item} />)
+          ) : (
+            <p>El carrito está vacío...</p>
+          )}
         </CartWrapper>
         <hr />
         <CartFooterStyled>
@@ -58,24 +59,22 @@ function ModalCart() {
         </CartFooterStyled>
         <hr />
         <ButtonCartContainer>
-          <ButtonPrimary 
+          <ButtonPrimary
             onClick={() => {
-              // dispatch(toggleHiddenCart());
               dispatch(clearCart());
-              // setClearModalOpen(true);
               setBuyModalOpen(true);
               setTimeout(() => setBuyModalOpen(false), 3000);
-            }} 
-            text={"Comprar"} 
+            }}
+            text="Comprar"
             disabled={cartItems.length === 0}
           />
-          <ButtonPrimary 
+          <ButtonPrimary
             onClick={() => {
               dispatch(clearCart());
               setClearModalOpen(true);
               setTimeout(() => setClearModalOpen(false), 3000);
-            }} 
-            text={"Limpiar Carrito"}
+            }}
+            text="Limpiar Carrito"
             disabled={cartItems.length === 0}
           />
 
