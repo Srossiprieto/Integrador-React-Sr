@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import { clearCart, toggleHiddenCart } from '../../../redux/cart/cartSlice';
 import { IoClose } from 'react-icons/io5';
 import Modal from '../../Modal/Modal';
@@ -18,17 +17,13 @@ import {
 function ModalCart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
-  const location = useLocation();
+
 
   const [isBuyModalOpen, setBuyModalOpen] = useState(false);
   const [isClearModalOpen, setClearModalOpen] = useState(false);
 
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  // Efecto para cerrar el carrito al navegar entre páginas
-  useEffect(() => {
-    dispatch(toggleHiddenCart(false));
-  }, [location, dispatch]);
 
   // Efecto para manejar el cierre del carrito al actualizar la página
   useEffect(() => {
