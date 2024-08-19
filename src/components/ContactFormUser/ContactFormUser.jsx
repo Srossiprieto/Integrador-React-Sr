@@ -28,7 +28,7 @@ const ContactFormUser = ({ text }) => {
       setTimeout(() => {
         setModalIsOpen(false);
         navigate('/');
-      }, 200); // Redirigir después de 2 segundos
+      }, 1500); // Redirigir después de 2 segundos
     },
   });
 
