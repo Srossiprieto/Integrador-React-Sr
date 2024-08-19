@@ -98,16 +98,20 @@ const quantity = useSelector((state) => {
               <Outlet />
               </ul>
             </NavbarUlStyled>
+            <Link to="/user">
               <StyledUserIcon/>
+            </Link>
 
               <BagIconContainer>
                 <StyledBagIcon  onClick={() => dispatch(toggleHiddenCart())}/>
+                
                 <ShoppingBagBubble onClick={() => dispatch(toggleHiddenCart())}>
                   <ShoppingNumber>
                     {quantity}
                   </ShoppingNumber>
                   
                 </ShoppingBagBubble>
+                
               </BagIconContainer>
               {hidden && <ModalCart/>}
 
