@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-
 export const ContentForm = styled.div`
   display: flex;
   height: 100vh;
   width: 100%;
-  h2{
+  padding: 2rem;
+  h2 {
     display: flex;
     justify-content: center;
     color: var(--text);
@@ -37,18 +37,16 @@ export const Input = styled.input`
   border: none;
   outline: none;
   border-radius: 5px;
-  &placeholder {
+  &::placeholder {
     color: var(--gray-400);
     font-weight: 500;
   }
 `;
 
-
-
-export const FormButtom = styled.span`
+export const FormButtom = styled.div`
   display: flex;
   justify-content: center;
-  gap: 10px;	
+  gap: 10px;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -61,8 +59,7 @@ export const StyledLinkContainer = styled.div`
     font-weight: 500;
     text-decoration: none;
   }
-  a:hover{
+  a:hover {
     color: var(--bg-btn-hover);
-    
   }
 `;

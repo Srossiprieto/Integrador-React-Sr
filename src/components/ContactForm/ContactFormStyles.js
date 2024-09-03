@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-
 export const ContentForm = styled.div`
   display: flex;
   height: 100vh;
   width: 100%;
-  h2{
+  padding: 3rem;
+  h2 {
     display: flex;
     justify-content: center;
     color: var(--text);
@@ -37,24 +37,43 @@ export const Input = styled.input`
   border: none;
   outline: none;
   border-radius: 5px;
-  &placeholder {
+  &::placeholder {
     color: var(--gray-400);
     font-weight: 500;
   }
 `;
 
 export const Textarea = styled.textarea`
-  background-color: transparent;
-  resize: none;
   margin: 10px 0px 10px 0px;
-  background-color: white;
   padding: 10px;
   border: none;
   outline: none;
   border-radius: 5px;
-  &placeholder {
+  resize: none;
+  background-color: white;
+  &::placeholder {
     color: var(--gray-400);
     font-weight: 500;
   }
 `;
 
+export const FormButtom = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+export const StyledLinkContainer = styled.div`
+  a {
+    color: var(--text);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--bg-btn-hover);
+  }
+`;

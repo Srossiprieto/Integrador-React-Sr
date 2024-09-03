@@ -3,27 +3,23 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, Link } from 'react-router-dom';
 import Modal from '../Modal/Modal';
-import { ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer} from './ContactFormUserStyles';
+import { ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer } from './ContactFormLoginStyles';
 import ButtonPrimary from '../Ui/Button';
 import arrowRight from '../assets/img/arrow-right.svg';
 
 // Esquema de validación con Yup
 const validationSchema = Yup.object({
-  name: Yup.string().required('El nombre es obligatorio'),
   email: Yup.string().email('Debe ser un email válido').required('El email es obligatorio'),
   password: Yup.string().required('La contraseña es obligatoria'),
-  phone: Yup.string().matches(/^[0-9]+$/, 'El número de teléfono debe ser válido').required('El número de teléfono es obligatorio'),
 });
 
-const ContactFormUser = ({ text }) => {
+const ContactFormLogin = ({ text }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      name: '',
       email: '',
       password: '',
-      phone: '',
     },
     validationSchema,
     onSubmit: (values, { resetForm }) => {
@@ -44,20 +40,6 @@ const ContactFormUser = ({ text }) => {
     <ContentForm>
       <Form onSubmit={formik.handleSubmit}>
         <h2>{text}</h2>
-
-        <Label htmlFor="name">Nombre</Label>
-        <Input
-          id="name"
-          name="name"
-          placeholder="nombre"
-          type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.name}
-        />
-        {formik.touched.name && formik.errors.name ? (
-          <div style={{ color: 'red' }}>{formik.errors.name}</div>
-        ) : null}
 
         <Label htmlFor="email">Email</Label>
         <Input
@@ -87,35 +69,20 @@ const ContactFormUser = ({ text }) => {
           <div style={{ color: 'red' }}>{formik.errors.password}</div>
         ) : null}
 
-        <Label htmlFor="phone">Teléfono</Label>
-        <Input
-          id="phone"
-          name="phone"
-          placeholder="teléfono"
-          type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.phone}
-        />
-        {formik.touched.phone && formik.errors.phone ? (
-          <div style={{ color: 'red' }}>{formik.errors.phone}</div>
-        ) : null}
-
-        <ButtonPrimary type="submit" text="Registrarse" img={arrowRight} alt="button-arrowRight" />
+        <ButtonPrimary type="submit" text="Iniciar sesión" img={arrowRight} alt="button-arrowRight" />
         <FormButtom>
-            <span>¿Ya tienes cuenta?</span>
-            <StyledLinkContainer>
-              <Link to="/login">Inicia sesión</Link>
-            </StyledLinkContainer> 
+          <span>¿No tienes cuenta?</span>
+          <StyledLinkContainer>
+            <Link to="/register">Regístrate</Link>
+          </StyledLinkContainer>
         </FormButtom>
       </Form>
 
       <Modal isOpen={modalIsOpen} onClose={closeModal}>
-        <p>Te has registrado con éxito!!</p>
+        <p>Has iniciado sesión con éxito!!</p>
       </Modal>
-
     </ContentForm>
   );
 };
 
-export default ContactFormUser;
+export default ContactFormLogin;

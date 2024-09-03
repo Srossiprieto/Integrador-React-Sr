@@ -8,8 +8,8 @@ import Error from './pages/error/Error';
 import About from './pages/about/About';
 import Footer from './components/Footer/Footer';
 import Contact from './pages/contact/Contact';
-import User from './pages/user/User';
-
+import Register from './pages/user/Register';
+import Login from './pages/user/Login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -22,7 +22,8 @@ function App() {
           <Route path='/productos' element={<Product/>}/>
           <Route path='/nosotros' element={<About/>}/>
           <Route path='/contacto' element={<Contact/>}/>
-          <Route path='/user' element={<User/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
           <Route path='*' element={<Error/>}/>
         </Routes>
         <Footer />

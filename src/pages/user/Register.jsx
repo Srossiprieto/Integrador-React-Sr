@@ -3,12 +3,12 @@ import ContactFormUser from '../../components/ContactFormUser/ContactFormUser'
 
 
 
-const User = () => {
+const Register = () => {
   return (
     <>
-      <ContactFormUser text={'Inicia sesión'}/>
+      <ContactFormUser text={'Registrarse'}/>
     </>
   )
 }
 
-export default User
+export default Register

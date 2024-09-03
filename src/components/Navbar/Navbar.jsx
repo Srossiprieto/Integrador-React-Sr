@@ -98,7 +98,7 @@ const quantity = useSelector((state) => {
               <Outlet />
               </ul>
             </NavbarUlStyled>
-            <Link to="/user">
+            <Link to="/login">
               <StyledUserIcon/>
             </Link>
 
