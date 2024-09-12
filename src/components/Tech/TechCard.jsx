@@ -5,12 +5,13 @@ import {
     ContainerTechWrapper,
     TechWrapper,
     ButtonContainerPagination,
+    TextTitle
 } from "./TechStyledCard"
 import Tech from "./Tech"
 import { INITIAL_LIMIT } from '../../utils/constants';
 import ButtonPagination from '../Ui/ButtonPagination.jsx';
 
-function TechCard() {
+function TechCard({textTitle}) {
   const [itemsToShow, setItemsToShow] = useState(INITIAL_LIMIT);
   let tech = useSelector((state) => state.products.tech);
   const { selectedCategory } = useSelector((state) => state.categories);
@@ -34,6 +35,9 @@ function TechCard() {
   return (
     <>
       <TechContainer>
+    <TextTitle>
+      <h2>{textTitle}</h2>
+    </TextTitle>
           <ContainerTechWrapper>
               <TechWrapper>
                 {techsToShow.map(prod =>(

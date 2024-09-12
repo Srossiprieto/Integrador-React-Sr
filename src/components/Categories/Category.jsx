@@ -15,7 +15,7 @@ export const Category = ({title,category}) => {
       onClick={(e) => dispatch(selectCategory(category))} // al hacer click en la categoria, disparamos la action selectCategory con el valor de la categoria (el payload es category)
       whileTap={{ scale: 0.95 }} // animacion al hacer click
     >
-      <h2>{title}</h2>
+      <h3>{title}</h3>
     </CardCategories>
     </>
   );

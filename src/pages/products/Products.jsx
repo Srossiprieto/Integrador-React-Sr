@@ -1,16 +1,16 @@
 import { useRef } from 'react';
 import TechCard from '../../components/Tech/TechCard';
 import Categories from '../../components/Categories/Categories'; 
-import TitleProduct from '../../components/TitleProduct/TitleProduct';
+import { ContainerProducts } from './ProductsStyled';
 
 
 function Products() {
   return (
     <>
-    
-    <TitleProduct/>
-    <Categories /> 
-    <TechCard />
+      <ContainerProducts>
+        <Categories textTitle={"Categorias"}/> 
+        <TechCard textTitle={"Productos"}/>
+      </ContainerProducts>
     </>
   )
 }

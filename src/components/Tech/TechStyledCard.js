@@ -3,7 +3,16 @@ import styled from 'styled-components';
 
 // =============================== Tech ===============================
 
-
+export const TextTitle = styled.h2`
+    color: var(--text);
+    font-weight: 800;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+`;
 export const CardTechDest = styled.div`
   display: flex;
   flex-direction: column;
