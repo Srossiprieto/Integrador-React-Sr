@@ -29,6 +29,32 @@ export const CardTechDest = styled.div`
     object-fit: contain;
     background: white;
   }
+  @media (max-width: 480px) {
+    width: 100px;
+    height: 180px;
+    gap: 0;
+    background: var(--bg-card);
+    border-radius: 8px;
+    img{
+        width: 100%;
+        height: 60px;
+        border-radius: 8px 8px 0 0;
+        object-fit: contain;
+        background: white;
+    }
+    h2{
+        font-size: 13px;
+    }
+
+    p{
+        font-size: 10px;
+    }
+    button{
+        height: 30px;
+    }
+  }
+
+
 `;
 
 export const TextTechContainer = styled.div`
@@ -60,6 +86,30 @@ export const TextTechContainer = styled.div`
     -webkit-box-orient: vertical; /* Orientación del contenedor */
     max-width: 200px;          /* Asegura que el contenedor tenga un tamaño fijo */
   }
+
+  @media (max-width: 480px) {
+    width: 100px;
+    height: 180px;
+    gap: 0;
+    background: var(--bg-card);
+    border-radius: 8px;
+    img{
+        width: 100%;
+        height: 60px;
+        border-radius: 8px 8px 0 0;
+        object-fit: contain;
+        background: white;
+    }
+    h2{
+        font-size: 13px;
+    }
+
+    p{
+        font-size: 10px;
+    }
+    button{
+        height: 30px;
+    }}
 `;
 
 export const ButtonContainer = styled.div`
@@ -122,6 +172,17 @@ export const TechWrapper = styled.div`
   > h2 {
     color: var(--bg);
   }
+
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+
+    h3{
+        display: none;
+    }
+  }
 `;
 
 export const ButtonContainerPagination = styled.div`
@@ -135,3 +196,6 @@ export const ButtonContainerPagination = styled.div`
 `;
 
 // =============================== TechCard ===============================
+
+
+
