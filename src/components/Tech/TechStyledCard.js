@@ -151,6 +151,7 @@ export const TechWrapper = styled.div`
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     width: 100%;
+    margin: 15px 10px;
 
     h3{
         display: none;
