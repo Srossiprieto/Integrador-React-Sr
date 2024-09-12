@@ -17,6 +17,7 @@ export const NavbarContainerStyled = styled.div`
     height: 35px;
   }
 
+
 `;
 
 export const NavbarContainer = styled.div`
@@ -53,6 +54,7 @@ export const NavbarUlStyled = styled.ul`
     margin: 0 10px;
 	  font-weight: 500;
     transition: all 0.3s ease-in-out;
+    
 	&:hover{
 		color: var(--nav-hover);
 	}
@@ -129,6 +131,12 @@ export const RightContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 
 `
 export const MenuContainerStyledBtn = styled.div`

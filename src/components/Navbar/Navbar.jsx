@@ -98,6 +98,8 @@ function Navbar() {
                 <Outlet />
               </ul>
             </NavbarUlStyled>
+            
+            
             <Link to="/login">
               <StyledUserIcon />
             </Link>
