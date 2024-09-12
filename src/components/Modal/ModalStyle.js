@@ -20,6 +20,8 @@ export const ModalBackground = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   animation: ${slideUp} 0.3s ease-out;
+  font-size: 16px;
+  font-weight: 500;
 `;
     
 

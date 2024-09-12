@@ -2,16 +2,7 @@ import styled from 'styled-components';
 
 // =============================== Tech ===============================
 
-export const TextTitle = styled.h2`
-    color: var(--text);
-    font-weight: 800;
-    font-size: 30px;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-`;
+
 
 export const CardTechDest = styled.div`
   display: flex;
@@ -30,8 +21,8 @@ export const CardTechDest = styled.div`
     background: white;
   }
   @media (max-width: 480px) {
-    width: 100px;
-    height: 180px;
+    width: 100%;
+    height: auto;
     gap: 0;
     background: var(--bg-card);
     border-radius: 8px;
@@ -41,16 +32,6 @@ export const CardTechDest = styled.div`
         border-radius: 8px 8px 0 0;
         object-fit: contain;
         background: white;
-    }
-    h2{
-        font-size: 13px;
-    }
-
-    p{
-        font-size: 10px;
-    }
-    button{
-        height: 30px;
     }
   }
 
@@ -69,11 +50,7 @@ export const TextTechContainer = styled.div`
     font-weight: 700;
     color: var(--text);
   }
-  p {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
-  }
+
   h3 {
     font-size: 15px;
     font-weight: 300;
@@ -86,22 +63,18 @@ export const TextTechContainer = styled.div`
     -webkit-box-orient: vertical; /* Orientación del contenedor */
     max-width: 200px;          /* Asegura que el contenedor tenga un tamaño fijo */
   }
-
+  p{
+        font-size: 16px;
+    }
   @media (max-width: 480px) {
-    width: 100px;
-    height: 180px;
     gap: 0;
     background: var(--bg-card);
+    padding: 5px;
     border-radius: 8px;
-    img{
-        width: 100%;
-        height: 60px;
-        border-radius: 8px 8px 0 0;
-        object-fit: contain;
-        background: white;
-    }
     h2{
-        font-size: 13px;
+        font-size: 12px; 
+        overflow: hidden;       /* Oculta el desbordamiento del contenido */
+        text-overflow: ellipsis; 
     }
 
     p{

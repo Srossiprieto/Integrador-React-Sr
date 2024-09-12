@@ -9,7 +9,7 @@ function Products() {
     <>
       <ContainerProducts>
         <Categories textTitle={"Categorias"}/> 
-        <TechCard textTitle={"Productos"}/>
+        <TechCard />
       </ContainerProducts>
     </>
   )

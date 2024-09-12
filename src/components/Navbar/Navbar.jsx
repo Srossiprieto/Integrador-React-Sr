@@ -53,6 +53,8 @@ function Navbar() {
     };
   }, [isOpen, toggle]);
 
+  
+
   // ======= CARRITO DESPLEGABLE =======
   const quantity = useSelector((state) => {
     if (state.cart && state.cart.cartItems) {

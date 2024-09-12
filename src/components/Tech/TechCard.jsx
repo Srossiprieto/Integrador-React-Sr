@@ -5,7 +5,6 @@ import {
     ContainerTechWrapper,
     TechWrapper,
     ButtonContainerPagination,
-    TextTitle
 } from "./TechStyledCard";
 import Tech from "./Tech";
 import { INITIAL_LIMIT } from '../../utils/constants';
@@ -38,9 +37,6 @@ function TechCard({ textTitle }) {
 
   return (
     <TechContainer>
-      <TextTitle>
-        <h2>{textTitle}</h2>
-      </TextTitle>
       <ContainerTechWrapper>
         <TechWrapper>
           {techsToShow.map(prod => (
