@@ -78,7 +78,9 @@ export const BagIconContainer = styled.div`
 export const StyledIoClose = styled(IoClose)`
   position: relative;
   cursor: pointer;
-  z-index: 113; // Aumenta este valor
+  z-index: 113;
+  right: -30px;
+
 `;
 export const StyledBagIcon = styled(FaBagShopping)`
   position: relative;
@@ -149,6 +151,7 @@ export const DropDownMenuStyled = styled.div`
   color: var(--text);
   margin: 0 10px;
   font-weight: 500;
+  transition: all 0.30s ease-in-out;
   &:hover {
     color: var(--bg);
   }
@@ -162,16 +165,17 @@ export const DropDownMenuStyled = styled.div`
     align-items: flex-start;
     gap: 20px;
     position: absolute;
+    font-size: 2rem;
   }
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   position: absolute;
-  border-radius: 10px 10px;
-  top: 13px;
-  right: 75px;
-  width: 200px;
-  height: 300px;
+  top: 0;
+  width: 300px;
+  min-height: 100dvh;
   background-color: var(--purple-900);
   opacity: ${({ open }) => (open ? '1' : '0')};
   transform: ${({ open }) => open ? 'translateX(0%)' : 'translateX(200%)'};
@@ -181,6 +185,7 @@ export const DropDownMenuStyled = styled.div`
 
 `;
 
+
 export const BlurBackground = styled.div`
   position: fixed;
   top: 0;
@@ -189,6 +194,6 @@ export const BlurBackground = styled.div`
   height: 100%;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px); /* Para soporte en iOS */
-  opacity: 1; /* Valor corregido */
+  opacity: 1;
   z-index: 4;
 `;

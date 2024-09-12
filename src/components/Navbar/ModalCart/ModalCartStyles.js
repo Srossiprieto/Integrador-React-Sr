@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+export const BlurBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px); /* Para soporte en iOS */
+  opacity: 1;
+  z-index: 4;
+`;
+
 export const ModalCartContainer = styled.div`
   display: flex;
   flex-direction: column;
