@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, Link } from 'react-router-dom';
+import api from '../../api/api'; 
 import Modal from '../Modal/Modal';
-import { ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer} from './ContactFormUserStyles';
+import { ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer } from './ContactFormUserStyles';
 import ButtonPrimary from '../Ui/Button';
 import arrowRight from '../assets/img/arrow-right.svg';
 
-// Esquema de validación con Yup
+// Validation schema for Yup
 const validationSchema = Yup.object({
   name: Yup.string().required('El nombre es obligatorio'),
   email: Yup.string().email('Debe ser un email válido').required('El email es obligatorio'),
@@ -17,7 +18,9 @@ const validationSchema = Yup.object({
 
 const ContactFormUser = ({ text }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(''); // State for error messages
   const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -26,13 +29,25 @@ const ContactFormUser = ({ text }) => {
       phone: '',
     },
     validationSchema,
-    onSubmit: (values, { resetForm }) => {
-      setModalIsOpen(true);
-      resetForm();
-      setTimeout(() => {
-        setModalIsOpen(false);
-        navigate('/');
-      }, 1500); // Redirigir después de 1.5 segundos
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        await api.post('/api/users', {
+          username: values.name,
+          email: values.email,
+          phone: values.phone,
+          password_hash: values.password,
+        });
+        setModalIsOpen(true);
+        resetForm();
+        setErrorMessage(''); 
+        setTimeout(() => {
+          setModalIsOpen(false);
+          navigate('/');
+        }, 1500); 
+      } catch (error) {
+        console.error('Error al enviar el formulario:', error);
+        setErrorMessage('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.'); // Set error message
+      }
     },
   });
 
@@ -101,19 +116,20 @@ const ContactFormUser = ({ text }) => {
           <div style={{ color: 'red' }}>{formik.errors.phone}</div>
         ) : null}
 
+        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>} {/* Display error message */}
+
         <ButtonPrimary type="submit" text="Registrarse" img={arrowRight} alt="button-arrowRight" />
         <FormButtom>
-            <span>¿Ya tienes cuenta?</span>
-            <StyledLinkContainer>
-              <Link to="/login">Inicia sesión</Link>
-            </StyledLinkContainer> 
+          <span>¿Ya tienes cuenta?</span>
+          <StyledLinkContainer>
+            <Link to="/login">Inicia sesión</Link>
+          </StyledLinkContainer>
         </FormButtom>
       </Form>
 
       <Modal isOpen={modalIsOpen} onClose={closeModal}>
         <p>Te has registrado con éxito!!</p>
       </Modal>
-
     </ContentForm>
   );
 };
