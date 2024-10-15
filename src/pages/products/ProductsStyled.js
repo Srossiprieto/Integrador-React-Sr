@@ -6,7 +6,7 @@ export const ContainerProducts = styled.div`
     color: var(--text);
     font-weight: 800;
     font-size: 30px;
-    text-align: center;
+    justify-content: center;
     margin-top: 70px;
     margin-bottom: 20px;
 `;

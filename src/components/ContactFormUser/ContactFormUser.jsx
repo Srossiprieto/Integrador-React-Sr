@@ -1,124 +1,125 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate, Link } from 'react-router-dom';
 import api from '../../api/api'; 
 import Modal from '../Modal/Modal';
-import { ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer } from './ContactFormUserStyles';
+import {
+  ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer
+} from './ContactFormUserStyles';
 import ButtonPrimary from '../Ui/Button';
 import arrowRight from '../assets/img/arrow-right.svg';
+import { Link } from 'react-router-dom';
 
-// Validation schema for Yup
+// Esquema de validación con Yup
 const validationSchema = Yup.object({
   name: Yup.string().required('El nombre es obligatorio'),
   email: Yup.string().email('Debe ser un email válido').required('El email es obligatorio'),
   password: Yup.string().required('La contraseña es obligatoria'),
-  phone: Yup.string().matches(/^[0-9]+$/, 'El número de teléfono debe ser válido').required('El número de teléfono es obligatorio'),
 });
 
 const ContactFormUser = ({ text }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(''); // State for error messages
-  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Estado de carga
 
+  // Cerrar el modal
+  const closeModal = () => setModalIsOpen(false);
+
+  // Inicialización de Formik
   const formik = useFormik({
     initialValues: {
       name: '',
       email: '',
       password: '',
-      phone: '',
     },
     validationSchema,
     onSubmit: async (values, { resetForm }) => {
+      setIsLoading(true); // Iniciar carga
       try {
-        await api.post('/api/users', {
+        // Petición POST al backend para registrar al usuario
+        await api.post('/api/auth/register', {
           username: values.name,
           email: values.email,
-          phone: values.phone,
-          password_hash: values.password,
+          password: values.password,
         });
+
+        // Éxito: Muestra el modal y resetea el formulario
         setModalIsOpen(true);
         resetForm();
         setErrorMessage(''); 
-        setTimeout(() => {
-          setModalIsOpen(false);
-          navigate('/');
-        }, 1500); 
+
       } catch (error) {
-        console.error('Error al enviar el formulario:', error);
-        setErrorMessage('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.'); // Set error message
+        // Error: Muestra el mensaje de error
+        setErrorMessage('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+      } finally {
+        setIsLoading(false); // Finalizar carga
       }
     },
   });
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
 
   return (
     <ContentForm>
       <Form onSubmit={formik.handleSubmit}>
         <h2>{text}</h2>
 
+        {/* Campo de Nombre */}
         <Label htmlFor="name">Nombre</Label>
         <Input
           id="name"
           name="name"
-          placeholder="nombre"
+          placeholder="Nombre"
           type="text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.name}
         />
-        {formik.touched.name && formik.errors.name ? (
+        {formik.touched.name && formik.errors.name && (
           <div style={{ color: 'red' }}>{formik.errors.name}</div>
-        ) : null}
+        )}
 
+        {/* Campo de Email */}
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
           name="email"
-          placeholder="email"
+          placeholder="Email"
           type="email"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
         />
-        {formik.touched.email && formik.errors.email ? (
+        {formik.touched.email && formik.errors.email && (
           <div style={{ color: 'red' }}>{formik.errors.email}</div>
-        ) : null}
+        )}
 
+        {/* Campo de Contraseña */}
         <Label htmlFor="password">Contraseña</Label>
         <Input
           id="password"
           name="password"
-          placeholder="contraseña"
+          placeholder="Contraseña"
           type="password"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.password}
         />
-        {formik.touched.password && formik.errors.password ? (
+        {formik.touched.password && formik.errors.password && (
           <div style={{ color: 'red' }}>{formik.errors.password}</div>
-        ) : null}
+        )}
 
-        <Label htmlFor="phone">Teléfono</Label>
-        <Input
-          id="phone"
-          name="phone"
-          placeholder="teléfono"
-          type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.phone}
+        {/* Mensaje de error de envío */}
+        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+
+        {/* Botón de Enviar */}
+        <ButtonPrimary
+          type="submit"
+          text={isLoading ? "Cargando..." : "Registrarse"}
+          img={arrowRight}
+          alt="button-arrowRight"
+          disabled={isLoading} // Deshabilitar el botón mientras se carga
         />
-        {formik.touched.phone && formik.errors.phone ? (
-          <div style={{ color: 'red' }}>{formik.errors.phone}</div>
-        ) : null}
 
-        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>} {/* Display error message */}
-
-        <ButtonPrimary type="submit" text="Registrarse" img={arrowRight} alt="button-arrowRight" />
+        {/* Enlace a Iniciar Sesión */}
         <FormButtom>
           <span>¿Ya tienes cuenta?</span>
           <StyledLinkContainer>
@@ -127,8 +128,9 @@ const ContactFormUser = ({ text }) => {
         </FormButtom>
       </Form>
 
+      {/* Modal de confirmación */}
       <Modal isOpen={modalIsOpen} onClose={closeModal}>
-        <p>Te has registrado con éxito!!</p>
+        <p>¡Te has registrado con éxito!</p>
       </Modal>
     </ContentForm>
   );

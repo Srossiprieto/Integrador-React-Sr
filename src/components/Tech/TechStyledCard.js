@@ -7,7 +7,6 @@ import styled from 'styled-components';
 export const CardTechDest = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: start;
   width: 300px;
   height: 450px;
   gap: 10px;

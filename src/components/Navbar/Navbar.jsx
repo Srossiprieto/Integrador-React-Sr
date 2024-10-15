@@ -77,9 +77,9 @@ function Navbar() {
       
       <NavbarContainerStyled>
         <NavbarContainer>
-          <a href="#">
+          <Link to='/'>
             <img src={logoNav} alt="LogoNav" />
-          </a>
+          </Link>
           <RightContainer>
             <NavbarUlStyled>
               <ul>
