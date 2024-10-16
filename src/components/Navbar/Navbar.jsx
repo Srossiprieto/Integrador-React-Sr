@@ -95,6 +95,9 @@ function Navbar() {
                 <li>
                   <Link to="/contacto" onClick={toggle}>Contacto</Link>
                 </li>
+                <li>
+                  <Link to="/admin" onClick={toggle}>Admin</Link>
+                </li>
                 <Outlet />
               </ul>
             </NavbarUlStyled>

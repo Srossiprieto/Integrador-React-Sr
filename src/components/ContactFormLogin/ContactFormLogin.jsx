@@ -23,7 +23,7 @@ const ContactFormLogin = ({ text }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/'); // Redirigir a la página principal después de iniciar sesión
+      navigate('/admin'); // Redirigir a la página principal después de iniciar sesión
     }
   }, [isAuthenticated, navigate]);
 

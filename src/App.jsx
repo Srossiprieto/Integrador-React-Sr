@@ -12,6 +12,8 @@ import Register from "./pages/user/Register";
 import Login from "./pages/user/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import AdminPage from "./pages/admin/AdminPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
@@ -27,19 +29,9 @@ function App() {
             <Route path="/contacto" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/add-product" element={<h1>add product page</h1>} />
-            <Route
-              path="/delete-product"
-              element={<h1>delete product page</h1>}
-            />
-            <Route
-              path="/update-product"
-              element={<h1>update product page</h1>}
-            />
-            <Route
-              path="/update-category"
-              element={<h1>update category page</h1>}
-            />
+            <Route element={<ProtectedRoute/>}>
+              <Route path="/admin" element={<AdminPage />} />
+            </Route>
             <Route path="*" element={<Error />} />
           </Routes>
           <Footer />
