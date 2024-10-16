@@ -1,19 +1,21 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { loginRequest, registerRequest } from "../api/api"; // Importar loginRequest y registerRequest
+import { loginRequest, registerRequest, verifyTokenRequest } from "../api/api";
+import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 export const useAuth = () => {
-    const context = useContext(AuthContext)
-    if (!context) {
-        throw new Error('useAuth must be used within an AuthProvider')
-    }
-    return context;
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 };
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const signup = async (values) => {
     try {
@@ -22,17 +24,16 @@ export const AuthProvider = ({ children }) => {
         email: values.email,
         password: values.password,
       });
-      
-      setUser(response.data); // Configurar el estado del usuario con la respuesta de la API
-      setIsAuthenticated(true); // Configurar el estado de autenticación en verdadero
-      setErrors([]); // Limpiar errores en caso de éxito
-      
+
+      setUser(response.data);
+      setIsAuthenticated(true);
+      setErrors([]);
     } catch (error) {
-      if(Array.isArray(error.response.data)) {
-        return setErrors(error.response.data);
+      if (Array.isArray(error.response.data.errors)) {
+        return setErrors(error.response.data.errors);
       }
-      setErrors([error.response.data.errors]); 
-      setIsAuthenticated(false); // Asegurarse de que el usuario no esté autenticado en caso de error
+      setErrors([error.response.data.message]);
+      setIsAuthenticated(false);
     }
   };
 
@@ -46,16 +47,16 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
       setErrors([]);
     } catch (error) {
-      if(Array.isArray(error.response.data.errors)) {
+      if (Array.isArray(error.response.data.errors)) {
         return setErrors(error.response.data.errors);
       }
-      setErrors([error.response.data.message]); 
-      setIsAuthenticated(false); // Asegurarse de que el usuario no esté autenticado en caso de error
+      setErrors([error.response.data.message]);
+      setIsAuthenticated(false);
     }
   };
 
   useEffect(() => {
-    if(errors.length > 0) {
+    if (errors.length > 0) {
       const timer = setTimeout(() => {
         setErrors([]);
       }, 5000);
@@ -63,12 +64,42 @@ export const AuthProvider = ({ children }) => {
     }
   }, [errors]);
 
+  useEffect(() => {
+    async function checkLogin() {
+      const token = Cookies.get('token');
+
+      if (!token) {
+        setIsAuthenticated(false);
+        setLoading(false);
+        return setUser(null);
+      }
+      try {
+        const res = await verifyTokenRequest(token);
+        if (!res.data) {
+          setIsAuthenticated(false);
+          setLoading(false);
+          return;
+        }
+
+        setIsAuthenticated(true);
+        setUser(res.data);
+        setLoading(false);
+      } catch (error) {
+        setIsAuthenticated(false);
+        setUser(null);
+        setLoading(false);
+      }
+    }
+    checkLogin();
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
         signup,
         signin,
         user,
+        loading,
         isAuthenticated,
         errors,
       }}
