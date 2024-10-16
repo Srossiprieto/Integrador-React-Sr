@@ -3,6 +3,7 @@ import { loginRequest, registerRequest, verifyTokenRequest } from "../api/api";
 import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
+
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -74,7 +75,7 @@ export const AuthProvider = ({ children }) => {
         return setUser(null);
       }
       try {
-        const res = await verifyTokenRequest(token);
+        const res = await verifyTokenRequest();
         if (!res.data) {
           setIsAuthenticated(false);
           setLoading(false);

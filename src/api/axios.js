@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-
-const intance = axios.create({
-    baseURL:  import.meta.env.VITE_BASE_URL,
-    withCredentials: true,
+const instance = axios.create({
+  baseURL: import.meta.env.VITE_BASE_URL,
+  withCredentials: true,
 });
 
-export default intance;
+export default instance;
