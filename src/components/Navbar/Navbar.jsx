@@ -87,13 +87,13 @@ function Navbar() {
                   <Link to='/' onClick={toggle}>Home</Link>
                 </li>
                 <li>
-                  <Link to='productos' onClick={toggle}>Productos</Link>
+                  <Link to='/productos' onClick={toggle}>Productos</Link>
                 </li>
                 <li>
-                  <Link to="nosotros" onClick={toggle}>Nosotros</Link>
+                  <Link to="/about" onClick={toggle}>Nosotros</Link>
                 </li>
                 <li>
-                  <Link to="contacto" onClick={toggle}>Contacto</Link>
+                  <Link to="/contacto" onClick={toggle}>Contacto</Link>
                 </li>
                 <Outlet />
               </ul>
@@ -131,7 +131,7 @@ function Navbar() {
               <Link to='/productos' onClick={toggle}>Productos</Link>
             </li>
             <li>
-              <Link to="/nosotros" onClick={toggle}>Nosotros</Link>
+              <Link to="/about" onClick={toggle}>about</Link>
             </li>
             <li>
               <Link to="/contacto" onClick={toggle}>Contacto</Link>

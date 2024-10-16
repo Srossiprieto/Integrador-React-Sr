@@ -31,7 +31,7 @@ function Footer() {
             <Link to="/contacto">
               <span>Contacto</span>
             </Link>
-            <Link to="/nosotros">
+            <Link to="/about">
               <span>Acerca de</span>
             </Link>
    
@@ -42,13 +42,13 @@ function Footer() {
             <Link to="/contacto">
               <span>Contacto</span>
             </Link>
-            <Link to="/nosotros">
+            <Link to="/about">
               <span>Términos y condiciones</span>
             </Link>
-            <Link to="/nosotros">
+            <Link to="/about">
               <span>Política de privacidad</span>
             </Link>
-            <Link to="/nosotros">
+            <Link to="/about">
               <span>Política de cookies</span>
             </Link>
 

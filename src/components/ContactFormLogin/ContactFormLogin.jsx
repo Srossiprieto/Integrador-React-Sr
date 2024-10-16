@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useAuth } from '../../context/AuthContext'; // Importar el contexto de autenticación
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
-import Modal from '../Modal/Modal';
-import { ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer } from './ContactFormLoginStyles';
+import {
+  ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer
+} from './ContactFormLoginStyles';
 import ButtonPrimary from '../Ui/Button';
 import arrowRight from '../assets/img/arrow-right.svg';
-import api from '../../api/api';
+import Loader from '../Ui/Loader/Loader';
 
-// Esquema de validación con Yup
 const validationSchema = Yup.object({
   email: Yup.string().email('Debe ser un email válido').required('El email es obligatorio'),
-  password: Yup.string().required('La contraseña es obligatoria'),
+  password: Yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es obligatoria'),
 });
 
 const ContactFormLogin = ({ text }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Estado de carga
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const { signin, isAuthenticated, errors: signinErrors } = useAuth(); // Usar el contexto de autenticación
+  const navigate = useNavigate(); // Usar useNavigate para redireccionar
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/'); // Redirigir a la página principal después de iniciar sesión
+    }
+  }, [isAuthenticated, navigate]);
 
   const formik = useFormik({
     initialValues: {
@@ -30,48 +36,32 @@ const ContactFormLogin = ({ text }) => {
     onSubmit: async (values, { resetForm }) => {
       setIsLoading(true); // Iniciar carga
       try {
-        // Petición POST al backend para verificar las credenciales del usuario
-        const response = await api.post('/api/auth/login', {
-          email: values.email,
-          password: values.password,
-        });
-
-        // Verificar la respuesta del servidor
-        if (response.status === 200) {
-          // Éxito: Muestra el modal y resetea el formulario
-          setModalIsOpen(true);
-          resetForm();
-          setErrorMessage('');
-
-          // Almacenar el token de autenticación (si es necesario)
-          localStorage.setItem('authToken', response.data.token);
-
-          setTimeout(() => {
-            setModalIsOpen(false);
-            navigate('/'); // Redirigir a la página principal después de iniciar sesión
-          }, 1500); // Redirigir después de 1.5 segundos
-        } else {
-          // Error: Muestra el mensaje de error
-          setErrorMessage('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
-        }
+        await signin(values); // Usar la función signin del contexto de autenticación
+        resetForm();
+        setErrorMessage('');
       } catch (error) {
-        // Error: Muestra el mensaje de error
-        setErrorMessage('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+        // Asegúrate de que el mensaje de error sea una cadena
+        const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
+        setErrorMessage(errorMessage);
       } finally {
         setIsLoading(false); // Finalizar carga
       }
     },
   });
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
   return (
     <ContentForm>
       <Form onSubmit={formik.handleSubmit}>
         <h2>{text}</h2>
-
+        {
+          signinErrors && signinErrors.length > 0 && (
+            <div style={{ color: 'red' }}>
+              {signinErrors.map((error, index) => (
+                <p key={index}>{error.message || error}</p>
+              ))}
+            </div>
+          )
+        }
         {/* Campo de Email */}
         <Label htmlFor="email">Email</Label>
         <Input
@@ -108,8 +98,8 @@ const ContactFormLogin = ({ text }) => {
         {/* Botón de Enviar */}
         <ButtonPrimary
           type="submit"
-          text={isLoading ? "Cargando..." : "Iniciar sesión"}
-          img={arrowRight}
+          text={isLoading ? <Loader/> : "Iniciar sesión"}
+          img={isLoading ? null : arrowRight}
           alt="button-arrowRight"
           disabled={isLoading} // Deshabilitar el botón mientras se carga
         />
@@ -122,11 +112,6 @@ const ContactFormLogin = ({ text }) => {
           </StyledLinkContainer>
         </FormButtom>
       </Form>
-
-      {/* Modal de confirmación */}
-      <Modal isOpen={modalIsOpen} onClose={closeModal}>
-        <p>Has iniciado sesión con éxito!!</p>
-      </Modal>
     </ContentForm>
   );
 };

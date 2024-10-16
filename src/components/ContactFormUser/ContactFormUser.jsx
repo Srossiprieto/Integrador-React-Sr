@@ -1,27 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import api from '../../api/api'; 
-import Modal from '../Modal/Modal';
+import { useAuth } from '../../context/AuthContext'; // Importar el contexto de autenticación
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 import {
   ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer
 } from './ContactFormUserStyles';
 import ButtonPrimary from '../Ui/Button';
 import arrowRight from '../assets/img/arrow-right.svg';
 import { Link } from 'react-router-dom';
+import Loader from '../Ui/Loader/Loader';
 
 const validationSchema = Yup.object({
   name: Yup.string().required('El nombre es obligatorio'),
   email: Yup.string().email('Debe ser un email válido').required('El email es obligatorio'),
-  password: Yup.string().required('La contraseña es obligatoria'),
+  password: Yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es obligatoria'),
 });
 
+const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage, signup) => {
+  setIsLoading(true); // Iniciar carga
+  try {
+    await signup(values); // Usar la función signup del contexto de autenticación
+
+    resetForm();
+    setErrorMessage(''); 
+
+  } catch (error) {
+    const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
+    setErrorMessage(errorMessage);
+  } finally {
+    setIsLoading(false); // Finalizar carga
+  }
+};
+
 const ContactFormUser = ({ text }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false); 
+  const { signup, isAuthenticated, errors: registerErrors } = useAuth(); // Usar el contexto de autenticación
+  const navigate = useNavigate(); // Usar useNavigate para redireccionar
 
-  const closeModal = () => setModalIsOpen(false);
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/about');
+    }
+  }, [isAuthenticated, navigate]);
 
   const formik = useFormik({
     initialValues: {
@@ -30,32 +52,22 @@ const ContactFormUser = ({ text }) => {
       password: '',
     },
     validationSchema,
-    onSubmit: async (values, { resetForm }) => {
-      setIsLoading(true); // Iniciar carga
-      try {
-        await api.post('/api/auth/register', {
-          username: values.name,
-          email: values.email,
-          password: values.password,
-        });
-
-        setModalIsOpen(true);
-        resetForm();
-        setErrorMessage(''); 
-
-      } catch (error) {
-        setErrorMessage('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
-      } finally {
-        setIsLoading(false); // Finalizar carga
-      }
-    },
+    onSubmit: (values, actions) => handleSubmit(values, actions, setIsLoading, setErrorMessage, signup),
   });
 
   return (
     <ContentForm>
       <Form onSubmit={formik.handleSubmit}>
         <h2>{text}</h2>
-
+        {
+          registerErrors && registerErrors.length > 0 && (
+            <div style={{ color: 'red' }}>
+              {registerErrors.map((error, index) => (
+                <p key={index}>{error.message || error}</p>
+              ))}
+            </div>
+          )
+        }
         {/* Campo de Nombre */}
         <Label htmlFor="name">Nombre</Label>
         <Input
@@ -107,8 +119,8 @@ const ContactFormUser = ({ text }) => {
         {/* Botón de Enviar */}
         <ButtonPrimary
           type="submit"
-          text={isLoading ? "Cargando..." : "Registrarse"}
-          img={arrowRight}
+          text={isLoading ? <Loader/> : "Registrarse"}
+          img={isLoading ? null : arrowRight}
           alt="button-arrowRight"
           disabled={isLoading} // Deshabilitar el botón mientras se carga
         />
@@ -121,11 +133,6 @@ const ContactFormUser = ({ text }) => {
           </StyledLinkContainer>
         </FormButtom>
       </Form>
-
-      {/* Modal de confirmación */}
-      <Modal isOpen={modalIsOpen} onClose={closeModal}>
-        <p>¡Te has registrado con éxito!</p>
-      </Modal>
     </ContentForm>
   );
 };
