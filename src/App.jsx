@@ -11,36 +11,40 @@ import Contact from "./pages/contact/Contact";
 import Register from "./pages/user/Register";
 import Login from "./pages/user/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <DropDownProvider>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/productos" element={<Product />} />
-          <Route path="/nosotros" element={<About />} />
-          <Route path="/contacto" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/add-product" element={<h1>add product page</h1>} />
-          <Route
-            path="/delete-product"
-            element={<h1>delete product page</h1>}
-          />
-          <Route
-            path="/update-product"
-            element={<h1>update product page</h1>}
-          />
-          <Route
-            path="/update-category"
-            element={<h1>update category page</h1>}
-          />
-          <Route path="*" element={<Error />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Navbar />
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/productos" element={<Product />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contacto" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/add-product" element={<h1>add product page</h1>} />
+            <Route
+              path="/delete-product"
+              element={<h1>delete product page</h1>}
+            />
+            <Route
+              path="/update-product"
+              element={<h1>update product page</h1>}
+            />
+            <Route
+              path="/update-category"
+              element={<h1>update category page</h1>}
+            />
+            <Route path="*" element={<Error />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </AuthProvider>
     </DropDownProvider>
   );
 }
