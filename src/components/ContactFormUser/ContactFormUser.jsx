@@ -10,7 +10,6 @@ import ButtonPrimary from '../Ui/Button';
 import arrowRight from '../assets/img/arrow-right.svg';
 import { Link } from 'react-router-dom';
 
-// Esquema de validación con Yup
 const validationSchema = Yup.object({
   name: Yup.string().required('El nombre es obligatorio'),
   email: Yup.string().email('Debe ser un email válido').required('El email es obligatorio'),
@@ -20,12 +19,10 @@ const validationSchema = Yup.object({
 const ContactFormUser = ({ text }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Estado de carga
+  const [isLoading, setIsLoading] = useState(false); 
 
-  // Cerrar el modal
   const closeModal = () => setModalIsOpen(false);
 
-  // Inicialización de Formik
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -36,20 +33,17 @@ const ContactFormUser = ({ text }) => {
     onSubmit: async (values, { resetForm }) => {
       setIsLoading(true); // Iniciar carga
       try {
-        // Petición POST al backend para registrar al usuario
         await api.post('/api/auth/register', {
           username: values.name,
           email: values.email,
           password: values.password,
         });
 
-        // Éxito: Muestra el modal y resetea el formulario
         setModalIsOpen(true);
         resetForm();
         setErrorMessage(''); 
 
       } catch (error) {
-        // Error: Muestra el mensaje de error
         setErrorMessage('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
       } finally {
         setIsLoading(false); // Finalizar carga
