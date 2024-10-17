@@ -1,7 +1,5 @@
 import { DropDownProvider } from "./components/Navbar/DropDownContext";
-
 import Navbar from "./components/Navbar/Navbar";
-
 import Home from "./pages/home/Home";
 import Product from "./pages/products/Products";
 import Error from "./pages/error/Error";
@@ -17,11 +15,10 @@ import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
-    <DropDownProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <DropDownProvider>
         <BrowserRouter>
           <Navbar />
-
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/productos" element={<Product />} />
@@ -29,15 +26,15 @@ function App() {
             <Route path="/contacto" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route element={<ProtectedRoute/>}>
+            <Route element={<ProtectedRoute />}>
               <Route path="/admin" element={<AdminPage />} />
             </Route>
             <Route path="*" element={<Error />} />
           </Routes>
           <Footer />
         </BrowserRouter>
-      </AuthProvider>
-    </DropDownProvider>
+      </DropDownProvider>
+    </AuthProvider>
   );
 }
 

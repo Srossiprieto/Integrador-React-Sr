@@ -3,6 +3,7 @@ import { loginRequest, registerRequest, verifyTokenRequest } from "../api/api";
 import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
+
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -24,36 +25,52 @@ export const AuthProvider = ({ children }) => {
         email: values.email,
         password: values.password,
       });
-
-      setUser(response.data);
-      setIsAuthenticated(true);
-      setErrors([]);
+  
+      // Verificar si la respuesta contiene datos
+      if (response && response.data) {
+        setUser({
+          id: response.data.id,
+          username: response.data.username,
+          email: response.data.email,
+        });
+        setIsAuthenticated(true);
+        setErrors([]);
+      }
     } catch (error) {
-      if (Array.isArray(error.response.data.errors)) {
+      if (Array.isArray(error?.response?.data?.errors)) {
         return setErrors(error.response.data.errors);
       }
-      setErrors([error.response.data.message]);
+      setErrors([error?.response?.data?.message || 'Error inesperado']);
       setIsAuthenticated(false);
     }
   };
-
+  
   const signin = async (values) => {
     try {
       const response = await loginRequest({
         email: values.email,
         password: values.password,
       });
-      setUser(response.data);
-      setIsAuthenticated(true);
-      setErrors([]);
+  
+      // Verificar si la respuesta contiene datos
+      if (response && response.data) {
+        setUser({
+          id: response.data.id,
+          username: response.data.username,
+          email: response.data.email,
+        });
+        setIsAuthenticated(true);
+        setErrors([]);
+      }
     } catch (error) {
-      if (Array.isArray(error.response.data.errors)) {
+      if (Array.isArray(error?.response?.data?.errors)) {
         return setErrors(error.response.data.errors);
       }
-      setErrors([error.response.data.message]);
+      setErrors([error?.response?.data?.message || 'Error inesperado']);
       setIsAuthenticated(false);
     }
   };
+  
 
   useEffect(() => {
     if (errors.length > 0) {
@@ -66,32 +83,27 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     async function checkLogin() {
-      const token = Cookies.get('token');
-
-      if (!token) {
-        setIsAuthenticated(false);
-        setLoading(false);
-        return setUser(null);
-      }
       try {
-        const res = await verifyTokenRequest(token);
-        if (!res.data) {
+        const res = await verifyTokenRequest(); // La función que verifica el token en el backend
+        if (res.data) {
+          setUser(res.data); // Guardar los datos del usuario
+          setIsAuthenticated(true); // Marcar como autenticado
+        } else {
           setIsAuthenticated(false);
-          setLoading(false);
-          return;
+          setUser(null);
         }
-
-        setIsAuthenticated(true);
-        setUser(res.data);
-        setLoading(false);
       } catch (error) {
+        console.error(error);
         setIsAuthenticated(false);
         setUser(null);
+      } finally {
         setLoading(false);
       }
     }
     checkLogin();
   }, []);
+  
+  
 
   return (
     <AuthContext.Provider

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useAuth } from '../../context/AuthContext'; // Importar el contexto de autenticación
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer
@@ -18,12 +18,12 @@ const validationSchema = Yup.object({
 const ContactFormLogin = ({ text }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { signin, isAuthenticated, errors: signinErrors } = useAuth(); // Usar el contexto de autenticación
-  const navigate = useNavigate(); // Usar useNavigate para redireccionar
+  const { signin, isAuthenticated, errors: signinErrors } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/admin'); // Redirigir a la página principal después de iniciar sesión
+      navigate('/admin');
     }
   }, [isAuthenticated, navigate]);
 
@@ -34,17 +34,16 @@ const ContactFormLogin = ({ text }) => {
     },
     validationSchema,
     onSubmit: async (values, { resetForm }) => {
-      setIsLoading(true); // Iniciar carga
+      setIsLoading(true);
       try {
-        await signin(values); // Usar la función signin del contexto de autenticación
+        await signin(values);
         resetForm();
         setErrorMessage('');
       } catch (error) {
-        // Asegúrate de que el mensaje de error sea una cadena
         const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
         setErrorMessage(errorMessage);
       } finally {
-        setIsLoading(false); // Finalizar carga
+        setIsLoading(false);
       }
     },
   });
@@ -62,7 +61,6 @@ const ContactFormLogin = ({ text }) => {
             </div>
           )
         }
-        {/* Campo de Email */}
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
@@ -77,7 +75,6 @@ const ContactFormLogin = ({ text }) => {
           <div style={{ color: 'red' }}>{formik.errors.email}</div>
         )}
 
-        {/* Campo de Contraseña */}
         <Label htmlFor="password">Contraseña</Label>
         <Input
           id="password"
@@ -92,19 +89,16 @@ const ContactFormLogin = ({ text }) => {
           <div style={{ color: 'red' }}>{formik.errors.password}</div>
         )}
 
-        {/* Mensaje de error de envío */}
         {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
 
-        {/* Botón de Enviar */}
         <ButtonPrimary
           type="submit"
-          text={isLoading ? <Loader/> : "Iniciar sesión"}
+          text={isLoading ? <Loader /> : "Iniciar sesión"}
           img={isLoading ? null : arrowRight}
           alt="button-arrowRight"
-          disabled={isLoading} // Deshabilitar el botón mientras se carga
+          disabled={isLoading}
         />
 
-        {/* Enlace a Registrarse */}
         <FormButtom>
           <span>¿No tienes cuenta?</span>
           <StyledLinkContainer>
