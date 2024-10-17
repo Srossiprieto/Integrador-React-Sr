@@ -4,7 +4,7 @@ import App from './App.jsx'
 import { GlobalStyles } from './styles/GlobalStyles.js'
 
 
-import {Provider}from 'react-redux' // contiene toda la info 
+import {Provider}from 'react-redux' 
 import { PersistGate } from 'redux-persist/integration/react' 
 import { store, persistor } from './redux/store'
  
