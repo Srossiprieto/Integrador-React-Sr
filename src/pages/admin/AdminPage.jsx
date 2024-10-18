@@ -6,9 +6,10 @@ import { useAuth } from '../../context/AuthContext';
 function AdminPage() {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
-  const [newProduct, setNewProduct] = useState({ name: '', price: '' });
+  const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '', category: '', image: '' });
 
-  const {user} = useAuth() 
+  const { user } = useAuth();
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -43,21 +44,45 @@ function AdminPage() {
 
   const handleUpdate = async () => {
     try {
-      await api.put(`/api/products/${editingProduct._id}`, editingProduct);
+      if (!editingProduct.name || !editingProduct.description || !editingProduct.price || !editingProduct.category || !editingProduct.image) {
+        console.error('All fields are required');
+        return;
+      }
+
+      await api.put(`/api/products/${editingProduct._id}`, {
+        ...editingProduct,
+        price: Number(editingProduct.price), // Convertir el precio a número
+      });
       setEditingProduct(null);
       fetchProducts();
     } catch (error) {
-      console.error('Error updating product:', error);
+      if (error.response && error.response.data && Array.isArray(error.response.data.errors)) {
+        console.error('Error updating product:', error.response.data.errors.join(', '));
+      } else {
+        console.error('Error updating product:', error.message);
+      }
     }
   };
 
   const handleAdd = async () => {
     try {
-      await api.post('/api/products', newProduct);
-      setNewProduct({ name: '', price: '' });
+      if (!newProduct.name || !newProduct.description || !newProduct.price || !newProduct.category || !newProduct.image) {
+        console.error('All fields are required');
+        return;
+      }
+
+      await api.post('/api/products', {
+        ...newProduct,
+        price: Number(newProduct.price), // Convertir el precio a número
+      });
+      setNewProduct({ name: '', description: '', price: '', category: '', image: '' });
       fetchProducts();
     } catch (error) {
-      console.error('Error adding product:', error);
+      if (error.response && error.response.data && Array.isArray(error.response.data.errors)) {
+        console.error('Error adding product:', error.response.data.errors.join(', '));
+      } else {
+        console.error('Error adding product:', error.message);
+      }
     }
   };
 
@@ -73,9 +98,27 @@ function AdminPage() {
         />
         <Input
           type="text"
+          placeholder="Product Description"
+          value={newProduct.description}
+          onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
+        />
+        <Input
+          type="number"
           placeholder="Product Price"
           value={newProduct.price}
           onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
+        />
+        <Input
+          type="text"
+          placeholder="Product Category"
+          value={newProduct.category}
+          onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
+        />
+        <Input
+          type="text"
+          placeholder="Product Image URL"
+          value={newProduct.image}
+          onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
         />
         <Button onClick={handleAdd}>Add Product</Button>
       </Form>
@@ -83,7 +126,10 @@ function AdminPage() {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Description</th>
             <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -105,12 +151,37 @@ function AdminPage() {
                 {editingProduct && editingProduct._id === product._id ? (
                   <Input
                     type="text"
+                    value={editingProduct.description}
+                    onChange={(e) => setEditingProduct({ ...editingProduct, description: e.target.value })}
+                  />
+                ) : (
+                  product.description
+                )}
+              </td>
+              <td>
+                {editingProduct && editingProduct._id === product._id ? (
+                  <Input
+                    type="number"
                     value={editingProduct.price}
                     onChange={(e) => setEditingProduct({ ...editingProduct, price: e.target.value })}
                   />
                 ) : (
                   product.price
                 )}
+              </td>
+              <td>
+                {editingProduct && editingProduct._id === product._id ? (
+                  <Input
+                    type="text"
+                    value={editingProduct.category}
+                    onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
+                  />
+                ) : (
+                  product.category
+                )}
+              </td>
+              <td>
+                <img style={{height: 100}} src={product.image} alt={product.name} />
               </td>
               <td>
                 {editingProduct && editingProduct._id === product._id ? (
