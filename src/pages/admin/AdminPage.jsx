@@ -20,11 +20,11 @@ function AdminPage() {
       if (Array.isArray(response.data)) {
         setProducts(response.data);
       } else {
-        console.error('Error: Expected an array of products');
+        // console.error('Error: Expected an array of products');
         setProducts([]);
       }
     } catch (error) {
-      console.error('Error fetching products:', error);
+      // console.error('Error fetching products:', error);
       setProducts([]);
     }
   };
@@ -34,7 +34,7 @@ function AdminPage() {
       await api.delete(`/api/products/${id}`);
       fetchProducts();
     } catch (error) {
-      console.error('Error deleting product:', error);
+      // console.error('Error deleting product:', error);
     }
   };
 
@@ -45,7 +45,7 @@ function AdminPage() {
   const handleUpdate = async () => {
     try {
       if (!editingProduct.name || !editingProduct.description || !editingProduct.price || !editingProduct.category || !editingProduct.image) {
-        console.error('All fields are required');
+        // console.error('All fields are required');
         return;
       }
 
@@ -57,9 +57,9 @@ function AdminPage() {
       fetchProducts();
     } catch (error) {
       if (error.response && error.response.data && Array.isArray(error.response.data.errors)) {
-        console.error('Error updating product:', error.response.data.errors.join(', '));
+        // console.error('Error updating product:', error.response.data.errors.join(', '));
       } else {
-        console.error('Error updating product:', error.message);
+        // console.error('Error updating product:', error.message);
       }
     }
   };
@@ -67,7 +67,7 @@ function AdminPage() {
   const handleAdd = async () => {
     try {
       if (!newProduct.name || !newProduct.description || !newProduct.price || !newProduct.category || !newProduct.image) {
-        console.error('All fields are required');
+        // console.error('All fields are required');
         return;
       }
 
@@ -79,9 +79,9 @@ function AdminPage() {
       fetchProducts();
     } catch (error) {
       if (error.response && error.response.data && Array.isArray(error.response.data.errors)) {
-        console.error('Error adding product:', error.response.data.errors.join(', '));
+        // console.error('Error adding product:', error.response.data.errors.join(', '));
       } else {
-        console.error('Error adding product:', error.message);
+        // console.error('Error adding product:', error.message);
       }
     }
   };
