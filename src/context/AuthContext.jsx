@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }) => {
         password: values.password,
       });
   
-      // Verificar si la respuesta contiene datos
       if (response && response.data) {
         setUser({
           id: response.data.id,
@@ -40,7 +39,7 @@ export const AuthProvider = ({ children }) => {
       if (Array.isArray(error?.response?.data?.errors)) {
         return setErrors(error.response.data.errors);
       }
-      setErrors([error?.response?.data?.message || 'Error inesperado']);
+      setErrors([error?.response?.data?.message || 'Unexpected error']);
       setIsAuthenticated(false);
     }
   };
@@ -52,7 +51,6 @@ export const AuthProvider = ({ children }) => {
         password: values.password,
       });
   
-      // Verificar si la respuesta contiene datos
       if (response && response.data) {
         setUser({
           id: response.data.id,
@@ -66,45 +64,82 @@ export const AuthProvider = ({ children }) => {
       if (Array.isArray(error?.response?.data?.errors)) {
         return setErrors(error.response.data.errors);
       }
-      setErrors([error?.response?.data?.message || 'Error inesperado']);
+      setErrors([error?.response?.data?.message || 'Unexpected error']);
       setIsAuthenticated(false);
     }
   };
-  
 
-  useEffect(() => {
-    if (errors.length > 0) {
-      const timer = setTimeout(() => {
-        setErrors([]);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [errors]);
+  // useEffect(() => {
+  //   if (errors.length > 0) {
+  //     const timer = setTimeout(() => {
+  //       setErrors([]);
+  //     }, 5000);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [errors]);
+
+  // useEffect(() => {
+  //   async function checkLogin() {
+  //     try {
+  //       const res = await verifyTokenRequest(); 
+  //       const token = Cookies.get("token");
+  //       console.log(res.data);  // Verifica qué está devolviendo el backend
+  //       if (res.data) {
+  //         setUser(res.data); 
+  //         setIsAuthenticated(true);
+  //       } else {
+  //         setIsAuthenticated(false);
+  //         setUser(null);
+  //       }
+  //     } catch (error) {
+  //       setIsAuthenticated(false);
+  //       setUser(null);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   checkLogin();
+  // }, []);
+  
 
   useEffect(() => {
     async function checkLogin() {
       try {
-        const res = await verifyTokenRequest(); // La función que verifica el token en el backend
+        // Obtener el token desde las cookies
+        const token = Cookies.get("token");
+        
+        // Si no hay token, establecer como no autenticado y evitar hacer la solicitud
+        if (!token) {
+          setIsAuthenticated(false);
+          setUser(null);
+          setLoading(false); // Evitar que quede en estado de carga
+          return;
+        }
+        
+        // Si hay un token, hacer la solicitud de verificación
+        const res = await verifyTokenRequest();
+        
         if (res.data) {
-          setUser(res.data); // Guardar los datos del usuario
-          setIsAuthenticated(true); // Marcar como autenticado
+          setUser(res.data); // Actualiza el estado con la información del usuario
+          setIsAuthenticated(true);
         } else {
           setIsAuthenticated(false);
           setUser(null);
         }
       } catch (error) {
-        console.error(error);
+        console.error("Error en la verificación del token:", error);
         setIsAuthenticated(false);
         setUser(null);
       } finally {
-        setLoading(false);
+        setLoading(false); // Asegúrate de que la carga se detenga independientemente del resultado
       }
     }
+    
     checkLogin();
   }, []);
   
-  
 
+  
   return (
     <AuthContext.Provider
       value={{
