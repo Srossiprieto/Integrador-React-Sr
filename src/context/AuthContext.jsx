@@ -71,12 +71,11 @@ export const AuthProvider = ({ children }) => {
 
   const checkLogin = async () => {
     try {
-      const token = Cookies.get("token");
+      const token = verifyTokenRequest();
 
       // Si no hay token, establecer como no autenticado y evitar hacer la solicitud
       if (!token) {
         setIsAuthenticated(false);
-        setUser(null);
         setLoading(false); // Evitar que quede en estado de carga
         return;
       }
@@ -89,12 +88,9 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);
-        setUser(null);
       }
     } catch (error) {
-      console.error("Error en la verificación del token:", error);
       setIsAuthenticated(false);
-      setUser(null);
     } finally {
       setLoading(false); // Asegúrate de que la carga se detenga independientemente del resultado
     }
