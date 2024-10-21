@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
         email: values.email,
         password: values.password,
       });
-  
+
       if (response && response.data) {
         setUser({
           id: response.data.id,
@@ -39,18 +39,18 @@ export const AuthProvider = ({ children }) => {
       if (Array.isArray(error?.response?.data?.errors)) {
         return setErrors(error.response.data.errors);
       }
-      setErrors([error?.response?.data?.message || 'Unexpected error']);
+      setErrors([error?.response?.data?.message || "Unexpected error"]);
       setIsAuthenticated(false);
     }
   };
-  
+
   const signin = async (values) => {
     try {
       const response = await loginRequest({
         email: values.email,
         password: values.password,
       });
-  
+
       if (response && response.data) {
         setUser({
           id: response.data.id,
@@ -64,10 +64,45 @@ export const AuthProvider = ({ children }) => {
       if (Array.isArray(error?.response?.data?.errors)) {
         return setErrors(error.response.data.errors);
       }
-      setErrors([error?.response?.data?.message || 'Unexpected error']);
+      setErrors([error?.response?.data?.message || "Unexpected error"]);
       setIsAuthenticated(false);
     }
   };
+
+  const checkLogin = async () => {
+    try {
+      const token = Cookies.get("token");
+
+      // Si no hay token, establecer como no autenticado y evitar hacer la solicitud
+      if (!token) {
+        setIsAuthenticated(false);
+        setUser(null);
+        setLoading(false); // Evitar que quede en estado de carga
+        return;
+      }
+
+      // Si hay un token, hacer la solicitud de verificación
+      const res = await verifyTokenRequest();
+
+      if (res.data) {
+        setUser(res.data); // Actualiza el estado con la información del usuario
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+        setUser(null);
+      }
+    } catch (error) {
+      console.error("Error en la verificación del token:", error);
+      setIsAuthenticated(false);
+      setUser(null);
+    } finally {
+      setLoading(false); // Asegúrate de que la carga se detenga independientemente del resultado
+    }
+  };
+
+  useEffect(() => {
+    checkLogin();
+  }, []);
 
   useEffect(() => {
     if (errors.length > 0) {
@@ -78,141 +113,6 @@ export const AuthProvider = ({ children }) => {
     }
   }, [errors]);
 
-
-//   useEffect(() => {
-//     async function checkLogin() {
-//         const cookies = Cookies.get();
-
-//         if (!cookies.token) {
-//             setIsAuthenticated(false);
-//             setLoading(false);
-//             return setUser(null);
-//         }
-
-//         try {
-//             const res = await verifyTokenRequest(cookies.token);
-//             if (!res.data) {
-//                 setIsAuthenticated(false);
-//                 setUser(null);
-//             } else {
-//                 setIsAuthenticated(true);
-//                 setUser(res.data);
-//             }
-//         } catch (error) {
-//             console.error("Token verification failed:", error);
-//             setIsAuthenticated(false);
-//             setUser(null);
-//         } finally {
-//             setLoading(false);
-//         }
-//     }
-
-//     checkLogin();
-// }, []);
-
-
-  
-  // useEffect(() => {
-  //   async function checkLogin() {
-  //     try {
-  //       // Obtener el token desde las cookies
-  //       const token = Cookies.get("token");
-        
-  //       // Si no hay token, establecer como no autenticado y evitar hacer la solicitud
-  //       if (!token) {
-  //         setIsAuthenticated(false);
-  //         setUser(null);
-  //         setLoading(false); // Evitar que quede en estado de carga
-  //         return;
-  //       }
-        
-  //       // Si hay un token, hacer la solicitud de verificación
-  //       const res = await verifyTokenRequest();
-        
-  //       if (res.data) {
-  //         setUser(res.data); // Actualiza el estado con la información del usuario
-  //         setIsAuthenticated(true);
-  //         setLoading(false); // Evitar que quede en estado de carga
-
-  //       } else {
-  //         setIsAuthenticated(false);
-  //         setUser(null);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error en la verificación del token:", error);
-  //       setIsAuthenticated(false);
-  //       setUser(null);
-  //     } finally {
-  //       setLoading(false); // Asegúrate de que la carga se detenga independientemente del resultado
-  //     }
-  //   }
-    
-  //   checkLogin();
-  // }, []);
-  
-
-
-  useEffect(() => {
-    async function checkLogin() {
-      try {
-        
-        const res = await verifyTokenRequest(); 
-        if (res.data) {
-          setUser(res.data); 
-          setIsAuthenticated(true);
-        } else {
-          setIsAuthenticated(false);
-          setUser(null);
-        }
-      } catch (error) {
-        setIsAuthenticated(false);
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
-    }
-    checkLogin();
-  }, []);
-  
-
-  // useEffect(() => {
-  //   async function checkLogin() {
-  //     try {
-  //       // Obtener el token desde las cookies
-  //       const token = Cookies.get("token");
-        
-  //       // Si no hay token, establecer como no autenticado y evitar hacer la solicitud
-  //       if (!token) {
-  //         setIsAuthenticated(false);
-  //         setUser(null);
-  //         setLoading(false); // Evitar que quede en estado de carga
-  //         return;
-  //       }
-        
-  //       // Si hay un token, hacer la solicitud de verificación
-  //       const res = await verifyTokenRequest();
-        
-  //       if (res.data) {
-  //         setUser(res.data); // Actualiza el estado con la información del usuario
-  //         setIsAuthenticated(true);
-  //       } else {
-  //         setIsAuthenticated(false);
-  //         setUser(null);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error en la verificación del token:", error);
-  //       setIsAuthenticated(false);
-  //       setUser(null);
-  //     } finally {
-  //       setLoading(false); // Asegúrate de que la carga se detenga independientemente del resultado
-  //     }
-  //   }
-    
-  //   checkLogin();
-  // }, []);
-  
-
-  
   return (
     <AuthContext.Provider
       value={{
@@ -222,6 +122,7 @@ export const AuthProvider = ({ children }) => {
         loading,
         isAuthenticated,
         errors,
+        checkLogin,
       }}
     >
       {children}

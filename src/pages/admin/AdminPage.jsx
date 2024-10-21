@@ -10,6 +10,8 @@ function AdminPage() {
 
   const { user } = useAuth();
 
+
+
   useEffect(() => {
     fetchProducts();
   }, []);
