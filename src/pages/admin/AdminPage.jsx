@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { AdminContainer, Table, Button, Form, Input } from './AdminPageStyles';
 import api from '../../api/axios';
-import { useAuth } from '../../context/AuthContext';
 
 function AdminPage() {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
   const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '', category: '', image: '' });
 
-  const { user } = useAuth();
 
 
 
@@ -30,6 +28,9 @@ function AdminPage() {
       setProducts([]);
     }
   };
+
+  
+  
 
   const handleDelete = async (id) => {
     try {

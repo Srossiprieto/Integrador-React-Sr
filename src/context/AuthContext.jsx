@@ -70,31 +70,33 @@ export const AuthProvider = ({ children }) => {
   };
 
   const checkLogin = async () => {
-    try {
-      const token = verifyTokenRequest();
+    const cookies = Cookies.get()
 
-      // Si no hay token, establecer como no autenticado y evitar hacer la solicitud
-      if (!token) {
-        setIsAuthenticated(false);
-        setLoading(false); // Evitar que quede en estado de carga
-        return;
-      }
-
-      // Si hay un token, hacer la solicitud de verificación
-      const res = await verifyTokenRequest();
-
-      if (res.data) {
-        setUser(res.data); // Actualiza el estado con la información del usuario
-        setIsAuthenticated(true);
-      } else {
-        setIsAuthenticated(false);
-      }
-    } catch (error) {
+    if (!cookies.token) {
       setIsAuthenticated(false);
-    } finally {
-      setLoading(false); // Asegúrate de que la carga se detenga independientemente del resultado
+      setLoading(false);
+      setUser(null);
+      return;
     }
-  };
+        try {
+            const res = await verifyTokenRequest(cookies.token);
+            if (!res.data) {
+                setIsAuthenticated(false)
+                setLoading(false);
+                return;
+            }else
+
+            setIsAuthenticated(true)
+            setUser(res.data)
+            setLoading(false);
+        } catch (error) {
+            setIsAuthenticated(false)
+            setUser(null)
+            setLoading(false);
+        }
+}
+      // Si hay un token, hacer la solicitud de verificación
+
 
   useEffect(() => {
     checkLogin();
