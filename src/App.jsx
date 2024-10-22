@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
+import Skeleton from "./components/Skeleton/Skeleton";
 
 // Lazy load components
 const Home = lazy(() => import("./pages/home/Home"));
@@ -22,7 +23,7 @@ function App() {
       <DropDownProvider>
         <BrowserRouter>
           <Navbar />
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Skeleton/>}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/productos" element={<Product />} />
