@@ -16,13 +16,13 @@ const validationSchema = Yup.object({
   password: Yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es obligatoria'),
 });
 
-const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage, signin) => {
+const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage, signin, navigate) => {
   setIsLoading(true); // Iniciar carga
   try {
     await signin(values); // Usar la función signin del contexto de autenticación
     resetForm();
     setErrorMessage('');
-    window.location.reload(); // Recargar la página después de la navegación
+    window.location.reload(); // Recargar la página para actualizar la barra de navegación
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
     setErrorMessage(errorMessage);
@@ -39,11 +39,9 @@ const ContactFormLogin = ({ text }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/about');
-
+      navigate('/admin');
     }
   }, [isAuthenticated, navigate]);
-
 
   const formik = useFormik({
     initialValues: {
