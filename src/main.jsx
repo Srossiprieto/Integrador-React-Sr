@@ -7,7 +7,7 @@ import { GlobalStyles } from './styles/GlobalStyles.js'
 import {Provider}from 'react-redux' 
 import { PersistGate } from 'redux-persist/integration/react' 
 import { store, persistor } from './redux/store'
-import { AuthContext } from './context/AuthContext.jsx'
+import { AuthContext, AuthProvider } from './context/AuthContext.jsx'
  
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -13,7 +13,9 @@ import {
   StyledIoClose,
   ShoppingBagBubble,
   BagIconContainer,
-  MenuContainerStyledBtn
+  MenuContainerStyledBtn,
+  BtnSignOut,
+  BtnSignOutContainer
 } from './NavbarStyles';
 
 import { DropDownContext } from './DropDownContext';
@@ -22,7 +24,7 @@ import { useContext } from 'react';
 import logoNav from '../assets/img/logoNav.webp';
 import { AiOutlineMenu } from "react-icons/ai";
 
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 
 import ModalCart from './ModalCart/ModalCart';
 
@@ -96,18 +98,21 @@ function Navbar() {
                 <li>
                   <Link to="/contacto" onClick={toggle}>Contacto</Link>
                 </li>
-                <li>
-                  <Link to="/admin" onClick={toggle}>Admin</Link>
-                </li>
+                {isAuthenticated ? (
+                  <li>
+                    <Link to="/admin" onClick={toggle}>Admin</Link>
+                  </li>
+                )
+                : null}
                 <Outlet />
               </ul>
             </NavbarUlStyled>
             
             {isAuthenticated ? (
-              <div>
-                <span>Welcome</span>
-                <button onClick={signout}>Sign Out</button>
-              </div>
+              <BtnSignOutContainer>
+                <BtnSignOut onClick={signout}
+                >Sign Out</BtnSignOut>
+              </BtnSignOutContainer>
             ) : (
               <Link to="/login">
                 <StyledUserIcon />
