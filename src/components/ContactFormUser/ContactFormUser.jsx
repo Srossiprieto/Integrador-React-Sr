@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAuth } from '../../context/AuthContext'; // Importar el contexto de autenticación
@@ -23,6 +23,7 @@ const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage
     await signup(values); // Usar la función signup del contexto de autenticación
     resetForm();
     setErrorMessage('');
+    window.location.reload(); // Recargar la página para actualizar la barra de navegación
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
     setErrorMessage(errorMessage);
@@ -39,9 +40,7 @@ const ContactFormUser = ({ text }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/about');
-      window.location.reload(); // Recargar la página después de la navegación
-
+      navigate('/admin');
     }
   }, [isAuthenticated, navigate]);
 
@@ -68,7 +67,7 @@ const ContactFormUser = ({ text }) => {
             </div>
           )
         }
-        {/* Campo de Nombre */}
+        
         <Label htmlFor="name">Nombre</Label>
         <Input
           id="name"
@@ -83,7 +82,6 @@ const ContactFormUser = ({ text }) => {
           <div style={{ color: 'red' }}>{formik.errors.name}</div>
         )}
 
-        {/* Campo de Email */}
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
@@ -98,7 +96,6 @@ const ContactFormUser = ({ text }) => {
           <div style={{ color: 'red' }}>{formik.errors.email}</div>
         )}
 
-        {/* Campo de Contraseña */}
         <Label htmlFor="password">Contraseña</Label>
         <Input
           id="password"
@@ -113,10 +110,8 @@ const ContactFormUser = ({ text }) => {
           <div style={{ color: 'red' }}>{formik.errors.password}</div>
         )}
 
-        {/* Mensaje de error de envío */}
         {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
 
-        {/* Botón de Enviar */}
         <ButtonPrimary
           type="submit"
           text={isLoading ? <Loader/> : "Registrarse"}
@@ -125,7 +120,6 @@ const ContactFormUser = ({ text }) => {
           disabled={isLoading} // Deshabilitar el botón mientras se carga
         />
 
-        {/* Enlace a Iniciar Sesión */}
         <FormButtom>
           <span>¿Ya tienes cuenta?</span>
           <StyledLinkContainer>
