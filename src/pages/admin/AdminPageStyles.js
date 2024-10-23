@@ -4,9 +4,15 @@ export const AdminContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin: 20px;
+  margin-top: 150px;
   min-height: 100dvh;
+  h2 {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: var(--bg-btn);
+  }
 `;
 
 export const Table = styled.table`
