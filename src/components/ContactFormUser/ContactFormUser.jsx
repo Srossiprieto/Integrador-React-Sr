@@ -23,7 +23,6 @@ const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage
     await signup(values); // Usar la función signup del contexto de autenticación
     resetForm();
     setErrorMessage('');
-    navigate('/about'); // Navegar a la página de "about" después de registrarse
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
     setErrorMessage(errorMessage);
@@ -41,6 +40,8 @@ const ContactFormUser = ({ text }) => {
   useEffect(() => {
     if (isAuthenticated) {
       navigate('/about');
+      window.location.reload(); // Recargar la página después de la navegación
+
     }
   }, [isAuthenticated, navigate]);
 

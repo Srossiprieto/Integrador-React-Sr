@@ -16,9 +16,35 @@ export const NavbarContainerStyled = styled.div`
     width: 35px;
     height: 35px;
   }
-
+  
 
 `;
+
+export const BtnSignOut = styled.a`
+  cursor: pointer;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  background: var(--purple-600);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+
+  &:hover {
+  background: var(--purple-500);
+  }
+  
+
+
+`
+
+export const BtnSignOutContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`
+
 
 export const NavbarContainer = styled.div`
   display: flex;

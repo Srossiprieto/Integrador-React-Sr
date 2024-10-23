@@ -39,8 +39,6 @@ export const AuthProvider = ({ children }) => {
     verifyToken(); // Llama a la función para verificar el token
   }, []); // Se ejecuta una vez al montar
 
-
-
   // Función para iniciar sesión
   const signin = async (credentials) => {
     try {
@@ -50,6 +48,7 @@ export const AuthProvider = ({ children }) => {
         Cookies.set("token", token, { expires: 7 }); // Establecer con expiración
         setUser(user); // Establecer el usuario
         setIsAuthenticated(true); // El usuario está autenticado
+        setErrors([]); // Limpiar errores
       } else {
         setErrors(['Token or user data is missing in the response']);
       }
@@ -58,6 +57,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Función para registrar un nuevo usuario
   const signup = async (values) => {
     try {
       const response = await registerRequest({
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
           email: response.data.email,
         });
         setIsAuthenticated(true);
-        setErrors([]);
+        setErrors([]); // Limpiar errores
       }
     } catch (error) {
       if (Array.isArray(error?.response?.data?.errors)) {
