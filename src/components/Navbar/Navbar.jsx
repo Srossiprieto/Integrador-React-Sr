@@ -30,12 +30,15 @@ import { toggleHiddenCart } from '../../redux/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CartIcon from './CartIcon/CartIcon';
+import { useAuth } from '../../context/AuthContext';
 
 function Navbar() {
   // ======= MENU DESPLEGABLE =======
   const { isOpen, toggle } = useContext(DropDownContext);
   const dispatch = useDispatch();
   const hidden = useSelector((state) => state.cart.hidden);
+
+  const { user, isAuthenticated, signout } = useAuth();
 
   useEffect(() => {
     const closeMenu = () => {
@@ -52,8 +55,6 @@ function Navbar() {
       window.removeEventListener('click', closeMenu);
     };
   }, [isOpen, toggle]);
-
-  
 
   // ======= CARRITO DESPLEGABLE =======
   const quantity = useSelector((state) => {
@@ -102,10 +103,16 @@ function Navbar() {
               </ul>
             </NavbarUlStyled>
             
-            
-            <Link to="/login">
-              <StyledUserIcon />
-            </Link>
+            {isAuthenticated ? (
+              <div>
+                <span>Welcome</span>
+                <button onClick={signout}>Sign Out</button>
+              </div>
+            ) : (
+              <Link to="/login">
+                <StyledUserIcon />
+              </Link>
+            )}
 
             <BagIconContainer>
               <StyledBagIcon onClick={() => dispatch(toggleHiddenCart())} />

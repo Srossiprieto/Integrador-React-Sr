@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useAuth } from '../../context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext'; // Importar el contexto de autenticación
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 import {
   ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer
 } from './ContactFormLoginStyles';
 import ButtonPrimary from '../Ui/Button';
 import arrowRight from '../assets/img/arrow-right.svg';
+import { Link } from 'react-router-dom';
 import Loader from '../Ui/Loader/Loader';
 
 const validationSchema = Yup.object({
@@ -15,11 +16,26 @@ const validationSchema = Yup.object({
   password: Yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es obligatoria'),
 });
 
+const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage, signin, navigate) => {
+  setIsLoading(true); // Iniciar carga
+  try {
+    await signin(values); // Usar la función signin del contexto de autenticación
+    resetForm();
+    setErrorMessage('');
+    navigate('/admin'); // Navegar a la página de administración después de iniciar sesión
+  } catch (error) {
+    const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
+    setErrorMessage(errorMessage);
+  } finally {
+    setIsLoading(false); // Finalizar carga
+  }
+};
+
 const ContactFormLogin = ({ text }) => {
   const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const { signin, isAuthenticated, errors: signinErrors } = useAuth();
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false); 
+  const { signin, isAuthenticated, errors: loginErrors } = useAuth(); // Usar el contexto de autenticación
+  const navigate = useNavigate(); // Usar useNavigate para redireccionar
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -33,19 +49,7 @@ const ContactFormLogin = ({ text }) => {
       password: '',
     },
     validationSchema,
-    onSubmit: async (values, { resetForm }) => {
-      setIsLoading(true);
-      try {
-        await signin(values);
-        resetForm();
-        setErrorMessage('');
-      } catch (error) {
-        const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
-        setErrorMessage(errorMessage);
-      } finally {
-        setIsLoading(false);
-      }
-    },
+    onSubmit: (values, actions) => handleSubmit(values, actions, setIsLoading, setErrorMessage, signin, navigate),
   });
 
   return (
@@ -53,14 +57,15 @@ const ContactFormLogin = ({ text }) => {
       <Form onSubmit={formik.handleSubmit}>
         <h2>{text}</h2>
         {
-          signinErrors && signinErrors.length > 0 && (
+          loginErrors && loginErrors.length > 0 && (
             <div style={{ color: 'red' }}>
-              {signinErrors.map((error, index) => (
+              {loginErrors.map((error, index) => (
                 <p key={index}>{error.message || error}</p>
               ))}
             </div>
           )
         }
+        
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
@@ -93,10 +98,10 @@ const ContactFormLogin = ({ text }) => {
 
         <ButtonPrimary
           type="submit"
-          text={isLoading ? <Loader /> : "Iniciar sesión"}
+          text={isLoading ? <Loader/> : "Iniciar sesión"}
           img={isLoading ? null : arrowRight}
           alt="button-arrowRight"
-          disabled={isLoading}
+          disabled={isLoading} // Deshabilitar el botón mientras se carga
         />
 
         <FormButtom>

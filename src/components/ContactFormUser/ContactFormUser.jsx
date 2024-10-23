@@ -17,14 +17,13 @@ const validationSchema = Yup.object({
   password: Yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es obligatoria'),
 });
 
-const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage, signup) => {
+const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage, signup, navigate) => {
   setIsLoading(true); // Iniciar carga
   try {
     await signup(values); // Usar la función signup del contexto de autenticación
-
     resetForm();
-    setErrorMessage(''); 
-
+    setErrorMessage('');
+    navigate('/about'); // Navegar a la página de "about" después de registrarse
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
     setErrorMessage(errorMessage);
@@ -52,7 +51,7 @@ const ContactFormUser = ({ text }) => {
       password: '',
     },
     validationSchema,
-    onSubmit: (values, actions) => handleSubmit(values, actions, setIsLoading, setErrorMessage, signup),
+    onSubmit: (values, actions) => handleSubmit(values, actions, setIsLoading, setErrorMessage, signup, navigate),
   });
 
   return (
