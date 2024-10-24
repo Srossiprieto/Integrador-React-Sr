@@ -13,3 +13,53 @@ export const registerRequest = async (userData) => {
 export const verifyTokenRequest = async () => {
   return await axios.get(`${API_URL}/api/auth/verify`, { withCredentials: true });
 };
+
+export const getProducts = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/api/products`, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error;
+  }
+};
+
+export const deleteProduct = async (id) => {
+  try {
+    const response = await axios.delete(`${API_URL}/api/products/${id}`, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    throw error;
+  }
+};
+
+export const updateProduct = async (id, productData) => {
+  try {
+    const response = await axios.put(`${API_URL}/api/products/${id}`, productData, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    console.error("Error updating product:", error);
+    throw error;
+  }
+};
+
+export const createProduct = async (productData) => {
+  try {
+    const response = await axios.post(`${API_URL}/api/products`, productData, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    console.error("Error al crear el producto:", error);
+    throw error;
+  }
+};
+
+export const getCategories = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/api/categories`, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    throw error;
+  }
+};
