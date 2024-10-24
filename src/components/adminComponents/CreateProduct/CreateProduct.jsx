@@ -1,35 +1,69 @@
-import React, { useState } from "react";
-import { Form, Input, Button } from "./CreateProductStyled";
+import React, { useState, useEffect } from 'react';
+import { createProduct, getCategories } from '../../../api/api';
+import { Form, Input, Button, Select } from './CreateProductStyled';
 
-function CreateProduct({ handleAdd }) {
+function CreateProduct({ onProductAdded }) {
   const [newProduct, setNewProduct] = useState({
-    name: "",
-    description: "",
-    price: "",
-    category: "",
-    image: "",
+    name: '',
+    description: '',
+    price: '',
+    category: '',
+    image: '',
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const categoriesData = await getCategories();
+        setCategories(categoriesData);
+      } catch (error) {
+        setError('Error fetching categories: ' + error.message);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProduct({ ...newProduct, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleAdd(newProduct);
-    setNewProduct({
-      name: "",
-      description: "",
-      price: "",
-      category: "",
-      image: "",
-    });
+    setLoading(true);
+
+    if (!newProduct.name || !newProduct.description || !newProduct.price || !newProduct.category || !newProduct.image) {
+      alert('Por favor, completa todos los campos.');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const createdProduct = await createProduct(newProduct);
+      onProductAdded(createdProduct);
+
+      setNewProduct({
+        name: '',
+        description: '',
+        price: '',
+        category: '',
+        image: '',
+      });
+
+      setLoading(false);
+    } catch (err) {
+      setError('Error creando producto: ' + err.message);
+      setLoading(false);
+    }
   };
 
   return (
     <>
       <h3>Create Product</h3>
+      {error && <div style={{ color: 'red' }}>Error: {error}</div>}
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
@@ -52,13 +86,18 @@ function CreateProduct({ handleAdd }) {
           value={newProduct.price}
           onChange={handleChange}
         />
-        <Input
-          type="text"
+        <Select
           name="category"
-          placeholder="Product Category"
           value={newProduct.category}
           onChange={handleChange}
-        />
+        >
+          <option value="">Selecciona una categoría</option>
+          {categories.map((category) => (
+            <option key={category._id} value={category._id}>
+              {category.name}
+            </option>
+          ))}
+        </Select>
         <Input
           type="text"
           name="image"
@@ -66,7 +105,9 @@ function CreateProduct({ handleAdd }) {
           value={newProduct.image}
           onChange={handleChange}
         />
-        <Button type="submit">Add Product</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? 'Creating...' : 'Add Product'}
+        </Button>
       </Form>
     </>
   );
