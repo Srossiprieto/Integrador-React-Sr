@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { loginRequest, registerRequest, verifyTokenRequest } from "../api/api";
+import { loginRequest, registerRequest } from "../api/api";
 import Cookies from 'js-cookie';
 
 export const AuthContext = createContext();
@@ -14,19 +14,16 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  
-
   // Function to sign in
   const signin = async (credentials) => {
     try {
       const response = await loginRequest(credentials);
       const { token, user } = response.data; // Ensure the token and user are returned here
       if (token && user) {
-        Cookies.set("token", token, { expires: 7}); // Set with expiration and domain
+        Cookies.set("token", token, { expires: 7 }); // Set with expiration
         setUser(user); // Set the user
         setIsAuthenticated(true); // The user is authenticated
         setErrors([]); // Clear errors
-        verifyToken()
       } else {
         setErrors(['Token or user data is missing in the response']);
       }
@@ -47,11 +44,10 @@ export const AuthProvider = ({ children }) => {
       if (response && response.data) {
         const { token, user } = response.data;
         if (token && user) {
-          Cookies.set("token", token, { expires: 7 }); // Set with expiration and domain
+          Cookies.set("token", token, { expires: 7 }); // Set with expiration
           setUser(user); // Set the user
           setIsAuthenticated(true); // The user is authenticated
           setErrors([]); // Clear errors
-          verifyToken()
         } else {
           setErrors(['Token or user data is missing in the response']);
         }
@@ -72,35 +68,21 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false); // The user is not authenticated
   };
 
-
-
-  const verifyToken = async () => {
+  // Function to load user from token
+  const loadUserFromToken = () => {
     const token = Cookies.get("token");
-
-    if (!token) {
-      setLoading(false);
-      setIsAuthenticated(false);
-      return;
+    if (token) {
+      // Assuming the token contains user information
+      const user = JSON.parse(atob(token.split('.')[1])); // Decode the token payload
+      setUser(user);
+      setIsAuthenticated(true);
     }
-
-    try {
-      const response = await verifyTokenRequest(); // Verify the token
-      setUser(response.data.user); // Set the user
-      setIsAuthenticated(true); // The user is authenticated
-    } catch (error) {
-      setIsAuthenticated(false); // The token is not valid
-    } finally {
-      setLoading(false); // End the loading process
-    }
+    setLoading(false);
   };
 
-
   useEffect(() => {
-    verifyToken(); // Call the function to verify the token
+    loadUserFromToken(); // Load user from token when the component mounts
   }, []); // Run once on mount
-   // Verify the token when the component mounts
-   
-
 
   return (
     <AuthContext.Provider value={{ user, loading, isAuthenticated, signin, signup, signout, errors }}>
