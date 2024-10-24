@@ -14,30 +14,6 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
 
-   // Verify the token when the component mounts
-   useEffect(() => {
-    const verifyToken = async () => {
-      const token = Cookies.get("token");
-
-      if (!token) {
-        setLoading(false);
-        setIsAuthenticated(false);
-        return;
-      }
-
-      try {
-        const response = await verifyTokenRequest(); // Verify the token
-        setUser(response.data.user); // Set the user
-        setIsAuthenticated(true); // The user is authenticated
-      } catch (error) {
-        setIsAuthenticated(false); // The token is not valid
-      } finally {
-        setLoading(false); // End the loading process
-      }
-    };
-
-    verifyToken(); // Call the function to verify the token
-  }, []); // Run once on mount
   
 
   // Function to sign in
@@ -50,6 +26,7 @@ export const AuthProvider = ({ children }) => {
         setUser(user); // Set the user
         setIsAuthenticated(true); // The user is authenticated
         setErrors([]); // Clear errors
+        verifyToken()
       } else {
         setErrors(['Token or user data is missing in the response']);
       }
@@ -74,6 +51,7 @@ export const AuthProvider = ({ children }) => {
           setUser(user); // Set the user
           setIsAuthenticated(true); // The user is authenticated
           setErrors([]); // Clear errors
+          verifyToken()
         } else {
           setErrors(['Token or user data is missing in the response']);
         }
@@ -93,6 +71,36 @@ export const AuthProvider = ({ children }) => {
     setUser(null); // Reset the user
     setIsAuthenticated(false); // The user is not authenticated
   };
+
+
+
+  const verifyToken = async () => {
+    const token = Cookies.get("token");
+
+    if (!token) {
+      setLoading(false);
+      setIsAuthenticated(false);
+      return;
+    }
+
+    try {
+      const response = await verifyTokenRequest(); // Verify the token
+      setUser(response.data.user); // Set the user
+      setIsAuthenticated(true); // The user is authenticated
+    } catch (error) {
+      setIsAuthenticated(false); // The token is not valid
+    } finally {
+      setLoading(false); // End the loading process
+    }
+  };
+
+
+  useEffect(() => {
+    verifyToken(); // Call the function to verify the token
+  }, []); // Run once on mount
+   // Verify the token when the component mounts
+   
+
 
   return (
     <AuthContext.Provider value={{ user, loading, isAuthenticated, signin, signup, signout, errors }}>
