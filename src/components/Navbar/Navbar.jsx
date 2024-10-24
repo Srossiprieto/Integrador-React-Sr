@@ -109,10 +109,12 @@ function Navbar() {
             </NavbarUlStyled>
             
             {isAuthenticated ? (
+
               <BtnSignOutContainer>
                 <BtnSignOut onClick={signout}
                 >Sign Out</BtnSignOut>
               </BtnSignOutContainer>
+    
             ) : (
               <Link to="/login">
                 <StyledUserIcon />

@@ -1,19 +1,15 @@
-import axios from './axios';
-import Cookies from 'js-cookie'; // Asegúrate de importar js-cookie si no lo has hecho
+import axios from 'axios';
 
-export const registerRequest = (user) => axios.post('/api/auth/register', user);
+const API_URL = import.meta.env.VITE_BASE_URL;
 
-export const loginRequest = (user) => axios.post('/api/auth/login', user);
+export const loginRequest = async (credentials) => {
+  return await axios.post(`${API_URL}/api/auth/login`, credentials, { withCredentials: true });
+};
 
-export const verifyTokenRequest = () => {
-  const token = Cookies.get("token"); // Obtener el token de las cookies
-  if (!token) {
-    throw new Error("No token provided");
-  }
+export const registerRequest = async (userData) => {
+  return await axios.post(`${API_URL}/api/auth/register`, userData, { withCredentials: true });
+};
 
-  return axios.get('/api/auth/verify', {
-    headers: {
-      Authorization: `Bearer ${token}`, 
-    },
-  });
+export const verifyTokenRequest = async () => {
+  return await axios.get(`${API_URL}/api/auth/verify`, { withCredentials: true });
 };

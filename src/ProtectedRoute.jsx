@@ -9,7 +9,7 @@ function ProtectedRoute() {
 
   if (loading) return <Skeleton/>;
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/home" />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
 }
 
 export default ProtectedRoute;
