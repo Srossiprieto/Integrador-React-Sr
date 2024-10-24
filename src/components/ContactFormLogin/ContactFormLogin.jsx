@@ -22,7 +22,6 @@ const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage
     await signin(values); // Usar la función signin del contexto de autenticación
     resetForm();
     setErrorMessage('');
-    window.location.reload(); // Recargar la página para actualizar la barra de navegación
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
     setErrorMessage(errorMessage);

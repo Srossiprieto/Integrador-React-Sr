@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAuth } from '../../context/AuthContext'; // Importar el contexto de autenticación
@@ -23,7 +23,6 @@ const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage
     await signup(values); // Usar la función signup del contexto de autenticación
     resetForm();
     setErrorMessage('');
-    window.location.reload(); // Recargar la página para actualizar la barra de navegación
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
     setErrorMessage(errorMessage);
