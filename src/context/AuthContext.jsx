@@ -67,13 +67,15 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response && response.data) {
-        setUser({
-          id: response.data.id,
-          username: response.data.username,
-          email: response.data.email,
-        });
-        setIsAuthenticated(true);
-        setErrors([]); // Limpiar errores
+        const { token, user } = response.data;
+        if (token && user) {
+          Cookies.set("token", token, { expires: 7 }); // Establecer con expiración
+          setUser(user); // Establecer el usuario
+          setIsAuthenticated(true); // El usuario está autenticado
+          setErrors([]); // Limpiar errores
+        } else {
+          setErrors(['Token or user data is missing in the response']);
+        }
       }
     } catch (error) {
       if (Array.isArray(error?.response?.data?.errors)) {
