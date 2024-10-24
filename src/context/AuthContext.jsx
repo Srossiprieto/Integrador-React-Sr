@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       const response = await loginRequest(credentials);
       const { token, user } = response.data; // Asegúrate de que el token y el usuario se devuelvan aquí
       if (token && user) {
-        Cookies.set("token", token, { expires: 7 }); // Establecer con expiración
+        Cookies.set("token", token, { expires: 7, domain: import.meta.env.VITE_COOKIE_DOMAIN }); // Establecer con expiración y dominio
         setUser(user); // Establecer el usuario
         setIsAuthenticated(true); // El usuario está autenticado
         setErrors([]); // Limpiar errores
@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
       if (response && response.data) {
         const { token, user } = response.data;
         if (token && user) {
-          Cookies.set("token", token, { expires: 7 }); // Establecer con expiración
+          Cookies.set("token", token, { expires: 7, domain: import.meta.env.VITE_COOKIE_DOMAIN }); // Establecer con expiración y dominio
           setUser(user); // Establecer el usuario
           setIsAuthenticated(true); // El usuario está autenticado
           setErrors([]); // Limpiar errores
@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
 
   // Función para cerrar sesión
   const signout = async () => {
-    Cookies.remove("token"); // Remueve el token de las cookies
+    Cookies.remove("token", { domain: import.meta.env.VITE_COOKIE_DOMAIN }); // Remueve el token de las cookies
     setUser(null); // Resetea el usuario
     setIsAuthenticated(false); // El usuario no está autenticado
   };
