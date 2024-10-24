@@ -14,8 +14,8 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  // Verifica el token al montar el componente
-  useEffect(() => {
+   // Verify the token when the component mounts
+   useEffect(() => {
     const verifyToken = async () => {
       const token = Cookies.get("token");
 
@@ -26,38 +26,39 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const response = await verifyTokenRequest(); // Verifica el token
-        setUser(response.data.user); // Establece el usuario
-        setIsAuthenticated(true); // El usuario está autenticado
+        const response = await verifyTokenRequest(); // Verify the token
+        setUser(response.data.user); // Set the user
+        setIsAuthenticated(true); // The user is authenticated
       } catch (error) {
-        setIsAuthenticated(false); // El token no es válido
+        setIsAuthenticated(false); // The token is not valid
       } finally {
-        setLoading(false); // Termina el proceso de carga
+        setLoading(false); // End the loading process
       }
     };
 
-    verifyToken(); // Llama a la función para verificar el token
-  }, []); // Se ejecuta una vez al montar
+    verifyToken(); // Call the function to verify the token
+  }, []); // Run once on mount
+  
 
-  // Función para iniciar sesión
+  // Function to sign in
   const signin = async (credentials) => {
     try {
       const response = await loginRequest(credentials);
-      const { token, user } = response.data; // Asegúrate de que el token y el usuario se devuelvan aquí
+      const { token, user } = response.data; // Ensure the token and user are returned here
       if (token && user) {
-        Cookies.set("token", token, { expires: 7, domain: import.meta.env.VITE_COOKIE_DOMAIN }); // Establecer con expiración y dominio
-        setUser(user); // Establecer el usuario
-        setIsAuthenticated(true); // El usuario está autenticado
-        setErrors([]); // Limpiar errores
+        Cookies.set("token", token, { expires: 7}); // Set with expiration and domain
+        setUser(user); // Set the user
+        setIsAuthenticated(true); // The user is authenticated
+        setErrors([]); // Clear errors
       } else {
         setErrors(['Token or user data is missing in the response']);
       }
     } catch (error) {
-      setErrors([error.response?.data?.message || error.message || 'Error desconocido']);
+      setErrors([error.response?.data?.message || error.message || 'Unknown error']);
     }
   };
 
-  // Función para registrar un nuevo usuario
+  // Function to sign up a new user
   const signup = async (values) => {
     try {
       const response = await registerRequest({
@@ -69,10 +70,10 @@ export const AuthProvider = ({ children }) => {
       if (response && response.data) {
         const { token, user } = response.data;
         if (token && user) {
-          Cookies.set("token", token, { expires: 7, domain: import.meta.env.VITE_COOKIE_DOMAIN }); // Establecer con expiración y dominio
-          setUser(user); // Establecer el usuario
-          setIsAuthenticated(true); // El usuario está autenticado
-          setErrors([]); // Limpiar errores
+          Cookies.set("token", token, { expires: 7 }); // Set with expiration and domain
+          setUser(user); // Set the user
+          setIsAuthenticated(true); // The user is authenticated
+          setErrors([]); // Clear errors
         } else {
           setErrors(['Token or user data is missing in the response']);
         }
@@ -86,11 +87,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Función para cerrar sesión
+  // Function to sign out
   const signout = async () => {
-    Cookies.remove("token", { domain: import.meta.env.VITE_COOKIE_DOMAIN }); // Remueve el token de las cookies
-    setUser(null); // Resetea el usuario
-    setIsAuthenticated(false); // El usuario no está autenticado
+    Cookies.remove("token"); // Remove the token from cookies
+    setUser(null); // Reset the user
+    setIsAuthenticated(false); // The user is not authenticated
   };
 
   return (
