@@ -42,7 +42,12 @@ function CreateProduct({ onProductAdded }) {
     }
 
     try {
-      const createdProduct = await createProduct(newProduct);
+      const productData = {
+        ...newProduct,
+        price: parseFloat(newProduct.price), // Asegúrate de que el precio sea un número
+      };
+
+      const createdProduct = await createProduct(productData);
       onProductAdded(createdProduct);
 
       setNewProduct({
@@ -55,7 +60,11 @@ function CreateProduct({ onProductAdded }) {
 
       setLoading(false);
     } catch (err) {
-      setError('Error creando producto: ' + err.message);
+      if (err.response && err.response.status === 401) {
+        setError('Unauthorized: Please log in again.');
+      } else {
+        setError('Error creating product: ' + err.message);
+      }
       setLoading(false);
     }
   };

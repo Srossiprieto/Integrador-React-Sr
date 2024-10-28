@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_BASE_URL;
 
+axios.defaults.withCredentials = true; // Asegúrate de que las credenciales se envíen con cada solicitud
+
 export const loginRequest = async (credentials) => {
   return await axios.post(`${API_URL}/api/auth/login`, credentials, { withCredentials: true });
 };
@@ -60,6 +62,16 @@ export const getCategories = async () => {
     return response.data;
   } catch (error) {
     console.error("Error fetching categories:", error);
+    throw error;
+  }
+};
+
+export const createCategory = async (name) => {
+  try {
+    const response = await axios.post(`${API_URL}/api/categories`, { name }, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    console.error("Error al crear la categoría:", error);
     throw error;
   }
 };
