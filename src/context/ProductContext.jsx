@@ -15,10 +15,6 @@ export const useProduct = () => {
 export function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -46,23 +42,9 @@ export function ProductProvider({ children }) {
     }
   }
 
-  const loadUserFromToken = () => {
-    const token = Cookies.get("token");
-    if (token) {
-      // Assuming the token contains user information
-      const user = JSON.parse(atob(token.split('.')[1])); 
-      setUser(user);
-      setIsAuthenticated(true);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    loadUserFromToken(); // Load user from token when the component mounts
-  }, []); // Run
 
   return (
-    <ProductContext.Provider value={{ products, categories, createProduct, isAuthenticated }}>
+    <ProductContext.Provider value={{ products, categories, createProduct}}>
       {children}
     </ProductContext.Provider>
   );
