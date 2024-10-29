@@ -9,8 +9,8 @@ export const deleteProduct = (id) => axios.delete(`/api/products/${id}`);
 export const updateProduct = (product) =>
   axios.put(`/api/products/${product._id}`, product);
 
-export const createProduct = (product) =>
-  axios.post(`/api/products`, product);
+export const createProduct = (product, token) =>
+  axios.post(`/api/products`, product, {Authorization: `Bearer ${token}`});
 
 
 
