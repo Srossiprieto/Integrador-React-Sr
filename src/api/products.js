@@ -10,7 +10,7 @@ export const updateProduct = (product) =>
   axios.put(`/api/products/${product._id}`, product);
 
 export const createProduct = (product, token) =>
-  axios.post(`/api/products`, product, {Authorization: `Bearer ${token}`});
+  axios.post(`/api/products`, product, {Authorization: `${token}`});
 
 
 
