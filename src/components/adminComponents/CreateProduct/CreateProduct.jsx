@@ -1,30 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { createProduct, getCategories } from '../../../api/api';
-import { Form, Input, Button, Select } from './CreateProductStyled';
+import React, { useState } from "react";
+import { useProduct } from "../../../context/ProductContext";
+import { Form, Input, Select, Button } from "./CreateProductStyled";
 
-function CreateProduct({ onProductAdded }) {
+function CreateProduct() {
+  const { createProduct, categories } = useProduct();
   const [newProduct, setNewProduct] = useState({
-    name: '',
-    description: '',
-    price: '',
-    category: '',
-    image: '',
+    name: "",
+    description: "",
+    price: "",
+    category: "",
+    image: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const categoriesData = await getCategories();
-        setCategories(categoriesData);
-      } catch (error) {
-        setError('Error fetching categories: ' + error.message);
-      }
-    };
-    fetchCategories();
-  }, []);
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,7 +25,7 @@ function CreateProduct({ onProductAdded }) {
     setLoading(true);
 
     if (!newProduct.name || !newProduct.description || !newProduct.price || !newProduct.category || !newProduct.image) {
-      alert('Por favor, completa todos los campos.');
+      setMessage("Por favor, completa todos los campos.");
       setLoading(false);
       return;
     }
@@ -47,24 +36,18 @@ function CreateProduct({ onProductAdded }) {
         price: parseFloat(newProduct.price), // Asegúrate de que el precio sea un número
       };
 
-      const createdProduct = await createProduct(productData);
-      onProductAdded(createdProduct);
-
+      await createProduct(productData);
+      setMessage("Producto creado exitosamente.");
       setNewProduct({
-        name: '',
-        description: '',
-        price: '',
-        category: '',
-        image: '',
+        name: "",
+        description: "",
+        price: "",
+        category: "",
+        image: "",
       });
-
       setLoading(false);
     } catch (err) {
-      if (err.response && err.response.status === 401) {
-        setError('Unauthorized: Please log in again.');
-      } else {
-        setError('Error creating product: ' + err.message);
-      }
+      setError("Error creando producto: " + err.message);
       setLoading(false);
     }
   };
@@ -73,6 +56,7 @@ function CreateProduct({ onProductAdded }) {
     <>
       <h3>Create Product</h3>
       {error && <div style={{ color: 'red' }}>Error: {error}</div>}
+      {message && <div style={{ color: 'green' }}>{message}</div>}
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
@@ -115,7 +99,7 @@ function CreateProduct({ onProductAdded }) {
           onChange={handleChange}
         />
         <Button type="submit" disabled={loading}>
-          {loading ? 'Creating...' : 'Add Product'}
+          {loading ? "Creating..." : "Add Product"}
         </Button>
       </Form>
     </>
