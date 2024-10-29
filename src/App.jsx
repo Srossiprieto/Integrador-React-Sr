@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import Skeleton from "./components/Skeleton/Skeleton";
+import { ProductProvider } from "./context/ProductContext";
 
 // Lazy load components
 const Home = lazy(() => import("./pages/home/Home"));
@@ -23,19 +24,21 @@ function App() {
       <DropDownProvider>
         <BrowserRouter>
           <Navbar />
-          <Suspense fallback={<Skeleton/>}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/productos" element={<Product />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contacto" element={<Contact />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/admin" element={<AdminPage />} />
-              </Route>
-              <Route path="*" element={<Error />} />
-            </Routes>
+          <Suspense fallback={<Skeleton />}>
+            <ProductProvider>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/productos" element={<Product />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contacto" element={<Contact />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/admin" element={<AdminPage />} />
+                </Route>
+                <Route path="*" element={<Error />} />
+              </Routes>
+            </ProductProvider>
           </Suspense>
           <Footer />
         </BrowserRouter>
