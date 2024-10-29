@@ -8,8 +8,8 @@ export const loginRequest = async (credentials) => {
   return await axios.post(`${API_URL}/api/auth/login`, credentials, { withCredentials: true });
 };
 
-export const registerRequest = async (userData) => {
-  return await axios.post(`${API_URL}/api/auth/register`, userData, { withCredentials: true });
+export const registerRequest = async (credentials) => {
+  return await axios.post(`${API_URL}/api/auth/register`, credentials, { withCredentials: true });
 };
 
 export const verifyTokenRequest = async () => {

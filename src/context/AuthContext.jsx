@@ -35,11 +35,9 @@ export const AuthProvider = ({ children }) => {
   // Function to sign up a new user
   const signup = async (values) => {
     try {
-      const response = await registerRequest({
-        username: values.name,
-        email: values.email,
-        password: values.password,
-      });
+      const response = await registerRequest(
+        credentials
+      );
 
       if (response && response.data) {
         const { token, user } = response.data;
