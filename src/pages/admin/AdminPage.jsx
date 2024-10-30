@@ -8,8 +8,8 @@ function AdminPage() {
   return (
     <>
       <AdminContainer>
-        <CreateCategory />
-        <ListProducts/>
+        {/* <CreateCategory /> */}
+        <ListProducts/> 
       </AdminContainer>
     </>
   )

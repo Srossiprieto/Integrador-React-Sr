@@ -1,218 +1,195 @@
 import React, { useState, useEffect } from "react";
-import { getProducts, deleteProduct, updateProduct, getCategories } from "../../../api/api";
+import { getProducts, deleteProduct, updateProduct, createProduct, getCategories } from "../../../api/api";
 import { TableContainer, StyledTable } from "./ListProductsStyled";
-import CreateProduct from "../CreateProduct/CreateProduct";
+import CreateProductForm from "../CreateProduct/CreateProductForm";
 
 function ListProducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [editingProductId, setEditingProductId] = useState(null);
   const [editData, setEditData] = useState({
     name: "",
     description: "",
     price: "",
     category: "",
-    image: "",
   });
-  const [categories, setCategories] = useState([]); // Lista de categorías
+  const [categories, setCategories] = useState([]);
 
-  const fetchProducts = async () => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await getProducts();
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const fetchCategories = async () => {
+      try {
+        const response = await getCategories();
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchProducts();
+    fetchCategories();
+  }, []);
+
+  const handleUpdateProduct = async (id, updatedProductData) => {
     try {
-      const productsData = await getProducts();
-      setProducts(productsData);
+      const updatedProduct = await updateProduct(id, updatedProductData);
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product._id === id ? { ...product, ...updatedProductData, category: categories.find(cat => cat._id === updatedProductData.category) } : product
+        )
+      );
+      setEditingProductId(null);
     } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
+      console.error("Error updating product:", error);
     }
   };
 
-  const fetchCategories = async () => {
+  const handleDeleteProduct = async (id) => {
     try {
-      const categoriesData = await getCategories();
-      setCategories(categoriesData);
+      await deleteProduct(id);
+      setProducts((prevProducts) => prevProducts.filter((product) => product._id !== id));
     } catch (error) {
-      setError("Error fetching categories: " + error.message);
+      console.error("Error deleting product:", error);
     }
   };
 
-  const handleEditClick = (product) => {
+  const handleCreateProduct = async (newProductData) => {
+    try {
+      const response = await createProduct(newProductData);
+      setProducts((prevProducts) => [...prevProducts, response.data]);
+    } catch (error) {
+      console.error("Error creating product:", error);
+    }
+  };
+
+  const handleEdit = (product) => {
     setEditingProductId(product._id);
     setEditData({
       name: product.name,
       description: product.description,
       price: product.price,
-      category: product.category._id, // Guardar el ID de la categoría
-      image: product.image,
+      category: product.category._id,
     });
   };
 
-  const handleSaveClick = async (productId) => {
-    if (!editData.image.startsWith("http")) {
-      alert("La URL de la imagen no es válida");
-      return;
-    }
-
-    try {
-      if (!editData.category) {
-        alert("Por favor, selecciona una categoría.");
-        return;
-      }
-
-      const updatedProductData = {
-        ...editData,
-        name: editData.name.trim(),
-        description: editData.description.trim(),
-        price: parseFloat(editData.price),
-        category: editData.category,
-      };
-
-      await updateProduct(productId, updatedProductData);
-
-      // Buscar el nombre de la categoría seleccionada
-      const updatedCategory = categories.find(
-        (category) => category._id === editData.category
-      );
-
-      // Actualizar el estado de los productos con el nombre de la categoría
-      setProducts(
-        products.map((product) =>
-          product._id === productId
-            ? { ...product, ...updatedProductData, category: updatedCategory }
-            : product
-        )
-      );
-
-      setEditingProductId(null);
-    } catch (error) {
-      setError("Error updating product: " + error.message);
-    }
-  };
-
-  const handleDeleteClick = async (productId) => {
-    try {
-      await deleteProduct(productId);
-      setProducts(products.filter((product) => product._id !== productId));
-    } catch (error) {
-      setError("Error deleting product: " + error.message);
-    }
+  const handleCancelEdit = () => {
+    setEditingProductId(null);
   };
 
   const handleChange = (e) => {
-    setEditData({ ...editData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setEditData({ ...editData, [name]: value });
   };
 
-  const handleProductAdded = (newProduct) => {
-    setProducts([...products, newProduct]);
+  const handleSave = () => {
+    const updatedProductData = {
+      ...editData,
+      price: parseFloat(editData.price), // Asegúrate de que el precio sea un número
+    };
+    handleUpdateProduct(editingProductId, updatedProductData);
   };
-
-  useEffect(() => {
-    fetchProducts();
-    fetchCategories(); // Obtener las categorías disponibles
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   return (
     <div>
       <h1>Products</h1>
-      <CreateProduct onProductAdded={handleProductAdded} />
-      <TableContainer>
-        <StyledTable>
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Descripción</th>
-              <th>Precio</th>
-              <th>Categoría</th>
-              <th>Imagen</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                {editingProductId === product._id ? (
-                  <>
-                    <td>
-                      <input
-                        type="text"
-                        name="name"
-                        value={editData.name}
-                        onChange={handleChange}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="description"
-                        value={editData.description}
-                        onChange={handleChange}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        name="price"
-                        value={editData.price}
-                        onChange={handleChange}
-                      />
-                    </td>
-                    <td>
-                      <select
-                        name="category"
-                        value={editData.category}
-                        onChange={handleChange}
-                      >
-                        <option value="">Selecciona una categoría</option>
-                        {categories.map((category) => (
-                          <option key={category._id} value={category._id}>
-                            {category.name}
-                          </option>
-                        ))}
-                      </select>
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="image"
-                        value={editData.image}
-                        onChange={handleChange}
-                      />
-                      <img src={editData.image} alt={editData.name} width="50" />
-                    </td>
-                    <td>
-                      <button onClick={() => handleSaveClick(product._id)}>Guardar</button>
-                      <button onClick={() => setEditingProductId(null)}>Cancelar</button>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    <td>{product.name}</td>
-                    <td>{product.description}</td>
-                    <td>{product.price}</td>
-                    <td>{product.category.name}</td>
-                    <td>
-                      <img src={product.image} alt={product.name} width="50" />
-                    </td>
-                    <td>
-                      <button onClick={() => handleEditClick(product)}>Editar</button>
-                      <button onClick={() => handleDeleteClick(product._id)}>Eliminar</button>
-                    </td>
-                  </>
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </StyledTable>
-      </TableContainer>
+      {loading ? <p>Loading...</p> : (
+        <>
+          <CreateProductForm onCreate={handleCreateProduct} />
+          <TableContainer>
+            <StyledTable>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Price</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((product) => (
+                  <tr key={product._id}>
+                    {editingProductId === product._id ? (
+                      <>
+                        <td>
+                          <input
+                            type="text"
+                            name="name"
+                            value={editData.name}
+                            onChange={handleChange}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="description"
+                            value={editData.description}
+                            onChange={handleChange}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            name="price"
+                            value={editData.price}
+                            onChange={handleChange}
+                          />
+                        </td>
+                        <td>
+                          <select
+                            name="category"
+                            value={editData.category}
+                            onChange={handleChange}
+                          >
+                            <option value="">Select Category</option>
+                            {categories.map((category) => (
+                              <option key={category._id} value={category._id}>
+                                {category.name}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <img src={product.image} alt={product.name} width="50" />
+                        </td>
+                        <td>
+                          <button onClick={handleSave}>Save</button>
+                          <button onClick={handleCancelEdit}>Cancel</button>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td>{product.name}</td>
+                        <td>{product.description}</td>
+                        <td>{product.price}</td>
+                        <td>{product.category?.name || 'No category'}</td>
+                        <td>
+                          <img src={product.image} alt={product.name} width="50" />
+                        </td>
+                        <td>
+                          <button onClick={() => handleEdit(product)}>Edit</button>
+                          <button onClick={() => handleDeleteProduct(product._id)}>Delete</button>
+                        </td>
+                      </>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </StyledTable>
+          </TableContainer>
+        </>
+      )}
     </div>
   );
 }
