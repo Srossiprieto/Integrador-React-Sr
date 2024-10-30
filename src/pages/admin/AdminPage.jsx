@@ -9,10 +9,15 @@ function AdminPage() {
   return (
     <>
       <AdminContainer>
+<<<<<<< HEAD
         {/* <CreateCategory />
         <ListProducts/> */}
           <CreateProduct />
 
+=======
+        {/* <CreateCategory /> */}
+        <ListProducts/> 
+>>>>>>> a323870d7a0882540af0134866d5a896dd969af3
       </AdminContainer>
     </>
   )
