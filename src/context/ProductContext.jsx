@@ -31,12 +31,10 @@ export function ProductProvider({ children }) {
 
   const createProduct = async (product) => {
     const token = Cookies.get("token");
-    console.log("Token:", token); // Depuración: Verificar el token
     if (!token) return console.error("No token found");
     try {
       const res = await createProductAPI(product, token);
       setProducts([...products, res.data]);
-      console.log(res);
     } catch (error) {
       console.error("Error creating product:", error);
     }

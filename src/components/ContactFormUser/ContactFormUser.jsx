@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../Ui/Loader/Loader';
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('El nombre es obligatorio'),
+  username: Yup.string().required('El nombre de usuario es obligatorio'),
   email: Yup.string().email('Debe ser un email válido').required('El email es obligatorio'),
   password: Yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es obligatoria'),
 });
@@ -45,7 +45,7 @@ const ContactFormUser = ({ text }) => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      username: '',
       email: '',
       password: '',
     },
@@ -67,18 +67,18 @@ const ContactFormUser = ({ text }) => {
           )
         }
         
-        <Label htmlFor="name">Nombre</Label>
+        <Label htmlFor="username">Nombre de Usuario</Label>
         <Input
-          id="name"
-          name="name"
-          placeholder="Nombre"
+          id="username"
+          name="username"
+          placeholder="Nombre de Usuario"
           type="text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.name}
+          value={formik.values.username}
         />
-        {formik.touched.name && formik.errors.name && (
-          <div style={{ color: 'red' }}>{formik.errors.name}</div>
+        {formik.touched.username && formik.errors.username && (
+          <div style={{ color: 'red' }}>{formik.errors.username}</div>
         )}
 
         <Label htmlFor="email">Email</Label>
