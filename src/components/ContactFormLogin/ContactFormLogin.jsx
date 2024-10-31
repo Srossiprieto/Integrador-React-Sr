@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useAuth } from '../../context/AuthContext'; // Importar el contexto de autenticación
-import { useNavigate } from 'react-router-dom'; // Importar useNavigate
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import {
   ContentForm, Form, Label, Input, FormButtom, StyledLinkContainer
 } from './ContactFormLoginStyles';
@@ -16,25 +16,10 @@ const validationSchema = Yup.object({
   password: Yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es obligatoria'),
 });
 
-const handleSubmit = async (values, { resetForm }, setIsLoading, setErrorMessage, signin, navigate) => {
-  setIsLoading(true); // Iniciar carga
-  try {
-    await signin(values); // Usar la función signin del contexto de autenticación
-    resetForm();
-    setErrorMessage('');
-  } catch (error) {
-    const errorMessage = error.response?.data?.message || error.message || 'Error desconocido';
-    setErrorMessage(errorMessage);
-  } finally {
-    setIsLoading(false); // Finalizar carga
-  }
-};
-
 const ContactFormLogin = ({ text }) => {
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false); 
-  const { signin, isAuthenticated, errors: loginErrors } = useAuth(); // Usar el contexto de autenticación
-  const navigate = useNavigate(); // Usar useNavigate para redireccionar
+  const [isLoading, setIsLoading] = useState(false);
+  const { signin, isAuthenticated, errors: loginErrors } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -48,28 +33,26 @@ const ContactFormLogin = ({ text }) => {
       password: '',
     },
     validationSchema,
-    onSubmit: (values, actions) => handleSubmit(values, actions, setIsLoading, setErrorMessage, signin, navigate),
+    onSubmit: async (values, { resetForm }) => {
+      setIsLoading(true);
+      await signin(values);
+      resetForm();
+      setIsLoading(false);
+    },
   });
 
   return (
     <ContentForm>
       <Form onSubmit={formik.handleSubmit}>
         <h2>{text}</h2>
-        {
-          loginErrors && loginErrors.length > 0 && (
-            <div style={{ color: 'red' }}>
-              {loginErrors.map((error, index) => (
-                <p key={index}>{error.message || error}</p>
-              ))}
-            </div>
-          )
-        }
+        {loginErrors && loginErrors.map((error, index) => (
+          <div key={index} style={{ color: 'red' }}>{error}</div>
+        ))}
         
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
           name="email"
-          placeholder="email"
           type="email"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -83,7 +66,6 @@ const ContactFormLogin = ({ text }) => {
         <Input
           id="password"
           name="password"
-          placeholder="contraseña"
           type="password"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -93,14 +75,11 @@ const ContactFormLogin = ({ text }) => {
           <div style={{ color: 'red' }}>{formik.errors.password}</div>
         )}
 
-        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
-
         <ButtonPrimary
           type="submit"
-          text={isLoading ? <Loader/> : "Iniciar sesión"}
-          img={isLoading ? null : arrowRight}
-          alt="button-arrowRight"
-          disabled={isLoading} // Deshabilitar el botón mientras se carga
+          text={isLoading ? <Loader /> : "Iniciar sesión"}
+          img={!isLoading ? arrowRight : null}
+          disabled={isLoading}
         />
 
         <FormButtom>

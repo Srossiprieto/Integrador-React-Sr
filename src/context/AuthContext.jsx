@@ -14,64 +14,59 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  // Function to sign in
+  // Función para iniciar sesión
   const signin = async (credentials) => {
     try {
       const response = await loginRequest(credentials);
-      const { token, user } = response.data; // Ensure the token and user are returned here
+      const { token, user } = response.data;
       if (token && user) {
-        Cookies.set("token", token, { expires: 7 }); // Set with expiration
-        setUser(user); // Set the user
-        setIsAuthenticated(true); // The user is authenticated
-        setErrors([]); // Clear errors
+        Cookies.set("token", token, { expires: 7 });
+        setUser(user);
+        setIsAuthenticated(true);
+        setErrors([]);
       } else {
-        setErrors(['Token or user data is missing in the response']);
+        setErrors(['Token o datos de usuario faltantes en la respuesta']);
       }
     } catch (error) {
-      setErrors([error.response?.data?.message || error.message || 'Unknown error']);
+      setErrors([error.response?.data?.message || error.message || 'Error desconocido']);
     }
   };
 
-  // Function to sign up a new user
+  // Función para registrarse
   const signup = async (values) => {
     try {
-      const response = await registerRequest(
-        credentials
-      );
-
-      if (response && response.data) {
-        const { token, user } = response.data;
-        if (token && user) {
-          Cookies.set("token", token, { expires: 7 }); // Set with expiration
-          setUser(user); // Set the user
-          setIsAuthenticated(true); // The user is authenticated
-          setErrors([]); // Clear errors
-        } else {
-          setErrors(['Token or user data is missing in the response']);
-        }
+      const response = await registerRequest(values);
+      const { token, user } = response.data;
+      if (token && user) {
+        Cookies.set("token", token, { expires: 7 });
+        setUser(user);
+        setIsAuthenticated(true);
+        setErrors([]);
+      } else {
+        setErrors(['Token o datos de usuario faltantes en la respuesta']);
       }
     } catch (error) {
       if (Array.isArray(error?.response?.data?.errors)) {
-        return setErrors(error.response.data.errors);
+        setErrors(error.response.data.errors);
+      } else {
+        setErrors([error?.response?.data?.message || "Error inesperado"]);
       }
-      setErrors([error?.response?.data?.message || "Unexpected error"]);
       setIsAuthenticated(false);
     }
   };
 
-  // Function to sign out
-  const signout = async () => {
-    Cookies.remove("token"); // Remove the token from cookies
-    setUser(null); // Reset the user
-    setIsAuthenticated(false); // The user is not authenticated
+  // Función para cerrar sesión
+  const signout = () => {
+    Cookies.remove("token");
+    setUser(null);
+    setIsAuthenticated(false);
   };
 
-  // Function to load user from token
+  // Cargar usuario desde el token
   const loadUserFromToken = () => {
     const token = Cookies.get("token");
     if (token) {
-      // Assuming the token contains user information
-      const user = JSON.parse(atob(token.split('.')[1])); // Decode the token payload
+      const user = JSON.parse(atob(token.split('.')[1]));
       setUser(user);
       setIsAuthenticated(true);
     }
@@ -79,8 +74,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    loadUserFromToken(); // Load user from token when the component mounts
-  }, []); // Run once on mount
+    loadUserFromToken();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, loading, isAuthenticated, signin, signup, signout, errors }}>
