@@ -66,7 +66,9 @@ function ListProducts() {
   const handleCreateProduct = async (newProductData) => {
     try {
       const response = await createProduct(newProductData);
-      setProducts((prevProducts) => [...prevProducts, response.data]);
+      const createdProduct = response.data;
+      const category = categories.find(cat => cat._id === createdProduct.category);
+      setProducts((prevProducts) => [...prevProducts, { ...createdProduct, category }]);
     } catch (error) {
       console.error("Error creating product:", error);
     }
