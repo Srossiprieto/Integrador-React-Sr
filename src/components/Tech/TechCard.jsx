@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts } from '../../redux/products/productsSlice';
 import { 
     TechContainer,
     ContainerTechWrapper,
@@ -12,17 +13,20 @@ import ButtonPagination from '../Ui/ButtonPagination.jsx';
 import { motion } from 'framer-motion';
 
 function TechCard({ textTitle }) {
+  const dispatch = useDispatch();
   const [itemsToShow, setItemsToShow] = useState(INITIAL_LIMIT);
-  let tech = useSelector((state) => state.products.tech);
+  const tech = useSelector((state) => state.products.tech);
   const { selectedCategory } = useSelector((state) => state.categories);
 
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
   // Filtra los productos por la categoría seleccionada
-  if (selectedCategory) {
-    tech = tech.filter(prod => prod.category === selectedCategory);
-  }
+  const filteredTech = selectedCategory ? tech.filter(prod => prod.category === selectedCategory) : tech;
 
   // Obtiene los elementos para mostrar
-  const techsToShow = tech.slice(0, itemsToShow);
+  const techsToShow = filteredTech.slice(0, itemsToShow);
 
   // Incrementa la cantidad de elementos a mostrar
   const showMoreItems = () => setItemsToShow(itemsToShow + INITIAL_LIMIT);
@@ -41,7 +45,7 @@ function TechCard({ textTitle }) {
         <TechWrapper>
           {techsToShow.map(prod => (
             <motion.div 
-              key={prod.id} 
+              key={prod._id} 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.5 }}
@@ -55,7 +59,7 @@ function TechCard({ textTitle }) {
         <ButtonPagination 
           text="Ver más" 
           onClick={showMoreItems} 
-          disabled={itemsToShow >= tech.length} 
+          disabled={itemsToShow >= filteredTech.length} 
         />
         <ButtonPagination 
           text="Ver menos" 

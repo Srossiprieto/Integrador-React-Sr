@@ -1,25 +1,33 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getProducts } from '../../api/api';
 
-import { tech, TotalProducts } from '../../data/tech';
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
+  const response = await getProducts();
+  return response.data;
+});
 
+const productsSlice = createSlice({
+  name: 'products',
+  initialState: {
+    tech: [],
+    status: 'idle',
+    error: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.tech = action.payload;
+      })
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
+  },
+});
 
-const INITIAL_STATE = {
-    tech: tech,
-    totalProducts: TotalProducts
-}
-
-// new slice for documentation 
-
-export const productsSlice = createSlice({
-    name: 'products',
-    initialState: INITIAL_STATE,
-    reducers: {
-        getProducts: state => {
-            return state;
-        }
-    }
-})
-
-export const { getProducts } = productsSlice.actions
-
-export default productsSlice.reducer
+export default productsSlice.reducer;
