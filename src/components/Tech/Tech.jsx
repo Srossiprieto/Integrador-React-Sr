@@ -5,13 +5,13 @@ import { addToCart } from '../../redux/cart/cartSlice';
 import Modal from '../Modal/Modal';
 import ButtonPrimary from '../Ui/Button';
 
-function Tech({ title, img, desc, price, id }) {
+function Tech({ name, image, description, price, _id }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isButtonDisabled, setButtonDisabled] = useState(false);
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ img, title, desc, price, id }));
+    dispatch(addToCart({ image, name, description, price, id: _id }));
     setModalOpen(true);
     setButtonDisabled(true);
   };
@@ -34,11 +34,11 @@ function Tech({ title, img, desc, price, id }) {
   return (
     <>
       <CardTechDest>
-        <img src={img} alt={title} />
+        <img src={image} alt={name} />
         <TextTechContainer>
-          <h2>{title}</h2>
+          <h2>{name}</h2>
           <p>$ {price}</p>
-          <h3>{desc}</h3>
+          <h3>{description}</h3>
         </TextTechContainer>
         <ButtonContainer>
           <ButtonPrimary text="Agregar" onClick={handleAddToCart} />
