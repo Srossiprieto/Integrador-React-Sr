@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useProduct } from "../../../context/ProductContext";
 import { Form, Input, Button } from "./CreateCategoryStyled";
 
-function CreateCategory() {
+function CreateCategory({ onCreate }) {
   const { createCategory } = useProduct();
   const [categoryName, setCategoryName] = useState("");
   const [errors, setErrors] = useState({});
@@ -17,7 +17,7 @@ function CreateCategory() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validar formulario
@@ -27,17 +27,16 @@ function CreateCategory() {
       return;
     }
 
-    // Crear categoría
-    createCategory({ name: categoryName })
-      .then(() => {
-        // Limpiar formulario
-        setCategoryName("");
-        setErrors({});
-      })
-      .catch((error) => {
-        console.error("Error al crear la categoría:", error);
-        setErrors({ submit: "Error creating category" });
-      });
+    try {
+      // Llamada para crear la categoría
+      await createCategory({ name: categoryName });
+      setCategoryName(""); // Limpiar el campo de entrada tras la creación exitosa
+      setErrors({}); // Limpiar errores
+      if (onCreate) onCreate(); // Llamar al callback si existe
+    } catch (error) {
+      // Manejar y mostrar el error
+      setErrors({ submit: "Error creating category" });
+    }
   };
 
   return (
