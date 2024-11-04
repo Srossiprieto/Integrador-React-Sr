@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { createProduct as createProductAPI, getCategories as getCategoriesAPI } from "../api/products";
+import { createProduct as createProductAPI, getCategories as getCategoriesAPI, createCategory as createCategoryAPI, deleteCategory as deleteCategoryAPI } from "../api/api";
 import Cookies from 'js-cookie';
 
 const ProductContext = createContext();
@@ -40,9 +40,30 @@ export function ProductProvider({ children }) {
     }
   }
 
+  const createCategory = async (category) => {
+    const token = Cookies.get("token");
+    if (!token) return console.error("No token found");
+    try {
+      const res = await createCategoryAPI(category, token);
+      setCategories([...categories, res.data]);
+    } catch (error) {
+      console.error("Error creating category:", error);
+    }
+  }
+
+  const deleteCategory = async (id) => {
+    const token = Cookies.get("token");
+    if (!token) return console.error("No token found");
+    try {
+      await deleteCategoryAPI(id, token);
+      setCategories(categories.filter(category => category._id !== id));
+    } catch (error) {
+      console.error("Error deleting category:", error);
+    }
+  }
 
   return (
-    <ProductContext.Provider value={{ products, categories, createProduct}}>
+    <ProductContext.Provider value={{ products, categories, createProduct, createCategory, deleteCategory }}>
       {children}
     </ProductContext.Provider>
   );

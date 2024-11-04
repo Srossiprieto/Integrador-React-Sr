@@ -1,33 +1,39 @@
-import { Categories } from '../../data/categories'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getCategories } from '../../api/api';
 
+export const fetchCategories = createAsyncThunk('categories/fetchCategories', async () => {
+  const response = await getCategories();
+  return response.data;
+});
 
+const categoriesSlice = createSlice({
+  name: 'categories',
+  initialState: {
+    categories: [],
+    selectedCategory: null,
+    status: 'idle',
+    error: null,
+  },
+  reducers: {
+    selectCategory: (state, action) => {
+      state.selectedCategory = action.payload !== state.selectedCategory ? action.payload : null;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCategories.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.categories = action.payload;
+      })
+      .addCase(fetchCategories.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
+  },
+});
 
-const INITIAL_STATE = {
-    categories: Categories,
-    selectedCategory: null // valor inicial de la categoría seleccionada
-}
-// payload es el valor que se le pasa a la action(carga util)
-                
-export const categoriesSlice = createSlice({
-    name: 'categories',
-    initialState: INITIAL_STATE,
-    reducers: {
-        selectCategory: (state, action) => { // dos parametros (state, action) remplaza el dispatch del useReducer 
-            return {
-                ...state,
-                selectedCategory: 
-                action.payload !== state.selectedCategory ? action.payload : null
-                // arranca en null, retornamos selectedCategory (INITIAL_STATE), si lo que traemos de la action.payload es diferente a selectedCategory, retornamos action.payload, si no retornamos null 
-            };
-        },
-        categories: state => {
-            return state
-        }
-    }
-    })
-
-
-
-export const { categories, selectCategory } = categoriesSlice.actions // export todas las actions 
-export default categoriesSlice.reducer // export el reducer (todos los reducers juntos)
+export const { selectCategory } = categoriesSlice.actions;
+export default categoriesSlice.reducer;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts } from '../../redux/products/productsSlice';
+import { fetchProducts, fetchProductsByCategory } from '../../redux/products/productsSlice';
 import { 
     TechContainer,
     ContainerTechWrapper,
@@ -19,14 +19,15 @@ function TechCard({ textTitle }) {
   const { selectedCategory } = useSelector((state) => state.categories);
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
-  // Filtra los productos por la categoría seleccionada
-  const filteredTech = selectedCategory ? tech.filter(prod => prod.category === selectedCategory) : tech;
+    if (selectedCategory) {
+      dispatch(fetchProductsByCategory(selectedCategory));
+    } else {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch, selectedCategory]);
 
   // Obtiene los elementos para mostrar
-  const techsToShow = filteredTech.slice(0, itemsToShow);
+  const techsToShow = tech.slice(0, itemsToShow);
 
   // Incrementa la cantidad de elementos a mostrar
   const showMoreItems = () => setItemsToShow(itemsToShow + INITIAL_LIMIT);
@@ -59,7 +60,7 @@ function TechCard({ textTitle }) {
         <ButtonPagination 
           text="Ver más" 
           onClick={showMoreItems} 
-          disabled={itemsToShow >= filteredTech.length} 
+          disabled={itemsToShow >= tech.length} 
         />
         <ButtonPagination 
           text="Ver menos" 
