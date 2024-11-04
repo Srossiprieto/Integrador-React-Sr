@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 
-export const Form = styled.form`
-  margin-bottom: 20px;
+export const List = styled.ul`
+  list-style-type: none;
+  padding: 0;
 `;
 
-export const Input = styled.input`
+export const ListItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
-  margin: 5px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border-bottom: 1px solid #ddd;
 `;
 
 export const Button = styled.button`
-  padding: 10px 20px;
-  margin: 5px;
+  padding: 5px 10px;
   background-color: var(--bg-btn2);
   color: white;
   border: none;

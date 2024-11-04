@@ -1,11 +1,16 @@
-import { CategoriesContainer, SelectAllButton } from "./CategoriesStyles";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCategory } from "../../redux/categories/categoriesSlice";
-import Category from "./Category";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories, selectCategory } from '../../redux/categories/categoriesSlice';
+import Category from './Category';
+import { CategoriesContainer, SelectAllButton } from './CategoriesStyles';
 
 const Categories = ({ textTitle }) => {
-  const { categories } = useSelector((state) => state.categories);
-  const dispatch = useDispatch(); // traemos dispatch del store con useDispatch
+  const dispatch = useDispatch();
+  const { categories, selectedCategory } = useSelector((state) => state.categories);
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   return (
     <CategoriesContainer>
@@ -20,7 +25,7 @@ const Categories = ({ textTitle }) => {
         Todas
       </SelectAllButton>
       {categories.map((category) => (
-        <Category key={category.id} {...category} />
+        <Category key={category._id} {...category} />
       ))}
     </CategoriesContainer>
   );

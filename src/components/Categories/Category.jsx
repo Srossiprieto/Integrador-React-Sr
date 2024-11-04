@@ -1,23 +1,19 @@
-import { CardCategories } from "./CategoriesStyles";
-import {useDispatch,useSelector} from "react-redux";
+import { CardCategories } from './CategoriesStyles';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCategory } from '../../redux/categories/categoriesSlice';
 
-import { selectCategory } from "../../redux/categories/categoriesSlice";
- 
-
-export const Category = ({title,category}) => {
-  const {selectedCategory} = useSelector((state)=>state.categories); // traemos categories del store con el useSelector
-  const dispatch = useDispatch(); // traemos dispatch del store con useDispatch
+const Category = ({ name, _id }) => {
+  const { selectedCategory } = useSelector((state) => state.categories);
+  const dispatch = useDispatch();
 
   return (
-    <>
     <CardCategories
-      selected={category===selectedCategory} // si la categoria es igual a la categoria seleccionada, le damos un estilo
-      onClick={(e) => dispatch(selectCategory(category))} // al hacer click en la categoria, disparamos la action selectCategory con el valor de la categoria (el payload es category)
+      selected={_id === selectedCategory} // si la categoria es igual a la categoria seleccionada, le damos un estilo
+      onClick={() => dispatch(selectCategory(_id))} // al hacer click en la categoria, disparamos la action selectCategory con el valor de la categoria (el payload es _id)
       whileTap={{ scale: 0.95 }} // animacion al hacer click
     >
-      <h3>{title}</h3>
+      <h3>{name}</h3>
     </CardCategories>
-    </>
   );
 };
 
