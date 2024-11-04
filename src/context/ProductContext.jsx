@@ -33,7 +33,7 @@ export function ProductProvider({ children }) {
     const token = Cookies.get("token");
     if (!token) return console.error("No token found");
     try {
-      const res = await createProductAPI(product, token);
+      const res = await createProductAPI(product);
       setProducts([...products, res.data]);
     } catch (error) {
       console.error("Error creating product:", error);
@@ -44,10 +44,11 @@ export function ProductProvider({ children }) {
     const token = Cookies.get("token");
     if (!token) return console.error("No token found");
     try {
-      const res = await createCategoryAPI(category, token);
+      const res = await createCategoryAPI(category);
       setCategories([...categories, res.data]);
     } catch (error) {
       console.error("Error creating category:", error);
+      throw error; // Lanzar el error para que pueda ser manejado en el componente
     }
   }
 
@@ -55,7 +56,7 @@ export function ProductProvider({ children }) {
     const token = Cookies.get("token");
     if (!token) return console.error("No token found");
     try {
-      await deleteCategoryAPI(id, token);
+      await deleteCategoryAPI(id);
       setCategories(categories.filter(category => category._id !== id));
     } catch (error) {
       console.error("Error deleting category:", error);
