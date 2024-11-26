@@ -11,12 +11,14 @@ import Tech from "./Tech";
 import { INITIAL_LIMIT } from '../../utils/constants';
 import ButtonPagination from '../Ui/ButtonPagination.jsx';
 import { motion } from 'framer-motion';
+import SkeletonProduct from '../SkeletonProducts/SkeletonProduct.jsx';
 
 function TechCard({ textTitle }) {
   const dispatch = useDispatch();
   const [itemsToShow, setItemsToShow] = useState(INITIAL_LIMIT);
   const tech = useSelector((state) => state.products.tech);
   const { selectedCategory } = useSelector((state) => state.categories);
+  const loading = useSelector((state) => state.products.status === 'loading');
 
   useEffect(() => {
     if (selectedCategory) {
@@ -44,16 +46,22 @@ function TechCard({ textTitle }) {
     <TechContainer>
       <ContainerTechWrapper>
         <TechWrapper>
-          {techsToShow.map(prod => (
-            <motion.div 
-              key={prod._id} 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.5 }}
-            >
-              <Tech {...prod} />
-            </motion.div>
-          ))}
+          {loading ? (
+            Array.from({ length: itemsToShow }).map((_, index) => (
+              <SkeletonProduct key={index} />
+            ))
+          ) : (
+            techsToShow.map(prod => (
+              <motion.div 
+                key={prod._id} 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 0.5 }}
+                >
+                <Tech {...prod} />
+              </motion.div>
+            ))
+          )}
         </TechWrapper>
       </ContainerTechWrapper>
       <ButtonContainerPagination>
